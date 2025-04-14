@@ -22,7 +22,7 @@ export default function HomeSection() {
 
         <a href="#contact">
           <button className="bg-[#457431] hover:bg-[#BF8173] text-white px-5 py-2 rounded-full font-semibold text-sm sm:text-base transition-colors cursor-pointer">
-            Contáctame
+            Contactame
           </button>
         </a>
       </div>
