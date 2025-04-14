@@ -11,7 +11,7 @@ export default function Page() {
     <>
       <HomeSection />
       <AboutSection />
-      
+      <ServicesSection />
     </>
   )
 }

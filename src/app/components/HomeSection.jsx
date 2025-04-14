@@ -2,7 +2,7 @@ export default function HomeSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full flex items-center justify-center"
+      className="w-full min-h-screen flex items-center justify-center"
       style={{
         backgroundImage: "url('/image/banner1.jpg')",
         backgroundSize: "cover",
