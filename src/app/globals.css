@@ -30,6 +30,26 @@ body {
   overflow-x: hidden;
 }
 
+/* Estilo scroll para contenedor de imagen */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #EADCD6;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #BF8173;
+  border-radius: 9999px;
+  border: 2px solid #EADCD6;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #A76157;
+}
+
 /* {
   outline: 1px solid red;
 } */

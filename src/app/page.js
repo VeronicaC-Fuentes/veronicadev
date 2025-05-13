@@ -13,6 +13,7 @@ export default function Page() {
       <AboutSection />
       <ServicesSection />
       <ResumeSection />
+      <PortfolioSection />
     </>
   )
 }
