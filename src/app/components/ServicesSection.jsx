@@ -7,6 +7,7 @@ import {
   FaCogs,
   FaProjectDiagram,
 } from "react-icons/fa";
+import SectionHeader from './SectionHeader';
 
 export default function ServicesSection() {
   const services = [
@@ -45,23 +46,31 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="w-full min-h-screen px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 bg-[#2B3324] text-[#F2F2F2] flex items-center"
+      className="w-full min-h-screen px-2 sm:px-4 md:px-8 py-10 sm:py-14 md:py-20 bg-[#2B3324] text-[#F2F2F2] flex items-center"
     >
       <div className="flex flex-col items-center w-full max-w-6xl mx-auto">
+            <div className="w-full mt-8 sm:mt-0">
+
         {/* TÍTULO */}
-        <div className="relative mb-16 sm:mb-20 text-center px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#BF8173] relative z-10">
-            ¿Qué hago?
-          </h2>
-          <div className="absolute inset-0 flex items-center justify-center z-0">
-            <h1 className="text-[3.5rem] sm:text-[6rem] md:text-[8rem] font-extrabold text-[#F2F2F2] opacity-5 leading-none">
-              SERVICIOS
-            </h1>
-          </div>
+        <SectionHeader
+          id="services"
+          title="¿Qué hago?"
+          bgText="SERVICIOS"
+          titleColor="#BF8173"
+          bgColor="#F2F2F2"
+          bgOpacityClass="opacity-5"
+        />
         </div>
 
         {/* TARJETAS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full px-2 sm:px-4">
+        <div className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          gap-6 sm:gap-8
+          w-full
+          px-1 sm:px-2
+        ">
           {services.map((service, index) => (
             <div
               key={index}

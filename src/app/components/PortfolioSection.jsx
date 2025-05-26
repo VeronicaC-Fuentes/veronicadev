@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from './SectionHeader';
 import { useState } from "react";
 import { Globe, Layout, FileText, PlusCircle } from "lucide-react";
 import Image from "next/image";
@@ -115,13 +116,18 @@ export default function PortafolioSection() {
       id="portfolio"
       className="py-36 sm:py-44 px-4 sm:px-6 lg:px-8 bg-[#263321] text-[#F2F2F2]"
     >
+
+        <SectionHeader
+                id="portfolio"
+                title="Mis Trabajos"
+                bgText="PORTAFOLIO"
+                titleColor="#BF8173"
+                bgColor="#F2F2F2"
+                bgOpacityClass="opacity-5"
+              />
+        
       <div className="flex flex-col items-center w-full max-w-7xl mx-auto">
-        <div className="relative mb-20 sm:mb-24 text-center px-4">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#BF8173] relative z-10">Mis Trabajos</h2>
-          <div className="absolute inset-0 flex items-center justify-center z-0">
-            <h1 className="text-[2.5rem] xs:text-[4rem] sm:text-[6rem] md:text-[8rem] font-extrabold text-[#F2F2F2] opacity-5 leading-none">PORTAFOLIO</h1>
-          </div>
-        </div>
+  
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
           {projects.map(({ title, type, icon: Icon }) => (

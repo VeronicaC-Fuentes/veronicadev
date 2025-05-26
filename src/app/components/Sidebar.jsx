@@ -11,7 +11,7 @@ export default function Sidebar() {
 
   const handleClick = (section) => {
     setActiveSection(section);
-    setMenuOpen(false); // cerrar menú en móvil al hacer clic
+    setMenuOpen(false);
   };
 
   const linkClass = (section) =>
@@ -19,15 +19,12 @@ export default function Sidebar() {
 
   return (
     <div>
-      {/* === TOPBAR MÓVIL (RECONSTRUIDO) === */}
-      <div className="md:hidden fixed top-0 left-0 w-full bg-[#324024] z-50 px-4 py-4">
-        <div className="flex items-center justify-between w-full">
-          {/* Nombre */}
+      {/* Topbar móvil hasta lg */}
+      <div className="lg:hidden fixed top-0 left-0 w-full bg-[#324024] z-50 px-4 py-4">
+        <div className="flex items-center justify-between">
           <h2 className="text-base font-bold text-[#F2F2F2] whitespace-nowrap truncate">
             Verónica Cruces
           </h2>
-
-          {/* Redes + Botón */}
           <div className="flex items-center gap-4">
             <div className="flex gap-2 text-[#F2F2F2]">
               <a href="#" aria-label="Instagram"><FaInstagram size={16} /></a>
@@ -46,12 +43,13 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* === MENÚ DESPLEGABLE MÓVIL === */}
+      {/* Menú desplegable móvil hasta lg */}
       <div
-        className={`md:hidden fixed top-[3.5rem] left-0 w-full max-w-full overflow-x-hidden bg-[#324024] z-40 transition-all duration-300 ${menuOpen ? "max-h-screen pt-4 pb-6" : "max-h-0 py-0"
-          }`}
+        className={`lg:hidden fixed top-[3.5rem] left-0 w-full bg-[#324024] z-40 transition-all duration-300 overflow-hidden ${
+          menuOpen ? "max-h-screen pt-4 pb-6" : "max-h-0 py-0"
+        }`}
       >
-        <nav className="flex flex-col items-start justify-center gap-0 px-6 w-full">
+        <nav className="flex flex-col items-start px-6">
           {[
             { id: "home", label: "Inicio" },
             { id: "about", label: "Acerca de mí" },
@@ -70,12 +68,10 @@ export default function Sidebar() {
             </a>
           ))}
         </nav>
-
       </div>
 
-
-      {/* === SIDEBAR ESCRITORIO === */}
-      <div className="hidden md:flex fixed top-0 left-0 w-64 h-screen bg-[#324024] flex-col items-center py-8 px-4">
+      {/* Sidebar escritorio a partir de lg */}
+      <div className="hidden lg:flex fixed top-0 left-0 w-64 h-screen bg-[#324024] flex-col items-center py-8 px-4">
         <div className="w-56 h-56 rounded-full overflow-hidden border-4 border-[#BF8173]">
           <Image
             src="/image/profile.jpg"
@@ -95,10 +91,10 @@ export default function Sidebar() {
           <a href="#contact" onClick={() => handleClick("contact")} className={linkClass("contact")}>Contacto</a>
         </nav>
         <div className="mt-auto flex gap-4 text-[#F2F2F2] mb-4">
-          <a href="#" className="hover:text-[#A9C992]" aria-label="Instagram"><FaInstagram size={20} /></a>
-          <a href="#" className="hover:text-[#A9C992]" aria-label="Facebook"><FaFacebookF size={20} /></a>
-          <a href="#" className="hover:text-[#A9C992]" aria-label="LinkedIn"><FaLinkedinIn size={20} /></a>
-          <a href="#" className="hover:text-[#A9C992]" aria-label="GitHub"><FaGithub size={20} /></a>
+          <a href="https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw" className="hover:text-[#A9C992]" aria-label="Instagram"><FaInstagram size={20} /></a>
+          <a href="https://www.facebook.com/share/16dGbcpR9P/" className="hover:text-[#A9C992]" aria-label="Facebook"><FaFacebookF size={20} /></a>
+          <a href="https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/" className="hover:text-[#A9C992]" aria-label="LinkedIn"><FaLinkedinIn size={20} /></a>
+          <a href="https://github.com/VeronicaC-Fuentes" className="hover:text-[#A9C992]" aria-label="GitHub"><FaGithub size={20} /></a>
         </div>
       </div>
     </div>
