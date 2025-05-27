@@ -9,7 +9,7 @@ const navItems = [
   { id: "home", label: "Inicio" },
   { id: "about", label: "Acerca de mí" },
   { id: "services", label: "Servicios" },
-  { id: "resume", label: "Currículum" },
+  { id: "curriculum", label: "Currículum" },
   { id: "portfolio", label: "Portafolio" },
   { id: "contact", label: "Contacto" },
 ];
@@ -20,8 +20,15 @@ export default function Sidebar() {
 
   const handleClick = (section) => {
     setActiveSection(section);
-    setMenuOpen(false); // Cierra el menú móvil al navegar
+    setMenuOpen(false);
+
+    // Scroll suave a la sección con ese ID
+    const el = document.getElementById(section);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
+
 
   return (
     <>
@@ -51,9 +58,8 @@ export default function Sidebar() {
 
       {/* --- MENÚ DESPLEGABLE MÓVIL --- */}
       <div
-        className={`lg:hidden fixed top-[3.5rem] left-0 w-full bg-[#272640] z-40 transition-all duration-300 overflow-hidden shadow-xl ${
-          menuOpen ? "max-h-screen pt-4 pb-6" : "max-h-0 py-0"
-        }`}
+        className={`lg:hidden fixed top-[3.5rem] left-0 w-full bg-[#272640] z-40 transition-all duration-300 overflow-hidden shadow-xl ${menuOpen ? "max-h-screen pt-4 pb-6" : "max-h-0 py-0"
+          }`}
       >
         <nav className="flex flex-col items-start px-4 gap-1">
           {navItems.map((item) => (
@@ -92,7 +98,7 @@ export default function Sidebar() {
         flex-col items-center py-10 px-4
         bg-gradient-to-b from-[#272640] via-[#232338] to-[#181828]
         shadow-xl overflow-hidden">
-        
+
         {/* Pattern decorativo */}
         <svg
           className="absolute bottom-0 right-0 w-40 h-40 opacity-10 pointer-events-none"
@@ -101,7 +107,7 @@ export default function Sidebar() {
         >
           <circle cx="150" cy="150" r="80" fill="#5E60CE" />
         </svg>
-        
+
         {/* Avatar Glow (más grande) */}
         <div className="w-48 h-48 rounded-full overflow-hidden shadow-[0_0_40px_0_rgba(94,96,206,0.4)] border-2 border-[#232338] bg-[#232338]">
           <Image
@@ -132,8 +138,8 @@ export default function Sidebar() {
                 </span>
                 <span className={
                   `py-2 pr-4 w-full transition-colors duration-200
-                  ${activeSection === item.id 
-                    ? "text-[#FF6F61] font-bold" 
+                  ${activeSection === item.id
+                    ? "text-[#FF6F61] font-bold"
                     : "text-[#F3EFF5] group-hover:text-[#FFD166]"} 
                   tracking-wide`
                 }>
@@ -150,27 +156,27 @@ export default function Sidebar() {
             href: "https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw",
             Icon: FaInstagram,
             label: "Instagram"
-          },{
+          }, {
             href: "https://www.facebook.com/share/16dGbcpR9P/",
             Icon: FaFacebookF,
             label: "Facebook"
-          },{
+          }, {
             href: "https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/",
             Icon: FaLinkedinIn,
             label: "LinkedIn"
-          },{
+          }, {
             href: "https://github.com/VeronicaC-Fuentes",
             Icon: FaGithub,
             label: "GitHub"
-          }].map(({href, Icon, label}) => (
-            <a 
-              key={label} 
-              href={href} 
+          }].map(({ href, Icon, label }) => (
+            <a
+              key={label}
+              href={href}
               className="transition-all duration-200 hover:text-[#FFD166] hover:scale-110"
               aria-label={label}
               target="_blank" rel="noopener noreferrer"
             >
-              <Icon size={20}/>
+              <Icon size={20} />
             </a>
           ))}
         </div>
