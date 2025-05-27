@@ -3,12 +3,11 @@
 import React, { useEffect, useState } from "react";
 
 const colors = {
-  bg: "#111418",
-  accent: "#BF8173",
-  light: "#F2F2F2",
-  green: "#6ca12b",
-  darkGreen: "#457431",
-  sidebar: "#324024",
+  bg: "#272640",          // azul violeta oscuro (fondo general)
+  accent: "#FF6F61",      // coral vibrante (acento)
+  light: "#F3EFF5",       // blanco cálido (texto/iconos)
+  green: "#FFD166",       // amarillo suave para WhatsApp (más amigable que verde fuerte)
+  sidebar: "#32424C",     // azul grisáceo oscuro para detalles si quieres
 };
 
 const ScrollToTopAndWhatsapp = () => {
@@ -40,7 +39,7 @@ const ScrollToTopAndWhatsapp = () => {
           aria-label="Subir"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="12" fill="none"/>
+            <circle cx="12" cy="12" r="12" fill="none" />
             <path
               d="M12 19V5M12 5L6 11M12 5l6 6"
               stroke={colors.light}

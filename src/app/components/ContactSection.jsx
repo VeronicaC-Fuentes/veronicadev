@@ -28,14 +28,14 @@ export default function ContactSection() {
     <>
       <section
         id="contact"
-        className="bg-[#F2F2F2] text-[#324024] pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-10"
+        className="bg-[#F3EFF5] text-[#272640] pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-10"
       >
         <SectionHeader
           id="contact"
           title="Contáctame"
           bgText="CONTACTO"
-          titleColor="#BF8173"
-          bgColor="#E6E6E6"
+          titleColor="#FF6F61"
+          bgColor="#F9F9F9"
           bgOpacityClass="opacity-50"
         />
 
@@ -43,31 +43,31 @@ export default function ContactSection() {
           {/* Información de contacto */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#BF8173] mb-4">Ubicación</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-[#FF6F61] mb-4">Ubicación</h3>
               <p className="text-base">
                 Basada en Colombia (nómada digital). Disponible para trabajos remotos.
               </p>
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#BF8173] mb-4">Contacto directo</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-[#FF6F61] mb-4">Contacto directo</h3>
               <div className="space-y-3 text-base">
                 <div className="flex items-center">
-                  <FiPhone className="text-[#BF8173] mr-2" />
+                  <FiPhone className="text-[#FF6F61] mr-2" />
                   <span>+51 977968602 (Perú)</span>
                 </div>
                 <div className="flex items-center">
-                  <FiMail className="text-[#BF8173] mr-2" />
+                  <FiMail className="text-[#FF6F61] mr-2" />
                   <span>crucessveronica@gmail.com</span>
                 </div>
               </div>
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#BF8173] mb-4">Sígueme</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-[#FF6F61] mb-4">Sígueme</h3>
               <div className="flex space-x-4 text-2xl">
-                <a href="https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw" className="text-[#324024] hover:text-[#BF8173]"><FaInstagram /></a>
-                <a href="https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/" className="text-[#324024] hover:text-[#BF8173]"><FaLinkedinIn /></a>
-                <a href="https://www.facebook.com/share/16dGbcpR9P/" className="text-[#324024] hover:text-[#BF8173]"><FaFacebookF /></a>
-                <a href="https://github.com/VeronicaC-Fuentes" className="text-[#324024] hover:text-[#BF8173]"><FaGithub /></a>
+                <a href="https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw" className="text-[#272640] hover:text-[#FF6F61]"><FaInstagram /></a>
+                <a href="https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/" className="text-[#272640] hover:text-[#FF6F61]"><FaLinkedinIn /></a>
+                <a href="https://www.facebook.com/share/16dGbcpR9P/" className="text-[#272640] hover:text-[#FF6F61]"><FaFacebookF /></a>
+                <a href="https://github.com/VeronicaC-Fuentes" className="text-[#272640] hover:text-[#FF6F61]"><FaGithub /></a>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function ContactSection() {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 required
-                className="w-full bg-[#457431] text-[#F2F2F2] placeholder-[#F2F2F2]/60 p-3 sm:p-4 rounded focus:outline-none focus:ring-2 focus:ring-[#BF8173]"
+                className="w-full bg-[#32424C] text-[#F3EFF5] placeholder-[#F3EFF5]/60 p-3 sm:p-4 rounded focus:outline-none focus:ring-2 focus:ring-[#FF6F61]"
               />
               <input
                 type="email"
@@ -89,7 +89,7 @@ export default function ContactSection() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                className="w-full bg-[#457431] text-[#F2F2F2] placeholder-[#F2F2F2]/60 p-3 sm:p-4 rounded focus:outline-none focus:ring-2 focus:ring-[#BF8173]"
+                className="w-full bg-[#32424C] text-[#F3EFF5] placeholder-[#F3EFF5]/60 p-3 sm:p-4 rounded focus:outline-none focus:ring-2 focus:ring-[#FF6F61]"
               />
             </div>
             <textarea
@@ -98,11 +98,11 @@ export default function ContactSection() {
               value={message}
               onChange={e => setMessage(e.target.value)}
               required
-              className="w-full bg-[#457431] text-[#F2F2F2] placeholder-[#F2F2F2]/60 p-3 sm:p-4 rounded focus:outline-none focus:ring-2 focus:ring-[#BF8173]"
+              className="w-full bg-[#32424C] text-[#F3EFF5] placeholder-[#F3EFF5]/60 p-3 sm:p-4 rounded focus:outline-none focus:ring-2 focus:ring-[#FF6F61]"
             />
             <button
               type="submit"
-              className="block mx-auto bg-[#457431] hover:bg-[#BF8173] text-white font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-colors"
+              className="block mx-auto bg-[#32424C] hover:bg-[#FF6F61] text-white font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-colors"
             >
               Enviar mensaje
             </button>
@@ -111,7 +111,7 @@ export default function ContactSection() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#263321] text-[#F2F2F2] py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+      <footer className="bg-[#272640] text-[#F3EFF5] py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center space-y-4">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} Verónica Cruces. Todos los derechos reservados.

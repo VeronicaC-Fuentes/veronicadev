@@ -46,42 +46,43 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="w-full min-h-screen px-2 sm:px-4 md:px-8 py-10 sm:py-14 md:py-20 bg-[#2B3324] text-[#F2F2F2] flex items-center"
+      className="w-full min-h-screen px-2 sm:px-4 md:px-8 py-10 sm:py-14 md:py-20 bg-[#272640] text-[#F3EFF5] flex items-center"
     >
       <div className="flex flex-col items-center w-full max-w-6xl mx-auto">
-            <div className="w-full mt-8 sm:mt-0">
-
         {/* TÍTULO */}
-        <SectionHeader
-          id="services"
-          title="¿Qué hago?"
-          bgText="SERVICIOS"
-          titleColor="#BF8173"
-          bgColor="#F2F2F2"
-          bgOpacityClass="opacity-5"
-        />
+        <div className="w-full mt-8 sm:mt-0">
+          <SectionHeader
+            id="services"
+            title="¿Qué hago?"
+            bgText="SERVICIOS"
+            titleColor="#FF6F61" // coral vibrante para título
+            bgColor="#F3EFF5"    // blanco cálido para fondo texto grande
+            bgOpacityClass="opacity-10"
+          />
         </div>
 
         {/* TARJETAS */}
-        <div className="
+        <div
+          className="
           grid
           grid-cols-1
           sm:grid-cols-2
           gap-6 sm:gap-8
           w-full
           px-1 sm:px-2
-        ">
+        "
+        >
           {services.map((service, index) => (
             <div
               key={index}
-              className="flex items-start gap-4 border border-[#BF8173] px-5 py-6 rounded-md bg-[#324024] hover:shadow-lg transition-shadow"
+              className="flex items-start gap-4 border border-[#FF6F61] px-5 py-6 rounded-md bg-[#32424C] hover:shadow-[0_0_15px_4px_rgba(255,209,102,0.6)] transition-shadow"
             >
-              <div className="text-[#BF8173] mt-1">{service.icon}</div>
+              <div className="text-[#FF6F61] mt-1">{service.icon}</div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold mb-3">
+                <h3 className="text-base sm:text-lg font-bold mb-3 text-[#FF6F61]">
                   {service.title}
                 </h3>
-                <p className="text-sm sm:text-base text-[#F2F2F2]">
+                <p className="text-sm sm:text-base text-[#F3EFF5]">
                   {service.description}
                 </p>
               </div>
