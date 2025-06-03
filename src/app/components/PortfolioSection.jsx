@@ -1,31 +1,44 @@
 "use client";
-
 import SectionHeader from './SectionHeader';
 import { useState } from "react";
 import { Globe, Layout, FileText, PlusCircle } from "lucide-react";
 import Image from "next/image";
-// React Icons imports for technologies
-import { 
-  SiNextdotjs,
-  SiReact,
-  SiTypescript,
-  SiFramer,
-  SiTailwindcss,
-  SiJavascript,
-  SiFirebase,
-  SiVuedotjs,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiBootstrap,
-  SiVite,
-  SiHtml5,
-  SiCss3
+import {
+  SiNextdotjs, SiReact, SiTypescript, SiFramer, SiTailwindcss, SiJavascript, SiFirebase,
+  SiNodedotjs, SiExpress, SiMongodb, SiBootstrap, SiHtml5, SiCss3, SiVuedotjs, SiVite
 } from "react-icons/si";
 import { MdApi, MdImage } from "react-icons/md";
-import { AiOutlineMail,  AiOutlineCloud } from "react-icons/ai";
+import { AiOutlineMail, AiOutlineCloud } from "react-icons/ai";
+
+const techIcons = {
+  'Next.js 15': <SiNextdotjs className="w-5 h-5 text-[#8F67E8]" />,
+  'App Router': <SiNextdotjs className="w-5 h-5 text-[#8F67E8]" />,
+  'React 19': <SiReact className="w-5 h-5 text-[#8F67E8]" />,
+  'React 18': <SiReact className="w-5 h-5 text-[#8F67E8]" />,
+  'TypeScript': <SiTypescript className="w-5 h-5 text-[#8F67E8]" />,
+  'Framer Motion': <SiFramer className="w-5 h-5 text-[#8F67E8]" />,
+  'Tailwind CSS': <SiTailwindcss className="w-5 h-5 text-[#8F67E8]" />,
+  'JavaScript': <SiJavascript className="w-5 h-5 text-[#8F67E8]" />,
+  'Firebase': <SiFirebase className="w-5 h-5 text-[#8F67E8]" />,
+  'Vue.js': <SiVuedotjs className="w-5 h-5 text-[#8F67E8]" />,
+  'Node.js': <SiNodedotjs className="w-5 h-5 text-[#8F67E8]" />,
+  'Express': <SiExpress className="w-5 h-5 text-[#8F67E8]" />,
+  'MongoDB': <SiMongodb className="w-5 h-5 text-[#8F67E8]" />,
+  'Bootstrap 5': <SiBootstrap className="w-5 h-5 text-[#8F67E8]" />,
+  'Vite': <SiVite className="w-5 h-5 text-[#8F67E8]" />,
+  'HTML': <SiHtml5 className="w-5 h-5 text-[#8F67E8]" />,
+  'CSS': <SiCss3 className="w-5 h-5 text-[#8F67E8]" />,
+  '@microsoft/microsoft-graph-client': <MdApi className="w-5 h-5 text-[#8F67E8]" />,
+  'API Tokko Broker': <MdApi className="w-5 h-5 text-[#8F67E8]" />,
+  'Nodemailer': <AiOutlineMail className="w-5 h-5 text-[#8F67E8]" />,
+  'Lucide': <AiOutlineCloud className="w-5 h-5 text-[#8F67E8]" />,
+  'Next/Image': <MdImage className="w-5 h-5 text-[#8F67E8]" />
+};
 
 export default function PortafolioSection() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
+
   const projects = [
     {
       title: "The Hub",
@@ -84,108 +97,164 @@ export default function PortafolioSection() {
     }
   ];
 
-  const techIcons = {
-    'Next.js 15': <SiNextdotjs className="w-6 h-6 text-[#FF6F61]" />,
-    'App Router': <SiNextdotjs className="w-6 h-6 text-[#FF6F61]" />,  
-    'React 19': <SiReact className="w-6 h-6 text-[#FF6F61]" />,
-    'React 18': <SiReact className="w-6 h-6 text-[#FF6F61]" />,
-    'TypeScript': <SiTypescript className="w-6 h-6 text-[#FF6F61]" />,
-    'Framer Motion': <SiFramer className="w-6 h-6 text-[#FF6F61]" />,
-    'Tailwind CSS': <SiTailwindcss className="w-6 h-6 text-[#FF6F61]" />,
-    'JavaScript': <SiJavascript className="w-6 h-6 text-[#FF6F61]" />,
-    'Firebase': <SiFirebase className="w-6 h-6 text-[#FF6F61]" />,
-    'Vue.js': <SiVuedotjs className="w-6 h-6 text-[#FF6F61]" />,
-    'Node.js': <SiNodedotjs className="w-6 h-6 text-[#FF6F61]" />,
-    'Express': <SiExpress className="w-6 h-6 text-[#FF6F61]" />,
-    'MongoDB': <SiMongodb className="w-6 h-6 text-[#FF6F61]" />,
-    'Bootstrap 5': <SiBootstrap className="w-6 h-6 text-[#FF6F61]" />,
-    'Vite': <SiVite className="w-6 h-6 text-[#FF6F61]" />,
-    'HTML': <SiHtml5 className="w-6 h-6 text-[#FF6F61]" />,
-    'CSS': <SiCss3 className="w-6 h-6 text-[#FF6F61]" />,
-    '@microsoft/microsoft-graph-client': <MdApi className="w-6 h-6 text-[#FF6F61]" />,
-    'API Tokko Broker': <MdApi className="w-6 h-6 text-[#FF6F61]" />,
-    'Nodemailer': <AiOutlineMail className="w-6 h-6 text-[#FF6F61]" />,
-    'Lucide': <AiOutlineCloud className="w-6 h-6 text-[#FF6F61]" />,  
-    'Next/Image': <MdImage className="w-6 h-6 text-[#FF6F61]" />
-  };
-
-  const [selectedProject, setSelectedProject] = useState(null);
+ // Bloquea scroll body si modal abierto
+  if (typeof window !== "undefined") {
+    if (selectedProject) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+  }
 
   return (
     <section
+  id="portfolio"
+  className="relative w-full min-h-screen px-2 sm:px-8 py-20 md:py-24 bg-[#232338] text-[#F3EFF5] flex flex-col items-center overflow-x-hidden"
+>
+  {/* Glow decorativo superior */}
+  <div
+    className="absolute left-1/2 top-8 -translate-x-1/2 pointer-events-none z-0"
+    style={{
+      width: 480,
+      height: 160,
+      background: "radial-gradient(circle, #8F67E840 0%, transparent 72%)",
+      filter: "blur(32px)",
+    }}
+  />
+  <div className="flex flex-col items-center w-full max-w-7xl mx-auto relative z-10">
+    <SectionHeader
       id="portfolio"
-      className="py-36 sm:py-44 px-4 sm:px-6 lg:px-8 bg-[#272640] text-[#F3EFF5]"
-    >
-
-      <SectionHeader
-        id="portfolio"
-        title="Mis Trabajos"
-        bgText="PORTAFOLIO"
-        titleColor="#FF6F61"
-        bgColor="#F3EFF5"
-        bgOpacityClass="opacity-5"
-      />
-
-      <div className="flex flex-col items-center w-full max-w-7xl mx-auto">
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-          {projects.map(({ title, type, icon: Icon }) => (
-            <button
-              key={title}
-              onClick={() => setSelectedProject(projects.find(p => p.title === title))}
-              className="group relative flex flex-col items-center justify-between px-6 py-8 sm:py-10 bg-[#32424C] rounded-xl border border-transparent hover:border-[#FF6F61] transition-all hover:scale-[1.03]"
-            >
-              <div className="flex flex-col items-center">
-                <Icon className="w-12 h-12 sm:w-14 sm:h-14 text-[#F3EFF5] group-hover:text-[#FF6F61] transition-colors" />
-                <span className="mt-4 text-lg sm:text-xl font-semibold text-[#F3EFF5] group-hover:text-[#FF6F61] text-center">{title}</span>
-                <span className="text-sm sm:text-base text-[#A0C49D] mt-1 text-center">{type}</span>
-              </div>
-              <div className="absolute bottom-3 right-3 group">
-                <PlusCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#FF6F61] group-hover:text-[#F3EFF5] transition-colors animate-pulse" />
-                <div className="absolute bottom-full right-0 mb-2 bg-[#FF6F61] text-[#F3EFF5] text-xs px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity before:absolute before:content-[''] before:top-full before:right-3 before;border-transparent before:border-t-[#FF6F61]">Ver más</div>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {selectedProject && (
+      title="Mis trabajos"
+      bgText="PORTAFOLIO"
+      titleColor="#5E60CE"
+      bgColor="#F3EFF5"
+      bgOpacityClass="opacity-10"
+    />
+    {/* GRID */}
+    <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 w-full max-w-full md:max-w-5xl mx-auto">
+      {projects.map((proj) => (
         <div
-          className="fixed inset-0 bg-black/70 flex items-start justify-center z-50 px-4 pt-16 overflow-y-auto"
-          onClick={() => setSelectedProject(null)}
+          key={proj.title}
+          className="rounded-2xl border-2 border-[#8F67E8] bg-gradient-to-br from-[#201B30] via-[#221b2c] to-[#2e2441]/90 p-0.5 shadow-[0_2px_36px_0_#8F67E850] hover:shadow-[0_6px_38px_0_#8F67E8aa] transition-all duration-200 group"
         >
           <div
-            className="bg-[#F3EFF5] rounded-2xl shadow-2xl p-10 sm:p-16 max-w-6xl w-full flex flex-col sm:flex-row gap-12 items-start relative text-lg"
-            onClick={(e) => e.stopPropagation()}
+            className="cursor-pointer flex flex-col rounded-2xl bg-[#1B1928] min-h-[340px] overflow-hidden transition"
+            onClick={() => setSelectedProject(proj)}
+            tabIndex={0}
+            aria-label={`Ver detalles de ${proj.title}`}
           >
-            <button onClick={() => setSelectedProject(null)} className="absolute top-6 right-6 text-[#FF6F61] hover:text-[#32424C] text-3xl font-bold">✕</button>
-            {selectedProject.image && (
-              <div className="w-full sm:w-1/2 max-h-[650px] overflow-y-auto rounded-xl border border-[#FF6F61] custom-scrollbar scrollbar-thin scrollbar-thumb-[#FF6F61] scrollbar-track-[#F9F9F9] scrollbar-rounded-lg hover_scrollbar-thumb-[#A76157']">
-                <Image src={selectedProject.image} alt={selectedProject.title} width={900} height={1400} className="w-full object-cover object-top" />
+            <div className="relative w-full h-40 rounded-t-2xl overflow-hidden">
+              <Image
+                src={proj.image}
+                alt={proj.title}
+                fill
+                sizes="400px"
+                className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Overlay Glow al hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#8F67E870] to-transparent opacity-0 group-hover:opacity-70 transition-all" />
+            </div>
+            <div className="flex flex-col gap-1 px-5 py-4 items-start">
+              <div className="flex items-center gap-2">
+                <proj.icon className="w-6 h-6 text-[#8F67E8]" />
+                <span className="font-bold text-lg text-[#8F67E8] group-hover:text-[#F3EFF5] transition">{proj.title}</span>
               </div>
-            )}
-            <div className="flex-1 text-[#32424C] w-full">
-              <h3 className="text-3xl sm:text-4xl font-bold mb-5">{selectedProject.title}</h3>
-              <p className="mb-6 text-justify text-lg sm:text-xl leading-relaxed">{selectedProject.details}</p>
-              {selectedProject.client && (
-                <div className="text-lg space-y-4">
-                  <p><strong>Cliente:</strong> {selectedProject.client}</p>
-                  <p><strong>Industria:</strong> {selectedProject.industry}</p>
-                  <div className="flex flex-wrap gap-4 items-center mt-4">
-                    {selectedProject.tech.split(',').map((tech) => (
-                      <span key={tech.trim()} className="inline-flex items-center gap-3 text-base px-4 py-2 rounded-full bg-[#FF6F61]/10 text-[#32424C] border border-[#FF6F61]">
-                        {techIcons[tech.trim()] || <AiOutlineCloud className="w-6 h-6 text-[#FF6F61]" />}
-                        {tech.trim()}
-                      </span>
-                    ))}
-                  </div>
-                  <p><strong>URL:</strong> <a href={selectedProject.url} target="_blank" className="text-[#FF6F61] underline text-lg">{selectedProject.url}</a></p>
-                </div>
-              )}
+              <span className="text-xs font-semibold text-[#5E60CE] mb-2">{proj.type}</span>
+              <div className="flex flex-wrap gap-1 mt-1">
+                {proj.tech.split(',').slice(0, 3).map((tech) => (
+                  <span key={tech.trim()} className="flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-[#8F67E8]/15 text-[#8F67E8] border border-[#8F67E8]/30 font-medium">
+                    {techIcons[tech.trim()] || <AiOutlineCloud className="w-4 h-4 text-[#8F67E8]" />}
+                    {tech.trim()}
+                  </span>
+                ))}
+                {proj.tech.split(',').length > 3 && (
+                  <span className="text-[#8F67E8] font-semibold text-xs px-2 py-0.5 rounded-full border border-[#8F67E8]/30 bg-transparent">+{proj.tech.split(',').length - 3} más</span>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      )}
+      ))}
+    </div>
+  </div>
+
+
+      {/* MODAL */}
+{selectedProject && (
+  <div
+    className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[99] px-2 sm:px-8 py-8 animate-fadeIn"
+    onClick={() => setSelectedProject(null)}
+  >
+ <div
+  className="relative w-full max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl bg-gradient-to-br from-[#221b2c] via-[#29283d] to-[#392963] border-2 border-[#8F67E8] text-[#F3EFF5] rounded-2xl shadow-2xl flex flex-col md:flex-row gap-0 md:gap-10 overflow-hidden animate-fadeInUp"
+  onClick={e => e.stopPropagation()}
+>
+
+      <button
+        onClick={() => setSelectedProject(null)}
+        className="absolute top-4 right-4 text-[#8F67E8] hover:text-[#FF6F61] text-2xl font-bold bg-white/80 rounded-full p-2 border border-[#8F67E8]/40 shadow transition"
+        aria-label="Cerrar"
+      >✕</button>
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-gradient-to-b from-[#232338] to-[#29283d] border-b md:border-b-0 md:border-r border-[#8F67E8]/30 px-4 py-8 md:py-10">
+        <Image
+          src={selectedProject.image}
+          alt={selectedProject.title}
+          width={650}
+          height={480}
+          className="object-contain w-full max-h-[240px] md:max-h-[60vh] rounded-xl shadow-lg"
+          priority
+        />
+      </div>
+      <div className="flex-1 flex flex-col px-5 py-6 md:px-8 md:py-10 gap-3 overflow-y-auto max-h-[70vh]">
+        <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#8F67E8]">{selectedProject.title}</h3>
+        <span className="font-medium text-base mb-2 text-[#5E60CE]">{selectedProject.type}</span>
+        <p className="mb-2 text-justify text-base text-[#F3EFF5] leading-relaxed">
+          {selectedProject.details}
+        </p>
+        <div className="border-b border-[#8F67E822] my-2"></div>
+        <div className="grid grid-cols-1 xs:grid-cols-2 gap-x-8 gap-y-1 text-base">
+          <p>
+            <span className="font-semibold text-[#5E60CE]">Cliente:</span> {selectedProject.client}
+          </p>
+          <p>
+            <span className="font-semibold text-[#5E60CE]">Industria:</span> {selectedProject.industry}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4 mb-2">
+          {selectedProject.tech.split(',').map((tech) => (
+            <span
+              key={tech.trim()}
+              className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-[#8F67E825] text-[#8F67E8] border border-[#8F67E8] font-medium hover:bg-[#8F67E860] transition"
+            >
+              {techIcons[tech.trim()] || <AiOutlineCloud className="w-5 h-5 text-[#8F67E8]" />}
+              {tech.trim()}
+            </span>
+          ))}
+        </div>
+        <div className="flex items-center gap-2 mt-2 flex-wrap">
+          <span className="text-[#5E60CE] font-semibold">URL:</span>
+          <a
+            href={selectedProject.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-[#8F67E8] underline font-semibold hover:text-[#FF6F61] transition break-all"
+          >
+            {selectedProject.url}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path d="M18 13V6a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"></path>
+              <polyline points="15 18 20 18 20 13"></polyline>
+              <line x1="20" y1="18" x2="10" y2="8"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <style>{`
+      .animate-fadeIn { animation: fadeInModal .20s cubic-bezier(.62,.06,.36,1.22) both;}
+      .animate-fadeInUp { animation: fadeInModalUp .30s cubic-bezier(.62,.06,.36,1.22) both;}
+      @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes fadeInModalUp { from { opacity: 0; transform: translateY(24px) scale(.98);} to { opacity: 1; transform: none;}}
+    `}</style>
+  </div>
+)}
+
     </section>
   );
 }

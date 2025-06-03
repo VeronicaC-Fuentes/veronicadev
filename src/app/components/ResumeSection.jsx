@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import { FiDownload } from "react-icons/fi";
 import SectionHeader from './SectionHeader';
 
 export default function ResumeSection() {
@@ -40,20 +40,31 @@ export default function ResumeSection() {
   ];
 
   return (
-    <section
+      <section
       id="curriculum"
-      className="w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-16 sm:pb-20 md:pb-24 bg-[#F3EFF5] text-[#272640]"
+      className="relative w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-16 sm:pb-20 md:pb-24 bg-[#F3EFF5] text-[#232338] overflow-x-hidden"
     >
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
+      {/* Glow blur decorativo para el título */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 top-10 sm:top-14 pointer-events-none z-0"
+        style={{
+          width: 500,
+          height: 140,
+          background: "radial-gradient(circle, #8F67E870 0%, transparent 72%)",
+          filter: "blur(32px)",
+        }}
+      />
+
+      <div className="max-w-6xl mx-auto flex flex-col items-center relative z-10">
         {/* Encabezado principal */}
-        <div className="w-full mb-3 sm:mb-4 md:mb-5 lg:mb-6">
+        <div className="w-full mb-3 sm:mb-4 md:mb-5 lg:mb-6 relative z-10">
           <SectionHeader
             id="curriculum"
             title="Mi currículum"
             bgText="CURRICULUM"
-            titleColor="#FF6F61"       // Coral vibrante
-            bgColor="#F9F9F9"          // Blanco muy suave
-            bgOpacityClass="opacity-50"
+            titleColor="#5E60CE"
+            bgColor="#8F67E8"
+            bgOpacityClass="opacity-10"
           />
         </div>
 
@@ -61,19 +72,19 @@ export default function ResumeSection() {
         <div className="flex flex-col md:flex-row gap-8 md:gap-10 w-full mb-12">
           {/* EDUCACIÓN */}
           <div className="flex-1">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-[#32424C]">Educación</h3>
+            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-[#3F3351]">Educación</h3>
             {education.map((edu) => (
               <div
                 key={edu.title}
-                className="bg-white rounded-xl p-4 sm:p-6 mb-6 border border-[#FF6F61]/40 hover:border-[#FF6F61] shadow-sm hover:shadow-md transition-all"
+                className="bg-white rounded-xl p-4 sm:p-6 mb-6 border border-[#8F67E8]/40 hover:border-[#5E60CE] shadow-sm hover:shadow-[0_0_18px_1px_#5E60CE33] transition-all"
               >
-                <span className="inline-block bg-[#FF6F61]/90 text-white px-3 py-1 rounded text-xs sm:text-sm font-medium mb-3">
+                <span className="inline-block bg-[#8F67E8]/90 text-white px-3 py-1 rounded text-xs sm:text-sm font-medium mb-3">
                   {edu.period}
                 </span>
-                <h4 className="text-base sm:text-lg font-semibold text-[#32424C] leading-snug">
+                <h4 className="text-base sm:text-lg font-semibold text-[#3F3351] leading-snug">
                   {edu.title}
                 </h4>
-                <p className="text-[#FF6F61] text-sm sm:text-base">{edu.place}</p>
+                <p className="text-[#8F67E8] text-sm sm:text-base">{edu.place}</p>
                 {edu.extra && <p className="text-sm mt-1">{edu.extra}</p>}
               </div>
             ))}
@@ -81,19 +92,19 @@ export default function ResumeSection() {
 
           {/* EXPERIENCIA */}
           <div className="flex-1">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-[#32424C]">Experiencia</h3>
+            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-[#3F3351]">Experiencia</h3>
             {experience.map((job) => (
               <div
                 key={job.title}
-                className="bg-white rounded-xl p-4 sm:p-6 mb-6 border border-[#FF6F61]/40 hover:border-[#FF6F61] shadow-sm hover:shadow-md transition-all"
+                className="bg-white rounded-xl p-4 sm:p-6 mb-6 border border-[#8F67E8]/40 hover:border-[#5E60CE] shadow-sm hover:shadow-[0_0_18px_1px_#5E60CE33] transition-all"
               >
-                <span className="inline-block bg-[#FF6F61]/90 text-white px-3 py-1 rounded text-xs sm:text-sm font-medium mb-3">
+                <span className="inline-block bg-[#5E60CE]/90 text-white px-3 py-1 rounded text-xs sm:text-sm font-medium mb-3">
                   {job.period}
                 </span>
-                <h4 className="text-base sm:text-lg font-semibold text-[#32424C] leading-snug">
+                <h4 className="text-base sm:text-lg font-semibold text-[#3F3351] leading-snug">
                   {job.title}
                 </h4>
-                <p className="text-[#FF6F61] text-sm sm:text-base">{job.place}</p>
+                <p className="text-[#5E60CE] text-sm sm:text-base">{job.place}</p>
               </div>
             ))}
           </div>
@@ -101,16 +112,17 @@ export default function ResumeSection() {
 
         {/* HABILIDADES */}
         <div className="w-full mb-12">
-          <h3 className="text-center text-2xl sm:text-3xl font-semibold mb-8 text-[#32424C]">Habilidades</h3>
+          <h3 className="text-center text-2xl sm:text-3xl font-semibold mb-8 text-[#3F3351]">Habilidades</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {skills.map((skill) => (
               <div key={skill.name} className="flex flex-col">
                 <div className="flex justify-between mb-1">
-                  <span className="font-medium text-sm sm:text-base text-[#32424C]">{skill.name}</span>
+                  <span className="font-medium text-sm sm:text-base text-[#3F3351]">{skill.name}</span>
+                  <span className="text-xs text-[#8F67E8] font-semibold">{skill.pct}%</span>
                 </div>
-                <div className="w-full bg-[#FF6F61]/30 rounded-full h-2.5">
+                <div className="w-full bg-[#E7E3F3] rounded-full h-2.5">
                   <div
-                    className="bg-[#FF6F61] h-2.5 rounded-full"
+                    className="bg-gradient-to-r from-[#8F67E8] to-[#5E60CE] h-2.5 rounded-full transition-all"
                     style={{ width: `${skill.pct}%` }}
                     aria-label={`${skill.name} proficiency ${skill.pct}%`}
                   />
@@ -126,9 +138,9 @@ export default function ResumeSection() {
             href="https://drive.google.com/file/d/1sZmMvY2UN2OC9VAcdhDbj7j8lTHEZMSV/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#FF6F61] hover:bg-[#272640] text-white px-6 py-3 sm:px-8 sm:py-4 rounded font-semibold text-sm sm:text-base md:text-lg transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#232338] border-2 border-[#5E60CE] text-[#F3EFF5] font-semibold text-base shadow-md hover:bg-[#5E60CE] hover:text-[#F3EFF5] hover:scale-105 transition-all"
           >
-            Descargar CV
+            Descargar CV <FiDownload size={19} />
           </a>
         </div>
       </div>

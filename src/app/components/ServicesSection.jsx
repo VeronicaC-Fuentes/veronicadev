@@ -12,84 +12,118 @@ import SectionHeader from './SectionHeader';
 export default function ServicesSection() {
   const services = [
     {
-      icon: <FaLaptopCode size={28} />,
+      icon: <FaLaptopCode size={34} />,
       title: "Diseño y Desarrollo Web",
       description: "Páginas responsivas, modernas y funcionales.",
     },
     {
-      icon: <FaPaintBrush size={28} />,
+      icon: <FaPaintBrush size={34} />,
       title: "Diseño UI/UX",
       description: "Interfaces intuitivas y atractivas para el usuario.",
     },
     {
-      icon: <FaGlobe size={28} />,
+      icon: <FaGlobe size={34} />,
       title: "Diseño y Desarrollo de Apps",
       description: "Aplicaciones webs adaptadas a tus necesidades.",
     },
     {
-      icon: <FaChartLine size={28} />,
+      icon: <FaChartLine size={34} />,
       title: "Posicionamiento SEO",
       description: "Estrategias para mejorar tu presencia en buscadores.",
     },
     {
-      icon: <FaProjectDiagram size={28} />,
+      icon: <FaProjectDiagram size={34} />,
       title: "Análisis de Negocio",
       description: "Estudio de procesos y oportunidades de mejora.",
     },
     {
-      icon: <FaCogs size={28} />,
+      icon: <FaCogs size={34} />,
       title: "Soporte de ERP",
       description: "Acompañamiento y mejora continua de sistemas.",
     },
   ];
 
   return (
-    <section
-      id="services"
-      className="w-full min-h-screen px-2 sm:px-4 md:px-8 py-10 sm:py-14 md:py-20 bg-[#272640] text-[#F3EFF5] flex items-center"
-    >
-      <div className="flex flex-col items-center w-full max-w-6xl mx-auto">
-        {/* TÍTULO */}
-        <div className="w-full mt-8 sm:mt-0">
-          <SectionHeader
-            id="services"
-            title="¿Qué hago?"
-            bgText="SERVICIOS"
-            titleColor="#FF6F61" // coral vibrante para título
-            bgColor="#F3EFF5"    // blanco cálido para fondo texto grande
-            bgOpacityClass="opacity-10"
-          />
-        </div>
+<section
+  id="services"
+  className="
+    relative w-full
+    px-2 sm:px-4 md:px-8
+    py-12 sm:py-16 md:py-24
+    bg-[#3F3351] text-[#F3EFF5]
+    flex flex-col
+    min-h-screen
+    justify-start
+    overflow-x-hidden
+  "
+>
+  {/* Glow decorativo */}
+  <div
+    className="absolute left-1/2 top-8 -translate-x-1/2 pointer-events-none z-0"
+    style={{
+      width: 500,
+      height: 140,
+      background: "radial-gradient(circle, #8F67E86d 0%, transparent 74%)",
+      filter: "blur(44px)",
+    }}
+  />
+  <div className="flex flex-col items-center w-full mx-auto relative z-10">
+    {/* TÍTULO */}
+    <div className="w-full mb-12">
+      <SectionHeader
+        id="services"
+        title="¿Qué hago?"
+        bgText="SERVICIOS"
+        titleColor="#5E60CE"
+        bgColor="#8F67E8"
+        bgOpacityClass="opacity-10"
+      />
+    </div>
 
-        {/* TARJETAS */}
+    {/* TARJETAS */}
+    <div
+      className="
+        grid
+        grid-cols-1 sm:grid-cols-2
+        gap-6 sm:gap-10
+        w-full
+        max-w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl
+        mx-auto
+      "
+    >
+      {services.map((service, index) => (
         <div
-          className="
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          gap-6 sm:gap-8
-          w-full
-          px-1 sm:px-2
-        "
+          key={index}
+          className={`
+            group flex items-start gap-5 border-2 border-[#5E60CE] 
+            px-7 py-7 rounded-2xl bg-[#181828] 
+            shadow-[0_4px_40px_0_rgba(94,96,206,0.08)]
+            transition-all duration-200
+            hover:scale-[1.035] hover:shadow-[0_0_34px_6px_#8F67E8cc]
+            hover:border-[#8F67E8] cursor-pointer
+          `}
+          style={{
+            boxShadow: "0 2px 20px 0 #3F335111",
+          }}
         >
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="flex items-start gap-4 border border-[#FF6F61] px-5 py-6 rounded-md bg-[#32424C] hover:shadow-[0_0_15px_4px_rgba(255,209,102,0.6)] transition-shadow"
-            >
-              <div className="text-[#FF6F61] mt-1">{service.icon}</div>
-              <div>
-                <h3 className="text-base sm:text-lg font-bold mb-3 text-[#FF6F61]">
-                  {service.title}
-                </h3>
-                <p className="text-sm sm:text-base text-[#F3EFF5]">
-                  {service.description}
-                </p>
-              </div>
-            </div>
-          ))}
+          <div className="flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full bg-[#232338] group-hover:bg-[#5E60CE] shadow-[0_0_24px_0_#8F67E8aa] transition-all">
+            <span className="text-[#8F67E8] group-hover:text-[#F3EFF5]">{service.icon}</span>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold mb-2 text-[#5E60CE] group-hover:text-[#8F67E8] tracking-tight transition-colors">
+              {service.title}
+            </h3>
+            <p className="text-sm sm:text-base text-[#B9B6D3] group-hover:text-[#F3EFF5] transition-colors">
+              {service.description}
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
   );
 }

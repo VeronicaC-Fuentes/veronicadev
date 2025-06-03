@@ -29,25 +29,24 @@ export default function Sidebar() {
     }
   };
 
-
   return (
     <>
       {/* --- TOPBAR MÓVIL --- */}
-      <div className="lg:hidden fixed top-0 left-0 w-full bg-[#272640] z-50 px-4 py-4 shadow-md">
+      <div className="lg:hidden fixed top-0 left-0 w-full bg-[#3F3351] z-50 px-4 py-4 shadow-md">
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-bold text-[#F3EFF5] whitespace-nowrap truncate">
+          <h2 className="text-base font-bold text-[#C4C4C4] whitespace-nowrap truncate">
             Verónica Cruces
           </h2>
           <div className="flex items-center gap-4">
-            <div className="flex gap-2 text-[#F3EFF5]">
-              <a href="https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw" aria-label="Instagram" className="hover:text-[#FFD166]"><FaInstagram size={16} /></a>
-              <a href="https://www.facebook.com/share/16dGbcpR9P/" aria-label="Facebook" className="hover:text-[#FFD166]"><FaFacebookF size={16} /></a>
-              <a href="https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/" aria-label="LinkedIn" className="hover:text-[#FFD166]"><FaLinkedinIn size={16} /></a>
-              <a href="https://github.com/VeronicaC-Fuentes" aria-label="GitHub" className="hover:text-[#FFD166]"><FaGithub size={16} /></a>
+            <div className="flex gap-2 text-[#C4C4C4]">
+              <a href="https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw" aria-label="Instagram" className="hover:text-[#5E60CE]"><FaInstagram size={16} /></a>
+              <a href="https://www.facebook.com/share/16dGbcpR9P/" aria-label="Facebook" className="hover:text-[#5E60CE]"><FaFacebookF size={16} /></a>
+              <a href="https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/" aria-label="LinkedIn" className="hover:text-[#5E60CE]"><FaLinkedinIn size={16} /></a>
+              <a href="https://github.com/VeronicaC-Fuentes" aria-label="GitHub" className="hover:text-[#5E60CE]"><FaGithub size={16} /></a>
             </div>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="text-[#FFD166] hover:text-[#FF6F61] transition-colors"
+              className="text-[#C4C4C4] hover:text-[#5E60CE] transition-colors"
               aria-label="Toggle Menu"
             >
               {menuOpen ? <IoMdClose size={24} /> : <HiOutlineMenuAlt1 size={24} />}
@@ -56,48 +55,51 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* --- MENÚ DESPLEGABLE MÓVIL --- */}
-      <div
-        className={`lg:hidden fixed top-[3.5rem] left-0 w-full bg-[#272640] z-40 transition-all duration-300 overflow-hidden shadow-xl ${menuOpen ? "max-h-screen pt-4 pb-6" : "max-h-0 py-0"
-          }`}
+ {/* --- MENÚ DESPLEGABLE MÓVIL SOLO CONTENIDO --- */}
+{/* --- MENÚ DESPLEGABLE MÓVIL SOLO CONTENIDO --- */}
+<div
+  className={`lg:hidden fixed top-[3.5rem] left-0 w-full bg-[#3F3351] z-40 transition-all duration-300 shadow-xl
+    ${menuOpen ? "py-4 opacity-100 pointer-events-auto" : "py-0 opacity-0 pointer-events-none"}
+  `}
+  style={{
+    transition: "all 0.3s cubic-bezier(.4,0,.2,1)"
+  }}
+>
+  <nav className="flex flex-col items-start px-6 gap-2">
+    {navItems.map((item) => (
+      <button
+        key={item.id}
+        onClick={() => handleClick(item.id)}
+        className="group w-full text-left flex items-center"
       >
-        <nav className="flex flex-col items-start px-4 gap-1">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleClick(item.id)}
-              className="group w-full text-left flex items-center"
-            >
-              {/* Línea lateral animada, igual que escritorio */}
-              <span className={`h-8 w-1 rounded-r mr-3 transition-all duration-300
-                ${activeSection === item.id
-                  ? item.id === "contact"
-                    ? "bg-[#FFD166] opacity-100"
-                    : "bg-[#FF6F61] opacity-100"
-                  : "opacity-0 group-hover:opacity-70 bg-[#FFD166]"}`
-              }>
-              </span>
-              <span className={
-                `py-2 pr-4 w-full transition-colors duration-200
-                ${activeSection === item.id
-                  ? item.id === "contact"
-                    ? "text-[#FFD166] font-bold"
-                    : "text-[#FF6F61] font-bold"
-                  : "text-[#F3EFF5] group-hover:text-[#FFD166]"} 
-                tracking-wide`
-              }>
-                {item.label}
-              </span>
-            </button>
-          ))}
-        </nav>
-      </div>
+        <span className={`h-8 w-1 rounded-r mr-3 transition-all duration-300
+          ${activeSection === item.id
+            ? "bg-[#8F67E8] shadow-[0_0_8px_2px_#8F67E8aa] opacity-100"
+            : "opacity-0 group-hover:opacity-80 bg-[#5E60CE]"}`
+        }></span>
+        <span className={
+          `py-2 pr-4 w-full transition-colors duration-200
+          ${activeSection === item.id
+            ? "text-[#8F67E8] font-bold"
+            : "text-[#C4C4C4] group-hover:text-[#5E60CE]"} 
+          tracking-wide`
+        }>
+          {item.label}
+        </span>
+      </button>
+    ))}
+  </nav>
+</div>
+
+
+
 
       {/* --- SIDEBAR ESCRITORIO --- */}
-      <aside className="hidden lg:flex fixed top-0 left-0 w-72 h-screen z-30
-        flex-col items-center py-10 px-4
-        bg-gradient-to-b from-[#272640] via-[#232338] to-[#181828]
-        shadow-xl overflow-hidden">
+      <aside className="w-0 lg:w-72 hidden lg:flex fixed top-0 left-0 h-screen z-30
+  flex-col items-center py-10 px-4
+  bg-gradient-to-b from-[#3F3351] via-[#232338] to-[#181828]
+  shadow-xl overflow-hidden">
+
 
         {/* Pattern decorativo */}
         <svg
@@ -108,8 +110,8 @@ export default function Sidebar() {
           <circle cx="150" cy="150" r="80" fill="#5E60CE" />
         </svg>
 
-        {/* Avatar Glow (más grande) */}
-        <div className="w-48 h-48 rounded-full overflow-hidden shadow-[0_0_40px_0_rgba(94,96,206,0.4)] border-2 border-[#232338] bg-[#232338]">
+        {/* Avatar Glow */}
+        <div className="w-48 h-48 rounded-full overflow-hidden shadow-[0_0_40px_0_rgba(94,96,206,0.6)] border-2 border-[#5E60CE] bg-[#232338]">
           <Image
             src="/image/profile.jpg"
             alt="Foto de perfil"
@@ -118,7 +120,7 @@ export default function Sidebar() {
             className="object-cover w-full h-full"
           />
         </div>
-        <h2 className="mt-8 text-2xl font-extrabold text-[#F3EFF5] tracking-tight">Verónica Cruces</h2>
+        <h2 className="mt-8 text-2xl font-extrabold text-[#C4C4C4] tracking-tight">Verónica Cruces</h2>
         <span className="text-[#B9B6D3] text-xs mt-1 uppercase tracking-widest">
           Desarrolladora de Software
         </span>
@@ -133,14 +135,17 @@ export default function Sidebar() {
             >
               <div className="flex items-center">
                 {/* Línea lateral animada */}
-                <span className={`h-8 w-1 rounded-r bg-[#FF6F61] mr-3 transition-all duration-300 
-                  ${activeSection === item.id ? "opacity-100" : "opacity-0 group-hover:opacity-70"}`}>
+                <span className={`h-8 w-1 rounded-r mr-3 transition-all duration-300 
+                  ${activeSection === item.id
+                    ? "bg-[#8F67E8] shadow-[0_0_8px_2px_#5E60CE88] opacity-100"
+                    : "opacity-0 group-hover:opacity-80 bg-[#5E60CE]"}`
+                }>
                 </span>
                 <span className={
                   `py-2 pr-4 w-full transition-colors duration-200
                   ${activeSection === item.id
-                    ? "text-[#FF6F61] font-bold"
-                    : "text-[#F3EFF5] group-hover:text-[#FFD166]"} 
+                    ? "text-[#8F67E8] font-bold"
+                    : "text-[#C4C4C4] group-hover:text-[#5E60CE]"} 
                   tracking-wide`
                 }>
                   {item.label}
@@ -151,7 +156,7 @@ export default function Sidebar() {
         </nav>
         <div className="flex-grow"></div>
         {/* Redes sociales escritorio */}
-        <div className="flex gap-5 text-[#F3EFF5] mb-6 z-20">
+        <div className="flex gap-5 text-[#C4C4C4] mb-6 z-20">
           {[{
             href: "https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw",
             Icon: FaInstagram,
@@ -172,7 +177,7 @@ export default function Sidebar() {
             <a
               key={label}
               href={href}
-              className="transition-all duration-200 hover:text-[#FFD166] hover:scale-110"
+              className="transition-all duration-200 hover:text-[#8F67E8] hover:scale-110"
               aria-label={label}
               target="_blank" rel="noopener noreferrer"
             >

@@ -6,7 +6,7 @@ import ServicesSection from './components/ServicesSection'
 import ResumeSection from './components/ResumeSection'
 import PortfolioSection from './components/PortfolioSection'
 import ContactSection from './components/ContactSection'
-import ScrollToTopAndWhatsapp from "./components/ScrollToTopAndWhatsapp";
+import ScrollToTopAndWhatsapp from "./components/ScrollToTopAndWhatsapp"
 
 // Frases para el tipeo
 const typingPhrases = [
@@ -18,7 +18,7 @@ const typingPhrases = [
   "esto es Verónica Dev.",
 ];
 
-// SOLO DEJA ESTA VERSION
+// Loader (adaptado a la paleta)
 function Typewriter({ text, speed = 40, cursorColor = "#FFD166" }) {
   const [displayed, setDisplayed] = useState('');
   useEffect(() => {
@@ -63,11 +63,17 @@ function Loader({ onFinish }) {
     <div className={`
       fixed inset-0 flex items-center justify-center z-[9999] 
       transition-opacity duration-700 ${fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"}
-      bg-gradient-to-br from-[#272640] via-[#232338] to-[#5E60CE]
+      bg-gradient-to-br from-[#3F3351] via-[#232338] to-[#5E60CE]
     `}>
       <div className="flex flex-col items-center">
-        <div className="mb-6 flex items-center justify-center">
-          <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-[#FF6F61] shadow-[0_0_32px_0_rgba(94,96,206,0.36)] animate-pulse ring-4 ring-[#FFD166]/50 bg-[#272640]">
+        <div className="mb-7 flex items-center justify-center">
+          <div className="
+            w-40 h-40 rounded-full overflow-hidden
+            border-4 border-[#5E60CE]
+            shadow-[0_0_32px_0_#8F67E888]
+            animate-pulse ring-4 ring-[#8F67E8]/30
+            bg-[#232338]
+          ">
             <img
               src="https://tenor.com/es/view/cat-typing-typing-on-computer-computer-work-laptop-gif-21481919.gif"
               alt="Cat typing on laptop"
@@ -78,15 +84,16 @@ function Loader({ onFinish }) {
           </div>
         </div>
         <span
-          className="text-xl text-center font-mono"
+          className="text-xl md:text-2xl text-center font-mono font-medium tracking-tight"
           style={{
             color: "#F3EFF5",
+            textShadow: "0 2px 12px #3F335155, 0 1px 0 #5E60CE66",
             minHeight: "32px",
-            letterSpacing: "0.03em"
+            letterSpacing: "0.04em"
           }}
         >
-          Un break y listo...{" "}
-          <span style={{ color: "#FF6F61" }}>
+          <span className="text-[#FFD166] font-bold">Un break y listo...</span>{" "}
+          <span className="text-[#8F67E8]">
             <Typewriter text={typingPhrases[phraseIdx]} cursorColor="#FFD166" />
           </span>
         </span>
@@ -95,11 +102,15 @@ function Loader({ onFinish }) {
       <style>
         {`
           .animate-pulse {
-            animation: borderPulse 1.6s infinite alternate cubic-bezier(.4,0,.6,1);
+            animation: borderPulse 1.7s infinite alternate cubic-bezier(.4,0,.6,1);
           }
           @keyframes borderPulse {
-            0% { box-shadow: 0 0 0 0 #FFD16688, 0 0 32px 0 #5E60CE88;}
-            100% { box-shadow: 0 0 16px 8px #FFD16633, 0 0 40px 8px #5E60CE55;}
+            0% {
+              box-shadow: 0 0 0 0 #8F67E850, 0 0 32px 0 #FFD16666;
+            }
+            100% {
+              box-shadow: 0 0 18px 8px #8F67E825, 0 0 48px 8px #FFD16644;
+            }
           }
         `}
       </style>
