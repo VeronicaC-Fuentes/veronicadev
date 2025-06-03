@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FaInstagram, FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
@@ -17,15 +17,57 @@ const navItems = [
 export default function Sidebar() {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    const sectionIds = navItems.map(item => item.id);
+    const sections = sectionIds
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    // Limpia observer anterior si existe
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    let visibleMap = {};
+    // Crea un observer
+    observerRef.current = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          visibleMap[entry.target.id] = entry.intersectionRatio;
+        });
+        // Toma la sección con mayor visibilidad
+        const visibleSection = Object.entries(visibleMap)
+          .sort((a, b) => b[1] - a[1])[0];
+        if (visibleSection && visibleSection[1] > 0.2) {
+          setActiveSection(visibleSection[0]);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -40% 0px", // ajusta si quieres que active antes/después
+        threshold: [0.25, 0.5, 0.75, 1], // reactiva a medida que entra/sale
+      }
+    );
+
+    sections.forEach(section => {
+      observerRef.current.observe(section);
+    });
+
+    // Limpia al desmontar
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
 
   const handleClick = (section) => {
-    setActiveSection(section);
     setMenuOpen(false);
-
-    // Scroll suave a la sección con ese ID
     const el = document.getElementById(section);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -55,51 +97,46 @@ export default function Sidebar() {
         </div>
       </div>
 
- {/* --- MENÚ DESPLEGABLE MÓVIL SOLO CONTENIDO --- */}
-{/* --- MENÚ DESPLEGABLE MÓVIL SOLO CONTENIDO --- */}
-<div
-  className={`lg:hidden fixed top-[3.5rem] left-0 w-full bg-[#3F3351] z-40 transition-all duration-300 shadow-xl
-    ${menuOpen ? "py-4 opacity-100 pointer-events-auto" : "py-0 opacity-0 pointer-events-none"}
-  `}
-  style={{
-    transition: "all 0.3s cubic-bezier(.4,0,.2,1)"
-  }}
->
-  <nav className="flex flex-col items-start px-6 gap-2">
-    {navItems.map((item) => (
-      <button
-        key={item.id}
-        onClick={() => handleClick(item.id)}
-        className="group w-full text-left flex items-center"
+      {/* --- MENÚ DESPLEGABLE MÓVIL SOLO CONTENIDO --- */}
+      <div
+        className={`lg:hidden fixed top-[3.5rem] left-0 w-full bg-[#3F3351] z-40 transition-all duration-300 shadow-xl
+          ${menuOpen ? "py-4 opacity-100 pointer-events-auto" : "py-0 opacity-0 pointer-events-none"}
+        `}
+        style={{
+          transition: "all 0.3s cubic-bezier(.4,0,.2,1)"
+        }}
       >
-        <span className={`h-8 w-1 rounded-r mr-3 transition-all duration-300
-          ${activeSection === item.id
-            ? "bg-[#8F67E8] shadow-[0_0_8px_2px_#8F67E8aa] opacity-100"
-            : "opacity-0 group-hover:opacity-80 bg-[#5E60CE]"}`
-        }></span>
-        <span className={
-          `py-2 pr-4 w-full transition-colors duration-200
-          ${activeSection === item.id
-            ? "text-[#8F67E8] font-bold"
-            : "text-[#C4C4C4] group-hover:text-[#5E60CE]"} 
-          tracking-wide`
-        }>
-          {item.label}
-        </span>
-      </button>
-    ))}
-  </nav>
-</div>
-
-
-
+        <nav className="flex flex-col items-start px-6 gap-2">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleClick(item.id)}
+              className="group w-full text-left flex items-center"
+            >
+              <span className={`h-8 w-1 rounded-r mr-3 transition-all duration-300
+                ${activeSection === item.id
+                  ? "bg-[#8F67E8] shadow-[0_0_8px_2px_#8F67E8aa] opacity-100"
+                  : "opacity-0 group-hover:opacity-80 bg-[#5E60CE]"}`
+              }></span>
+              <span className={
+                `py-2 pr-4 w-full transition-colors duration-200
+                ${activeSection === item.id
+                  ? "text-[#8F67E8] font-bold"
+                  : "text-[#C4C4C4] group-hover:text-[#5E60CE]"} 
+                tracking-wide`
+              }>
+                {item.label}
+              </span>
+            </button>
+          ))}
+        </nav>
+      </div>
 
       {/* --- SIDEBAR ESCRITORIO --- */}
       <aside className="w-0 lg:w-72 hidden lg:flex fixed top-0 left-0 h-screen z-30
-  flex-col items-center py-10 px-4
-  bg-gradient-to-b from-[#3F3351] via-[#232338] to-[#181828]
-  shadow-xl overflow-hidden">
-
+        flex-col items-center py-10 px-4
+        bg-gradient-to-b from-[#3F3351] via-[#232338] to-[#181828]
+        shadow-xl overflow-hidden">
 
         {/* Pattern decorativo */}
         <svg
