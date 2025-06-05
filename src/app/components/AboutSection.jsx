@@ -9,43 +9,47 @@ export default function AboutSection() {
       id="about"
       className="
         w-full px-4 sm:px-8 md:px-16
-        pt-20 pb-20
+        pt-16 pb-16
         bg-[#F3EFF5] text-[#232338] relative overflow-x-hidden
-        flex items-center justify-center
-        min-h-[82vh] max-h-[960px]
+        flex flex-col items-center justify-center
+        min-h-[82vh] max-h-[1080px]
       "
     >
       {/* Glow decorativo superior */}
       <div
         className="absolute left-1/2 top-8 -translate-x-1/2 pointer-events-none z-0"
         style={{
-          width: 440,
-          height: 130,
+          width: 340,
+          height: 90,
           background: "radial-gradient(circle, #8F67E84a 0%, transparent 70%)",
-          filter: "blur(34px)",
-        }}
-      />
-      {/* Glow decorativo inferior derecha */}
-      <div
-        className="absolute right-0 bottom-0 pointer-events-none z-0"
-        style={{
-          width: 230,
-          height: 170,
-          background: "radial-gradient(circle at 90% 90%, #5E60CE33 0%, transparent 90%)",
-          filter: "blur(32px)",
+          filter: "blur(30px)",
         }}
       />
 
-      <div className="max-w-5xl w-full mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16 relative z-10">
+      {/* TÍTULO GRANDE DIFUMINADO (como SectionHeader) */}
+      <div className="w-full flex flex-col items-center mb-8 relative z-10">
+        <SectionHeader
+          id="about"
+          title="Conóceme"
+          bgText="SOBRE MÍ"
+          titleColor="#5E60CE"
+          bgColor="#8F67E8"
+          bgOpacityClass="opacity-10"
+          className="text-5xl sm:text-6xl md:text-7xl font-extrabold"
+        />
+      </div>
+
+      {/* CONTENIDO EN FILA */}
+      <div className="max-w-5xl w-full flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16 relative z-10">
         {/* FOTO + Glow */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.04, ease: "easeOut" }}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center w-full md:w-auto"
         >
-          <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden shadow-xl border-4 border-[#8F67E8] bg-[#F3EFF5]">
+          <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden shadow-xl border-4 border-[#8F67E8] bg-[#F3EFF5]">
             <img
               src="/image/about.jpg"
               alt="Foto de Verónica Cruces"
@@ -53,7 +57,7 @@ export default function AboutSection() {
             />
             <div className="absolute inset-0 rounded-full pointer-events-none"
               style={{
-                boxShadow: "0 0 60px 12px #5E60CE44, 0 0 38px 10px #8F67E8bb"
+                boxShadow: "0 0 52px 15px #5E60CE44, 0 0 38px 10px #8F67E8bb"
               }}></div>
             {/* Partículas decorativas */}
             <div className="absolute -right-6 top-7 w-7 h-7 rounded-full bg-[#8F67E8] opacity-60 blur-[2px]" />
@@ -62,41 +66,22 @@ export default function AboutSection() {
         </motion.div>
 
         {/* TEXTO */}
-        <div className="flex-1 flex flex-col items-center md:items-start mt-4 md:mt-0">
-          {/* HEADER animado */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="w-full mb-3"
-          >
-            <SectionHeader
-              id="about"
-              title="Conóceme"
-              bgText="SOBRE MÍ"
-              titleColor="#5E60CE"
-              bgColor="#8F67E8"
-              bgOpacityClass="opacity-10"
-            />
-          </motion.div>
-
-          {/* NOMBRE y MAIL */}
-          <motion.h2
+        <div className="flex-1 flex flex-col items-center md:items-start mt-8 md:mt-0">
+          <motion.h3
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#3F3351] drop-shadow-sm text-center md:text-left"
+            className="text-lg sm:text-2xl md:text-2xl font-extrabold tracking-tight text-[#3F3351] drop-shadow-sm text-left"
           >
             VERÓNICA CRUCES
-          </motion.h2>
+          </motion.h3>
           <motion.p
             initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.42, delay: 0.13 }}
-            className="text-xs sm:text-base md:text-lg text-[#5E60CE] font-semibold mb-2 text-center md:text-left"
+            className="text-xs sm:text-base md:text-lg text-[#5E60CE] font-semibold mb-2 text-left"
           >
             crucessveronica@gmail.com
           </motion.p>
@@ -107,24 +92,33 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.11 }}
-            className="max-w-2xl text-center md:text-left"
+            className="max-w-2xl text-left"
           >
-            <p className="text-base sm:text-lg md:text-xl text-[#232338]">
-              <span className="text-[#5E60CE] font-semibold">Desarrolladora de software</span> orientada a la innovación y la consultoría digital. Mi foco está en <span className="text-[#8F67E8] font-semibold">React, Next.js y automatización de procesos</span> para empresas y startups. Diseño experiencias modernas, accesibles y de alto rendimiento.
+            <p className="text-sm sm:text-base md:text-[1rem] text-[#232338] leading-relaxed">
+              Actualmente trabajo como <span className="text-[#5E60CE] font-semibold">Analista Odoo ERP</span>, donde personalizo módulos, desarrollo reportes y capacito equipos para que aprovechen al máximo la herramienta. Me encanta transformar procesos complejos en soluciones simples y útiles.<br /><br />
+              Por otro lado, me apasiona el desarrollo web: diseño y creo sitios modernos usando <span className="text-[#8F67E8] font-semibold">React, Next.js y JavaScript</span> —y sí, ya he hecho la web de varios amigos porque creo que una página bien hecha es tu mejor carta de presentación en el mundo digital.<br /><br />
+              Disfruto trabajar con empresas y emprendedores, aprender todos los días (aunque el to-do siempre crece 😅) y compartir lo que sé. Ahora busco proyectos remotos, seguir creciendo y ayudar a más personas a llevar su negocio al siguiente nivel online.
             </p>
           </motion.div>
 
-          {/* BOTÓN ANIMADO estilo digital */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+          {/* PROPOSICIÓN DE VALOR */}
+          <motion.ul
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.23 }}
-            className="mt-8 flex justify-center md:justify-start"
+            transition={{ duration: 0.48, delay: 0.18 }}
+            className="mt-4 mb-2 text-[#393966] text-xs sm:text-sm md:text-base space-y-1 list-disc pl-4"
           >
+            <li>Personalización de Odoo ERP: de reportes a automatizaciones, lo hago entendible y útil.</li>
+            <li>Desarrollo web a la medida para empresas y emprendedores.</li>
+            <li>Enseño, acompaño y ayudo a crecer, siempre sumando.</li>
+            <li>Buscando siempre aprender algo nuevo... o hacer una web más 😉</li>
+          </motion.ul>
+
+          {/* BOTÓNES: Descargar CV + Contacto */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <a
               href="https://drive.google.com/file/d/1sZmMvY2UN2OC9VAcdhDbj7j8lTHEZMSV/view?usp=sharing"
-              className="inline-block"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -150,7 +144,30 @@ export default function AboutSection() {
                 <FiDownload size={18} className="ml-1" />
               </motion.button>
             </a>
-          </motion.div>
+            <a href="mailto:crucessveronica@gmail.com">
+              <motion.button
+                whileHover={{ backgroundColor: "#8F67E8", color: "#F3EFF5", scale: 1.035 }}
+                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#8F67E8] text-[#8F67E8] bg-transparent font-semibold transition-all"
+              >
+                ¡Hablemos!
+              </motion.button>
+            </a>
+          </div>
+
+          {/* FRASE INSPIRADORA */}
+          <motion.blockquote
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.35 }}
+            className="italic text-[#5E60CE] text-xs sm:text-sm mt-8 border-l-4 border-[#8F67E8] pl-4"
+          >
+            “El mejor software es el que hace que otros brillen.”
+          </motion.blockquote>
+
+          {/* FUN FACT */}
+          <div className="mt-4 text-xs text-[#888]">👾 Fun fact: Mi guilty pleasure es el café colombiano y los memes de programadores.</div>
         </div>
       </div>
     </section>
