@@ -75,19 +75,19 @@ export default function PortafolioSection() {
       image: "/portfolio/gasyproyectos.jpg"
     },
 
-  {
-    title: "Equipos de Protección Peruanos",
-    type: "Página Web (En Desarrollo)",
-    icon: Globe,
-    details: "Sitio corporativo para Equipos de Protección Peruanos, distribuidores líderes de equipos de protección personal y seguridad industrial en Perú. Incluye catálogo de productos, servicios técnicos de recarga y mantenimiento de extintores, asesoría técnica, testimonios de clientes, formulario de contacto funcional y diseño responsivo con animaciones suaves.",
-    client: "Equipos de Protección Peruanos",
-    industry: "Seguridad Industrial",
-    tech: "Next.js 15, React 19, Tailwind CSS, Framer Motion, Nodemailer",
-    url: "https://eppweb.netlify.app/",
-    image: "/portfolio/eppweb.jpg",
-  },
- 
- 
+    {
+      title: "Equipos de Protección Peruanos",
+      type: "Página Web (En Desarrollo)",
+      icon: Globe,
+      details: "Sitio corporativo para Equipos de Protección Peruanos, distribuidores líderes de equipos de protección personal y seguridad industrial en Perú. Incluye catálogo de productos, servicios técnicos de recarga y mantenimiento de extintores, asesoría técnica, testimonios de clientes, formulario de contacto funcional y diseño responsivo con animaciones suaves.",
+      client: "Equipos de Protección Peruanos",
+      industry: "Seguridad Industrial",
+      tech: "Next.js 15, React 19, Tailwind CSS, Framer Motion, Nodemailer",
+      url: "https://eppweb.netlify.app/",
+      image: "/portfolio/eppweb.jpg",
+    },
+
+
   ];
 
   // Bloquea scroll body si modal abierto
