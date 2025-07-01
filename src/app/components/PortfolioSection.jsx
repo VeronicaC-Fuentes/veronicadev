@@ -62,20 +62,10 @@ export default function PortafolioSection() {
       url: "https://landing.wasai.com/",
       image: "/portfolio/wasai.jpg"
     },
-    {
-      title: "Impacto Real Estate 2.0",
-      type: "Página Web",
-      icon: Globe,
-      details: "Sitio web institucional para inmobiliaria. Presenta propiedades desde la API de Tokko Broker, secciones animadas, formulario de contacto conectado con Firebase, y diseño responsive. Incluye buscador, galería de propiedades y enlaces externos con botones personalizados.",
-      client: "Impacto Real Estate",
-      industry: "Bienes Raíces",
-      tech: "JavaScript, React 18, Vite, Firebase, Bootstrap 5, API Tokko Broker",
-      url: "https://impacto-realestate.com/",
-      image: "/portfolio/impacto.jpg"
-    },
+
     {
       title: "Gas y Proyectos",
-      type: "Página Web",
+      type: "Página Web (en Desarrollo)",
       icon: Globe,
       details: "Sitio corporativo desarrollado para una empresa especializada en instalaciones de gas. Presenta los servicios técnicos que ofrecen, portafolio de proyectos, formulario de contacto funcional y diseño profesional responsivo con animaciones suaves.",
       client: "Gas y Proyectos S.A.C.",
@@ -84,17 +74,7 @@ export default function PortafolioSection() {
       url: "https://demo0016.netlify.app/",
       image: "/portfolio/gasyproyectos.jpg"
     },
-    {
-      title: "EPP Docs",
-      type: "Aplicación Web",
-      icon: FileText,
-      details: "Aplicación para cargar documentos a OneDrive. Implementa un formulario en HTML/CSS/JS que permite seleccionar cliente y número de documento, subir imágenes y PDFs, convertir imágenes a PDF con jsPDF, y almacenar archivos en OneDrive usando Microsoft Graph y MSAL.",
-      client: "Brolsac",
-      industry: "Gestión Documental",
-      tech: "HTML, CSS, JavaScript, Node.js, Express, MongoDB, @microsoft/microsoft-graph-client",
-      url: "https://app-brolsac-37a742b8c39d.herokuapp.com/",
-      image: "/portfolio/eppsdocs.jpg"
-    }
+ 
   ];
 
   // Bloquea scroll body si modal abierto
