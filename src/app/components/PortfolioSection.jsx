@@ -62,17 +62,7 @@ export default function PortafolioSection() {
       url: "https://landing.wasai.com/",
       image: "/portfolio/wasai.jpg"
     },
-    {
-      title: "Impacto Real Estate 2.0",
-      type: "Página Web",
-      icon: Globe,
-      details: "Sitio web institucional para inmobiliaria. Presenta propiedades desde la API de Tokko Broker, secciones animadas, formulario de contacto conectado con Firebase, y diseño responsive. Incluye buscador, galería de propiedades y enlaces externos con botones personalizados.",
-      client: "Impacto Real Estate",
-      industry: "Bienes Raíces",
-      tech: "JavaScript, React 18, Vite, Firebase, Bootstrap 5, API Tokko Broker",
-      url: "https://impacto-realestate.com/",
-      image: "/portfolio/impacto.jpg"
-    },
+
     {
       title: "Gas y Proyectos",
       type: "Página Web",
@@ -84,17 +74,20 @@ export default function PortafolioSection() {
       url: "https://demo0016.netlify.app/",
       image: "/portfolio/gasyproyectos.jpg"
     },
-    {
-      title: "EPP Docs",
-      type: "Aplicación Web",
-      icon: FileText,
-      details: "Aplicación para cargar documentos a OneDrive. Implementa un formulario en HTML/CSS/JS que permite seleccionar cliente y número de documento, subir imágenes y PDFs, convertir imágenes a PDF con jsPDF, y almacenar archivos en OneDrive usando Microsoft Graph y MSAL.",
-      client: "Brolsac",
-      industry: "Gestión Documental",
-      tech: "HTML, CSS, JavaScript, Node.js, Express, MongoDB, @microsoft/microsoft-graph-client",
-      url: "https://app-brolsac-37a742b8c39d.herokuapp.com/",
-      image: "/portfolio/eppsdocs.jpg"
-    }
+
+  {
+    title: "Equipos de Protección Peruanos",
+    type: "Página Web (En Desarrollo)",
+    icon: Globe,
+    details: "Sitio corporativo para Equipos de Protección Peruanos, distribuidores líderes de equipos de protección personal y seguridad industrial en Perú. Incluye catálogo de productos, servicios técnicos de recarga y mantenimiento de extintores, asesoría técnica, testimonios de clientes, formulario de contacto funcional y diseño responsivo con animaciones suaves.",
+    client: "Equipos de Protección Peruanos",
+    industry: "Seguridad Industrial",
+    tech: "Next.js 15, React 19, Tailwind CSS, Framer Motion, Nodemailer",
+    url: "https://eppweb.netlify.app/",
+    image: "/portfolio/eppweb.jpg",
+  },
+ 
+ 
   ];
 
   // Bloquea scroll body si modal abierto
