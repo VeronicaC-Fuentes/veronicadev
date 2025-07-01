@@ -153,7 +153,7 @@ export default function HomeSection() {
             <Typewriter
               words={[
                 "Desarrolladora de software con experiencia en desarrollo web y automatización de procesos.",
-                "Desarrolladora de software para empresas: web, consultoría y automatización de procesos.",
+                "Desarrolladora de software  empresas: consultaria web y automatización de procesos.",
                 "Desarrolladora de software con enfoque en web, consultoría y automatización.",
               ]}
               loop={false}
