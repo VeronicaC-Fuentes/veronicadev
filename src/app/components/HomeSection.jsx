@@ -27,6 +27,8 @@ function Particles() {
       <circle cx="90" cy="180" r="2.5" fill="#8F67E8" />
       <circle cx="400" cy="90" r="1.5" fill="#C4C4C4" />
       <circle cx="950" cy="250" r="2" fill="#5E60CE" />
+            <circle cx="950" cy="250" r="2" fill="#5E60CE" />
+
     </svg>
   );
 }
@@ -144,7 +146,7 @@ export default function HomeSection() {
               display: "flex",
               alignItems: "center",
               transition: "none",
-              fontSize: "0.96rem",
+              fontSize: "1.1rem",
             }}
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -152,9 +154,10 @@ export default function HomeSection() {
           >
             <Typewriter
               words={[
-                "Desarrolladora de software con experiencia en desarrollo web y automatización de procesos.",
-                "Desarrolladora de software  empresas: consultaria web y automatización de procesos.",
-                "Desarrolladora de software con enfoque en web, consultoría y automatización.",
+                "Transformo ideas en experiencias digitales…",
+                "Desarrollo soluciones web a medida…",
+                "Optimizo procesos con automatización…",
+                "Soy tu aliada digital para crecer…",
               ]}
               loop={false}
               cursor

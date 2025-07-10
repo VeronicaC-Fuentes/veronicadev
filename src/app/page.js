@@ -1,24 +1,23 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import HomeSection from './components/HomeSection'
-import AboutSection from './components/AboutSection'
-import ServicesSection from './components/ServicesSection'
-import ResumeSection from './components/ResumeSection'
-import PortfolioSection from './components/PortfolioSection'
-import ContactSection from './components/ContactSection'
-import ScrollToTopAndWhatsapp from "./components/ScrollToTopAndWhatsapp"
+import HomeSection from './components/HomeSection';
+import AboutSection from './components/AboutSection';
+import ServicesSection from './components/ServicesSection';
+import ResumeSection from './components/ResumeSection';
+import PortfolioSection from './components/PortfolioSection';
+import ContactSection from './components/ContactSection';
+import ScrollToTopAndWhatsapp from "./components/ScrollToTopAndWhatsapp";
 
-// Frases para el tipeo
+// Frase fija de introducción y frases secundarias para el tipeo (loader)
+const loaderIntro = "Bienvenido a mi portafolio…";
 const typingPhrases = [
-  "te muestro mi portafolio.",
-  "descubre mis proyectos.",
-  "te presento mi trabajo.",
-  "mira lo que hago.",
-  "esto es lo que sé hacer.",
-  "esto es Verónica Dev.",
+  "pronto verás mis proyectos.",
+  "estás a punto de conocer mi trabajo.",
+  "tu próxima aliada digital está en camino.",
+  "prepárate para descubrir mis soluciones web.",
 ];
 
-// Loader (adaptado a la paleta)
+// Typewriter
 function Typewriter({ text, speed = 40, cursorColor = "#FFD166" }) {
   const [displayed, setDisplayed] = useState('');
   useEffect(() => {
@@ -40,10 +39,12 @@ function Typewriter({ text, speed = 40, cursorColor = "#FFD166" }) {
   );
 }
 
+// Loader
 function Loader({ onFinish }) {
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
 
+  // Cambiar frase periódicamente
   useEffect(() => {
     const interval = setInterval(() => {
       setPhraseIdx(prev => (prev + 1) % typingPhrases.length);
@@ -51,6 +52,7 @@ function Loader({ onFinish }) {
     return () => clearInterval(interval);
   }, []);
 
+  // Desvanecer y terminar
   useEffect(() => {
     const timeout = setTimeout(() => {
       setFadeOut(true);
@@ -61,12 +63,12 @@ function Loader({ onFinish }) {
 
   return (
     <div className={`
-      fixed inset-0 flex items-center justify-center z-[9999] 
+      fixed inset-0 flex items-center justify-center z-[9999]
       transition-opacity duration-700 ${fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"}
       bg-gradient-to-br from-[#3F3351] via-[#232338] to-[#5E60CE]
     `}>
       <div className="flex flex-col items-center">
-        <div className="mb-7 flex items-center justify-center">
+        <div className="mb-7">
           <div className="
             w-40 h-40 rounded-full overflow-hidden
             border-4 border-[#5E60CE]
@@ -84,21 +86,20 @@ function Loader({ onFinish }) {
           </div>
         </div>
         <span
-          className="text-xl md:text-2xl text-center font-mono font-medium tracking-tight"
+          className="text-base md:text-lg text-center font-mono font-medium tracking-tight"
           style={{
             color: "#F3EFF5",
             textShadow: "0 2px 12px #3F335155, 0 1px 0 #5E60CE66",
-            minHeight: "32px",
+            minHeight: "28px",
             letterSpacing: "0.04em"
           }}
         >
-          <span className="text-[#FFD166] font-bold">Un break y listo...</span>{" "}
+          <span className="text-[#FFD166] font-bold">{loaderIntro}</span>{" "}
           <span className="text-[#8F67E8]">
             <Typewriter text={typingPhrases[phraseIdx]} cursorColor="#FFD166" />
           </span>
         </span>
       </div>
-      {/* Pulsing border keyframes */}
       <style>
         {`
           .animate-pulse {
@@ -118,6 +119,7 @@ function Loader({ onFinish }) {
   );
 }
 
+// Página principal
 export default function Page() {
   const [loading, setLoading] = useState(true);
 
