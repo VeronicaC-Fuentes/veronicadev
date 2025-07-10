@@ -65,7 +65,7 @@ export default function PortafolioSection() {
 
     {
       title: "Gas y Proyectos",
-      type: "Página Web",
+      type: "Página Web(En Desarrollo)",
       icon: Globe,
       details: "Sitio corporativo desarrollado para una empresa especializada en instalaciones de gas. Presenta los servicios técnicos que ofrecen, portafolio de proyectos, formulario de contacto funcional y diseño profesional responsivo con animaciones suaves.",
       client: "Gas y Proyectos S.A.C.",
