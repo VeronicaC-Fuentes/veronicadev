@@ -9,7 +9,7 @@ export default function AboutSection() {
       id="about"
       className="
         w-full px-4 sm:px-8 md:px-16
-        pt-16 pb-16
+        pt-16 md:pt-24 pb-16
         bg-[#F3EFF5] text-[#232338] relative overflow-x-hidden
         flex flex-col items-center justify-center
       "
