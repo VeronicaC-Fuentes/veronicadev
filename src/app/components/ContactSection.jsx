@@ -81,9 +81,8 @@ export default function ContactSection() {
               <div className="rounded-2xl border border-[#8F67E8]/40 bg-[#F3EFF5] p-7 shadow-[0_2px_28px_0_#8F67E815]">
                 <h3 className="text-xl font-bold text-[#5E60CE] mb-4 tracking-tight">Sígueme</h3>
                 <div className="flex gap-4 text-2xl">
-                  <a href="https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw" className="text-[#3F3351] hover:text-[#8F67E8] transition"><FaInstagram /></a>
+                  <a href="https://www.instagram.com/veronicadev.web/" className="text-[#3F3351] hover:text-[#8F67E8] transition"><FaInstagram /></a>
                   <a href="https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/" className="text-[#3F3351] hover:text-[#5E60CE] transition"><FaLinkedinIn /></a>
-                  <a href="https://www.facebook.com/share/16dGbcpR9P/" className="text-[#3F3351] hover:text-[#8F67E8] transition"><FaFacebookF /></a>
                   <a href="https://github.com/VeronicaC-Fuentes" className="text-[#3F3351] hover:text-[#5E60CE] transition"><FaGithub /></a>
                 </div>
               </div>

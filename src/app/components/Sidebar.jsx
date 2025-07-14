@@ -195,14 +195,11 @@ export default function Sidebar() {
         {/* Redes sociales escritorio */}
         <div className="flex gap-5 text-[#C4C4C4] mb-6 z-20">
           {[{
-            href: "https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw",
+            href: "https://www.instagram.com/veronicadev.web/",
             Icon: FaInstagram,
             label: "Instagram"
-          }, {
-            href: "https://www.facebook.com/share/16dGbcpR9P/",
-            Icon: FaFacebookF,
-            label: "Facebook"
-          }, {
+          }, 
+          {
             href: "https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/",
             Icon: FaLinkedinIn,
             label: "LinkedIn"
