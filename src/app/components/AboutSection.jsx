@@ -128,7 +128,7 @@ export default function AboutSection() {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <a
-              href="https://drive.google.com/file/d/1sZmMvY2UN2OC9VAcdhDbj7j8lTHEZMSV/view?usp=sharing"
+              href="https://drive.google.com/file/d/17zxFIhnMEHViqL8LxuWdB06rUtAFEtda/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
             >

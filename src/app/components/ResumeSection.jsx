@@ -10,7 +10,7 @@ export default function ResumeSection() {
 
   const experience = [
     { period: '2022 – Actualidad', title: 'Desarrolladora Web', place: 'Freelance' },
-    { period: '2024', title: 'Analista de Soporte de ERP – Odoo', place: 'Representaciones BROL SAC' },
+    { period: '2024', title: 'Desarrollador de ODOO - ERP ', place: 'Representaciones BROL SAC' },
     { period: '2023', title: 'Especialista en KPIs y Análisis de Datos', place: 'RE/MAX Talento' },
     { period: '2022', title: 'Analista de Procesos & Administradora de Base de Datos', place: 'WYDNEX SAC' }
   ];
@@ -135,7 +135,7 @@ export default function ResumeSection() {
         {/* BOTÓN */}
         <div className="text-center mt-8 sm:mt-10">
           <a
-            href="https://drive.google.com/file/d/1sZmMvY2UN2OC9VAcdhDbj7j8lTHEZMSV/view?usp=sharing"
+            href="https://drive.google.com/file/d/17zxFIhnMEHViqL8LxuWdB06rUtAFEtda/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#232338] border-2 border-[#5E60CE] text-[#F3EFF5] font-semibold text-base shadow-md hover:bg-[#5E60CE] hover:text-[#F3EFF5] hover:scale-105 transition-all"
