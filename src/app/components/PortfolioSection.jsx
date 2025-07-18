@@ -1,7 +1,7 @@
 "use client";
 import SectionHeader from './SectionHeader';
 import { useState } from "react";
-import { Globe, Layout, FileText, PlusCircle } from "lucide-react";
+import { Globe, Layout, FileText } from "lucide-react";
 import Image from "next/image";
 import {
   SiNextdotjs, SiReact, SiTypescript, SiFramer, SiTailwindcss, SiJavascript, SiFirebase,
@@ -37,6 +37,7 @@ const techIcons = {
 
 export default function PortafolioSection() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [imgIdx, setImgIdx] = useState(0);
 
 
   const projects = [
@@ -86,11 +87,59 @@ export default function PortafolioSection() {
       url: "https://eppweb.netlify.app/",
       image: "/portfolio/eppweb.jpg",
     },
+    {
+      title: "Personalización avanzada de contactos en Odoo",
+      type: "Odoo / ERP",
+      icon: FileText,
+      details: "Desarrollo de un módulo personalizado para Odoo 17 que rediseña el formulario de contactos, agregando roles clave (Comercial, Tesorería, Logística, Otros), validaciones automáticas según tipo de empresa/persona, y lógica de negocio alineada con la normativa peruana. Mejora la calidad de los datos, reduce errores y facilita la gestión del cliente.",
+      client: "Equipos de Protección Peruanos",
+      industry: "ERP / Industria",
+      tech: "Odoo 17, Python, XML, PostgreSQL, Localización Perú",
+      url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/contacts_form",
+      images: [
+        "/portfolio/odoo-portada.svg",
+        "/portfolio/odoo-contacts-1.png",
+        "/portfolio/odoo-contacts-2.png",
+        "/portfolio/odoo-contacts-3.png",
+        "/portfolio/odoo-contacts-4.png"
+      ]
+    },
+    {
+      title: "Automatización de nombres y códigos de productos en Odoo",
+      type: "Odoo / ERP",
+      icon: FileText,
+      details: "Módulo personalizado para Odoo 17 que automatiza la generación de nombres y referencias internas para productos, según reglas de negocio específicas y taxonomía definida por la empresa. Incluye lógica especial para productos como extintores, uso de secuencias y asignación automática de reglas de reabastecimiento. Mejora la gestión de inventario, la búsqueda y el control de stock.",
+      client: "Representaciones BROL SAC",
+      industry: "ERP / Inventario",
+      tech: "Odoo 17, Python, XML, PostgreSQL",
+      url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/product_name_customization", // tu futuro repo
+      images: [
+        "/portfolio/odoo-portada.svg",
+        "/portfolio/odoo-products-1.png",
+        "/portfolio/odoo-products-2.png"
+      ]
+    },
+
+    {
+      title: "Restricciones automáticas de crédito y aprobación de ventas en Odoo",
+      type: "Odoo / ERP",
+      icon: FileText,
+      details: "Módulo avanzado para Odoo que automatiza el bloqueo de clientes con facturas vencidas, restringe ventas por debajo de costo y centraliza la aprobación de cotizaciones en situaciones de riesgo. Implementa flujos de autorización, verifica límites de crédito solo sobre productos 'ganados', y aplica políticas empresariales reales para minimizar riesgo financiero.",
+      client: "Representaciones BROL SAC",
+      industry: "ERP / Ventas y Finanzas",
+      tech: "Odoo 17, Python, XML, Seguridad, Validaciones Avanzadas",
+      url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/product_name_customization", // tu futuro repo
+      images: [
+        "/portfolio/odoo-portada.svg",
+        "/portfolio/odoo-restricciones-1.png",
+        "/portfolio/odoo-restricciones-2.png",
+      ]
+    },
+
 
 
   ];
 
-  // Bloquea scroll body si modal abierto
   if (typeof window !== "undefined") {
     if (selectedProject) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -129,19 +178,21 @@ export default function PortafolioSection() {
             >
               <div
                 className="cursor-pointer flex flex-col rounded-2xl bg-[#1B1928] min-h-[340px] overflow-hidden transition"
-                onClick={() => setSelectedProject(proj)}
+                onClick={() => {
+                  setSelectedProject(proj);
+                  setImgIdx(0);
+                }}
                 tabIndex={0}
                 aria-label={`Ver detalles de ${proj.title}`}
               >
                 <div className="relative w-full h-40 rounded-t-2xl overflow-hidden">
                   <Image
-                    src={proj.image}
+                    src={proj.images && proj.images.length ? proj.images[0] : proj.image}
                     alt={proj.title}
                     fill
                     sizes="400px"
                     className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-300"
                   />
-                  {/* Overlay Glow al hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#8F67E870] to-transparent opacity-0 group-hover:opacity-70 transition-all" />
                 </div>
                 <div className="flex flex-col gap-1 px-5 py-4 items-start">
@@ -168,7 +219,6 @@ export default function PortafolioSection() {
         </div>
       </div>
 
-
       {/* MODAL */}
       {selectedProject && (
         <div
@@ -177,25 +227,25 @@ export default function PortafolioSection() {
         >
           <div
             className={`
-        relative w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl
-        bg-gradient-to-br from-[#221b2c] via-[#29283d] to-[#392963]
-        border-2 border-[#8F67E8] text-[#F3EFF5] rounded-none sm:rounded-2xl shadow-2xl
-        flex flex-col md:flex-row gap-0 md:gap-10 overflow-hidden animate-fadeInUp
-        h-full max-h-full sm:h-auto sm:max-h-[90vh]
-      `}
+              relative w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl
+              bg-gradient-to-br from-[#221b2c] via-[#29283d] to-[#392963]
+              border-2 border-[#8F67E8] text-[#F3EFF5] rounded-none sm:rounded-2xl shadow-2xl
+              flex flex-col md:flex-row gap-0 md:gap-10 overflow-hidden animate-fadeInUp
+              h-full max-h-full sm:h-auto sm:max-h-[90vh]
+            `}
             onClick={e => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedProject(null)}
               className="
-    absolute top-3 right-3 sm:top-4 sm:right-4 z-10
-    p-1.5 transition-all duration-150
-    hover:scale-110 active:scale-95
-    text-[#8F67E8] hover:text-[#FF6F61]
-    bg-transparent border-none shadow-none
-    outline-none focus:outline-none
-    cursor-pointer
-  "
+                absolute top-3 right-3 sm:top-4 sm:right-4 z-10
+                p-1.5 transition-all duration-150
+                hover:scale-110 active:scale-95
+                text-[#8F67E8] hover:text-[#FF6F61]
+                bg-transparent border-none shadow-none
+                outline-none focus:outline-none
+                cursor-pointer
+              "
               aria-label="Cerrar"
             >
               <svg
@@ -215,16 +265,46 @@ export default function PortafolioSection() {
               </svg>
             </button>
 
-            <div className="w-full md:w-1/2 flex items-center justify-center bg-gradient-to-b from-[#232338] to-[#29283d] border-b md:border-b-0 md:border-r border-[#8F67E8]/30 px-4 py-8 md:py-10">
-              <Image
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                width={650}
-                height={480}
-                className="object-contain w-full max-h-[180px] sm:max-h-[240px] md:max-h-[60vh] rounded-xl shadow-lg"
-                priority
-              />
+            <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-gradient-to-b from-[#232338] to-[#29283d] border-b md:border-b-0 md:border-r border-[#8F67E8]/30 px-4 py-8 md:py-10">
+              {/* SLIDER DE IMÁGENES */}
+              {(() => {
+                const images =
+                  selectedProject.images && selectedProject.images.length > 0
+                    ? selectedProject.images
+                    : [selectedProject.image];
+
+                return (
+                  <>
+                    <Image
+                      src={images[imgIdx]}
+                      alt={selectedProject.title + ' ' + (imgIdx + 1)}
+                      width={650}
+                      height={480}
+                      className="object-contain w-full max-h-[180px] sm:max-h-[240px] md:max-h-[60vh] rounded-xl shadow-lg"
+                      priority
+                    />
+                    {images.length > 1 && (
+                      <div className="flex gap-2 mt-3 items-center">
+                        <button
+                          onClick={() => setImgIdx((imgIdx - 1 + images.length) % images.length)}
+                          className="p-1.5 rounded-full bg-[#29283d] hover:bg-[#8F67E8] text-[#8F67E8] hover:text-[#FFF] transition"
+                          aria-label="Anterior"
+                          tabIndex={0}
+                        >{"‹"}</button>
+                        <span className="text-xs text-[#F3EFF5]">{imgIdx + 1} / {images.length}</span>
+                        <button
+                          onClick={() => setImgIdx((imgIdx + 1) % images.length)}
+                          className="p-1.5 rounded-full bg-[#29283d] hover:bg-[#8F67E8] text-[#8F67E8] hover:text-[#FFF] transition"
+                          aria-label="Siguiente"
+                          tabIndex={0}
+                        >{"›"}</button>
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
             </div>
+
             <div className="flex-1 flex flex-col px-5 py-6 md:px-8 md:py-10 gap-3 overflow-y-auto">
               <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#8F67E8]">{selectedProject.title}</h3>
               <span className="font-medium text-base mb-2 text-[#5E60CE]">{selectedProject.type}</span>
@@ -269,14 +349,15 @@ export default function PortafolioSection() {
               </div>
             </div>
             <style>{`
-        .animate-fadeIn { animation: fadeInModal .20s cubic-bezier(.62,.06,.36,1.22) both;}
-        .animate-fadeInUp { animation: fadeInModalUp .30s cubic-bezier(.62,.06,.36,1.22) both;}
-        @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInModalUp { from { opacity: 0; transform: translateY(24px) scale(.98);} to { opacity: 1; transform: none;}}
-      `}</style>
+              .animate-fadeIn { animation: fadeInModal .20s cubic-bezier(.62,.06,.36,1.22) both;}
+              .animate-fadeInUp { animation: fadeInModalUp .30s cubic-bezier(.62,.06,.36,1.22) both;}
+              @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+              @keyframes fadeInModalUp { from { opacity: 0; transform: translateY(24px) scale(.98);} to { opacity: 1; transform: none;}}
+            `}</style>
           </div>
         </div>
       )}
+
 
     </section>
   );
