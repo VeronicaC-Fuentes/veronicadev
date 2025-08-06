@@ -84,7 +84,7 @@ export default function PortafolioSection() {
       client: "Equipos de Protección Peruanos",
       industry: "Seguridad Industrial",
       tech: "Next.js 15, React 19, Tailwind CSS, Framer Motion, Nodemailer",
-      url: "https://eppweb.netlify.app/",
+      url: "https://equiposdeproteccion.pe/",
       image: "/portfolio/eppweb.jpg",
     },
     {

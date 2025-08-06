@@ -20,46 +20,53 @@ export default function Sidebar() {
   const observerRef = useRef(null);
 
   useEffect(() => {
-    const sectionIds = navItems.map(item => item.id);
-    const sections = sectionIds
-      .map(id => document.getElementById(id))
-      .filter(Boolean);
+    // Espera a que el DOM esté completamente listo antes de buscar los ids
+    const timeout = setTimeout(() => {
+      const sectionIds = navItems.map(item => item.id);
+      const sections = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
 
-    // Limpia observer anterior si existe
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-    }
+      // Debug: muestra qué secciones encontró
+      console.log("Sections found:", sections.map(s => s.id));
 
-    let visibleMap = {};
-    // Crea un observer
-    observerRef.current = new window.IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          visibleMap[entry.target.id] = entry.intersectionRatio;
-        });
-        // Toma la sección con mayor visibilidad
-        const visibleSection = Object.entries(visibleMap)
-          .sort((a, b) => b[1] - a[1])[0];
-        if (visibleSection && visibleSection[1] > 0.2) {
-          setActiveSection(visibleSection[0]);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "0px 0px -40% 0px", // ajusta si quieres que active antes/después
-        threshold: [0.25, 0.5, 0.75, 1], // reactiva a medida que entra/sale
+      if (observerRef.current) {
+        observerRef.current.disconnect();
       }
-    );
 
-    sections.forEach(section => {
-      observerRef.current.observe(section);
-    });
+      observerRef.current = new window.IntersectionObserver(
+        (entries) => {
+          let mostVisible = null;
+          let maxRatio = 0;
+          entries.forEach(entry => {
+            // Debug: muestra ratios de intersección
+            // console.log(entry.target.id, entry.intersectionRatio);
+            if (entry.intersectionRatio > maxRatio) {
+              maxRatio = entry.intersectionRatio;
+              mostVisible = entry.target.id;
+            }
+          });
+          if (mostVisible && maxRatio > 0.1) {
+            setActiveSection(mostVisible);
+          }
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -60% 0px",
+          threshold: Array.from({ length: 100 }, (_, i) => i / 100),
+        }
+      );
 
-    // Limpia al desmontar
+      sections.forEach(section => {
+        observerRef.current.observe(section);
+      });
+    }, 400); // 400ms suele ser suficiente para SSR/Next
+
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
+      clearTimeout(timeout);
     };
   }, []);
 
@@ -198,7 +205,7 @@ export default function Sidebar() {
             href: "https://www.instagram.com/veronicadev.web/",
             Icon: FaInstagram,
             label: "Instagram"
-          }, 
+          },
           {
             href: "https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/",
             Icon: FaLinkedinIn,
