@@ -66,13 +66,13 @@ export default function PortafolioSection() {
 
     {
       title: "Gas y Proyectos",
-      type: "Página Web(En Desarrollo)",
+      type: "Página Web",
       icon: Globe,
       details: "Sitio corporativo desarrollado para una empresa especializada en instalaciones de gas. Presenta los servicios técnicos que ofrecen, portafolio de proyectos, formulario de contacto funcional y diseño profesional responsivo con animaciones suaves.",
       client: "Gas y Proyectos S.A.C.",
       industry: "Instalaciones de Gas",
       tech: "Next.js 15, React 19, Tailwind CSS, Framer Motion, Nodemailer",
-      url: "https://demo0016.netlify.app/",
+      url: "https://gasproyectosperu.com/",
       image: "/portfolio/gasyproyectos.jpg"
     },
 
