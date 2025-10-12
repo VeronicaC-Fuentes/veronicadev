@@ -1,7 +1,7 @@
 "use client";
 import SectionHeader from './SectionHeader';
 import { useState } from "react";
-import { Globe, Layout, FileText } from "lucide-react";
+import { Globe, Layout, FileText, Wrench } from "lucide-react";
 import Image from "next/image";
 import {
   SiNextdotjs, SiReact, SiTypescript, SiFramer, SiTailwindcss, SiJavascript, SiFirebase,
@@ -9,6 +9,8 @@ import {
 } from "react-icons/si";
 import { MdApi, MdImage } from "react-icons/md";
 import { AiOutlineMail, AiOutlineCloud } from "react-icons/ai";
+// arriba del archivo
+
 
 const techIcons = {
   'Next.js 15': <SiNextdotjs className="w-5 h-5 text-[#8F67E8]" />,
@@ -41,6 +43,40 @@ export default function PortafolioSection() {
 
 
   const projects = [
+    {
+      title: "Factor Barcelona",
+      type: "Página Web",
+      icon: Layout,
+      details: "Sitio web corporativo desarrollado en Odoo para un espacio de eventos ubicado en el Eixample (Barcelona). Contiene secciones informativas sobre el espacio y servicios para eventos corporativos/MICE, formulario de contacto y estructura enfocada en conversión. Diseño responsive y con prácticas básicas de SEO.",
+      client: "Factor Barcelona",
+      industry: "Eventos",
+      tech: "Odoo 18, Python, Owl, JavaScript, XML, SCSS",
+      url: "https://www.factorbarcelona.com/",
+      image: "/portfolio/factorbarcelona.png"
+    },
+
+    {
+      title: "Inmobiliaria Giuni Cartagena",
+      type: "Landing Page",
+      icon: Layout,
+      details: "Landing informativa para una inmobiliaria en Cartagena. Presenta secciones de héroe con propuesta de valor, servicios (compra, venta y arriendo), propiedades destacadas a modo de showcase, beneficios, preguntas frecuentes, llamada a la acción a WhatsApp y formulario de contacto. Estructura ligera, enfocada en conversión, responsive y con SEO on-page básico (metadatos y encabezados).",
+      client: "Inmobiliaria Giuni Cartagena",
+      industry: "Bienes Raíces",
+      tech: "Odoo 18 Website, Owl, JavaScript, SCSS/Bootstrap, XML (snippets), Python (ajustes mínimos)",
+      url: "https://www.inmobiliariagiunicartagena.com/",
+      image: "/portfolio/giuni-cartagena.png"
+    },
+    {
+      title: "Bresson",
+      type: "Optimización Web",
+      icon: Wrench,
+      details: "Optimización técnica y visual de un sitio existente. Se mejoró el rendimiento, estructura SEO, organización de componentes, tiempos de carga y adaptación responsive. También se realizaron ajustes visuales y de copy para alinearlo con la identidad de marca.",
+      client: "Bresson Argentina",
+      industry: "Bienes Raíces",
+      tech: "WordPress, JavaScript, HTML, CSS",
+      url: "https://bresson.com.ar/",
+      image: "/portfolio/bresson.png"
+    },
     {
       title: "The Hub",
       type: "Landing",

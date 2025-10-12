@@ -59,7 +59,7 @@ export default function ContactSection() {
               <div className="rounded-2xl border border-[#8F67E8]/40 bg-[#F3EFF5] p-7 shadow-[0_2px_28px_0_#8F67E815]">
                 <h3 className="text-xl font-bold text-[#5E60CE] mb-4 tracking-tight">Ubicación</h3>
                 <p className="text-base text-[#3F3351]">
-                  Basada en Colombia <span className="text-[#B9B6D3]">(nómada digital)</span>.<br />
+                  Basada en España <span className="text-[#B9B6D3]">(nómada digital)</span>.<br />
                   <span className="text-[#3F3351]">Disponible para trabajos remotos.</span>
                 </p>
               </div>
