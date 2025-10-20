@@ -1,122 +1,154 @@
 "use client";
-import SectionHeader from './SectionHeader';
-import { useState } from "react";
-import { Globe, Layout, FileText, Wrench } from "lucide-react";
+
+import { useEffect, useState } from "react";
+import SectionHeader from "./SectionHeader";
 import Image from "next/image";
+
+// Íconos (lucide-react)
+import { Globe, Layout, FileText, Wrench } from "lucide-react";
+
+// Tech badges
 import {
-  SiNextdotjs, SiReact, SiTypescript, SiFramer, SiTailwindcss, SiJavascript, SiFirebase,
-  SiNodedotjs, SiExpress, SiMongodb, SiBootstrap, SiHtml5, SiCss3, SiVuedotjs, SiVite
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiFramer,
+  SiTailwindcss,
+  SiJavascript,
+  SiFirebase,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiBootstrap,
+  SiHtml5,
+  SiCss3,
+  SiVuedotjs,
+  SiVite,
 } from "react-icons/si";
 import { MdApi, MdImage } from "react-icons/md";
 import { AiOutlineMail, AiOutlineCloud } from "react-icons/ai";
-// arriba del archivo
-
 
 const techIcons = {
-  'Next.js 15': <SiNextdotjs className="w-5 h-5 text-[#8F67E8]" />,
-  'App Router': <SiNextdotjs className="w-5 h-5 text-[#8F67E8]" />,
-  'React 19': <SiReact className="w-5 h-5 text-[#8F67E8]" />,
-  'React 18': <SiReact className="w-5 h-5 text-[#8F67E8]" />,
-  'TypeScript': <SiTypescript className="w-5 h-5 text-[#8F67E8]" />,
-  'Framer Motion': <SiFramer className="w-5 h-5 text-[#8F67E8]" />,
-  'Tailwind CSS': <SiTailwindcss className="w-5 h-5 text-[#8F67E8]" />,
-  'JavaScript': <SiJavascript className="w-5 h-5 text-[#8F67E8]" />,
-  'Firebase': <SiFirebase className="w-5 h-5 text-[#8F67E8]" />,
-  'Vue.js': <SiVuedotjs className="w-5 h-5 text-[#8F67E8]" />,
-  'Node.js': <SiNodedotjs className="w-5 h-5 text-[#8F67E8]" />,
-  'Express': <SiExpress className="w-5 h-5 text-[#8F67E8]" />,
-  'MongoDB': <SiMongodb className="w-5 h-5 text-[#8F67E8]" />,
-  'Bootstrap 5': <SiBootstrap className="w-5 h-5 text-[#8F67E8]" />,
-  'Vite': <SiVite className="w-5 h-5 text-[#8F67E8]" />,
-  'HTML': <SiHtml5 className="w-5 h-5 text-[#8F67E8]" />,
-  'CSS': <SiCss3 className="w-5 h-5 text-[#8F67E8]" />,
-  '@microsoft/microsoft-graph-client': <MdApi className="w-5 h-5 text-[#8F67E8]" />,
-  'API Tokko Broker': <MdApi className="w-5 h-5 text-[#8F67E8]" />,
-  'Nodemailer': <AiOutlineMail className="w-5 h-5 text-[#8F67E8]" />,
-  'Lucide': <AiOutlineCloud className="w-5 h-5 text-[#8F67E8]" />,
-  'Next/Image': <MdImage className="w-5 h-5 text-[#8F67E8]" />
+  "Next.js 15": <SiNextdotjs className="w-5 h-5 text-[#8F67E8]" />,
+  "App Router": <SiNextdotjs className="w-5 h-5 text-[#8F67E8]" />,
+  "React 19": <SiReact className="w-5 h-5 text-[#8F67E8]" />,
+  "React 18": <SiReact className="w-5 h-5 text-[#8F67E8]" />,
+  TypeScript: <SiTypescript className="w-5 h-5 text-[#8F67E8]" />,
+  "Framer Motion": <SiFramer className="w-5 h-5 text-[#8F67E8]" />,
+  "Tailwind CSS": <SiTailwindcss className="w-5 h-5 text-[#8F67E8]" />,
+  JavaScript: <SiJavascript className="w-5 h-5 text-[#8F67E8]" />,
+  Firebase: <SiFirebase className="w-5 h-5 text-[#8F67E8]" />,
+  "Vue.js": <SiVuedotjs className="w-5 h-5 text-[#8F67E8]" />,
+  "Node.js": <SiNodedotjs className="w-5 h-5 text-[#8F67E8]" />,
+  Express: <SiExpress className="w-5 h-5 text-[#8F67E8]" />,
+  MongoDB: <SiMongodb className="w-5 h-5 text-[#8F67E8]" />,
+  "Bootstrap 5": <SiBootstrap className="w-5 h-5 text-[#8F67E8]" />,
+  Vite: <SiVite className="w-5 h-5 text-[#8F67E8]" />,
+  HTML: <SiHtml5 className="w-5 h-5 text-[#8F67E8]" />,
+  CSS: <SiCss3 className="w-5 h-5 text-[#8F67E8]" />,
+  "@microsoft/microsoft-graph-client": <MdApi className="w-5 h-5 text-[#8F67E8]" />,
+  "API Tokko Broker": <MdApi className="w-5 h-5 text-[#8F67E8]" />,
+  Nodemailer: <AiOutlineMail className="w-5 h-5 text-[#8F67E8]" />,
+  Lucide: <AiOutlineCloud className="w-5 h-5 text-[#8F67E8]" />,
+  "Next/Image": <MdImage className="w-5 h-5 text-[#8F67E8]" />,
 };
 
 export default function PortafolioSection() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [imgIdx, setImgIdx] = useState(0);
 
+  // Evita scroll del body cuando el modal está abierto
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = selectedProject ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [selectedProject]);
+
+  // Fallback si algún día un ícono no está importado
+  const IconFallback = Wrench;
 
   const projects = [
     {
       title: "Factor Barcelona",
       type: "Página Web",
       icon: Layout,
-      details: "Sitio web corporativo desarrollado en Odoo para un espacio de eventos ubicado en el Eixample (Barcelona). Contiene secciones informativas sobre el espacio y servicios para eventos corporativos/MICE, formulario de contacto y estructura enfocada en conversión. Diseño responsive y con prácticas básicas de SEO.",
+      details:
+        "Sitio web corporativo desarrollado en Odoo para un espacio de eventos ubicado en el Eixample (Barcelona). Contiene secciones informativas sobre el espacio y servicios para eventos corporativos/MICE, formulario de contacto y estructura enfocada en conversión. Diseño responsive y con prácticas básicas de SEO.",
       client: "Factor Barcelona",
       industry: "Eventos",
       tech: "Odoo 18, Python, Owl, JavaScript, XML, SCSS",
       url: "https://www.factorbarcelona.com/",
-      image: "/portfolio/factorbarcelona.png"
+      image: "/portfolio/factorbarcelona.png",
     },
-
     {
       title: "Inmobiliaria Giuni Cartagena",
       type: "Landing Page",
       icon: Layout,
-      details: "Landing informativa para una inmobiliaria en Cartagena. Presenta secciones de héroe con propuesta de valor, servicios (compra, venta y arriendo), propiedades destacadas a modo de showcase, beneficios, preguntas frecuentes, llamada a la acción a WhatsApp y formulario de contacto. Estructura ligera, enfocada en conversión, responsive y con SEO on-page básico (metadatos y encabezados).",
+      details:
+        "Landing informativa para una inmobiliaria en Cartagena. Presenta secciones de héroe con propuesta de valor, servicios (compra, venta y arriendo), propiedades destacadas a modo de showcase, beneficios, preguntas frecuentes, llamada a la acción a WhatsApp y formulario de contacto. Estructura ligera, enfocada en conversión, responsive y con SEO on-page básico (metadatos y encabezados).",
       client: "Inmobiliaria Giuni Cartagena",
       industry: "Bienes Raíces",
       tech: "Odoo 18 Website, Owl, JavaScript, SCSS/Bootstrap, XML (snippets), Python (ajustes mínimos)",
       url: "https://www.inmobiliariagiunicartagena.com/",
-      image: "/portfolio/giuni-cartagena.png"
+      image: "/portfolio/giuni-cartagena.png",
     },
     {
       title: "Bresson",
       type: "Optimización Web",
       icon: Wrench,
-      details: "Optimización técnica y visual de un sitio existente. Se mejoró el rendimiento, estructura SEO, organización de componentes, tiempos de carga y adaptación responsive. También se realizaron ajustes visuales y de copy para alinearlo con la identidad de marca.",
+      details:
+        "Optimización técnica y visual de un sitio existente. Se mejoró el rendimiento, estructura SEO, organización de componentes, tiempos de carga y adaptación responsive. También se realizaron ajustes visuales y de copy para alinearlo con la identidad de marca.",
       client: "Bresson Argentina",
       industry: "Bienes Raíces",
       tech: "WordPress, JavaScript, HTML, CSS",
       url: "https://bresson.com.ar/",
-      image: "/portfolio/bresson.png"
+      image: "/portfolio/bresson.png",
     },
     {
       title: "The Hub",
       type: "Landing",
       icon: Layout,
-      details: "Landing desarrollada para una empresa de eventos. Cuenta con una cartelera dinámica de eventos próximos y pasados, efectos de parallax, carrusel con video e integración externa con servicios de ticketing. Totalmente responsive y optimizada para SEO.",
+      details:
+        "Landing desarrollada para una empresa de eventos. Cuenta con una cartelera dinámica de eventos próximos y pasados, efectos de parallax, carrusel con video e integración externa con servicios de ticketing. Totalmente responsive y optimizada para SEO.",
       client: "The Hub",
       industry: "Eventos",
       tech: "Next.js 15, React 19, TypeScript, Framer Motion, Tailwind CSS",
       url: "https://thehubentertainment.pe/",
-      image: "/portfolio/thehub.jpg"
+      image: "/portfolio/thehub.jpg",
     },
     {
       title: "Wasai",
       type: "Landing",
       icon: Layout,
-      details: "Landing desarrollada para promover el lodge turístico Wasai en la selva de Perú. Incluye secciones de experiencias, galería de fotos, animaciones de entrada y conexión con Firebase para reservas.",
+      details:
+        "Landing desarrollada para promover el lodge turístico Wasai en la selva de Perú. Incluye secciones de experiencias, galería de fotos, animaciones de entrada y conexión con Firebase para reservas.",
       client: "Wasai Perú",
       industry: "Turismo",
       tech: "JavaScript, React 19, Tailwind CSS, Framer Motion, Firebase",
       url: "https://landing.wasai.com/",
-      image: "/portfolio/wasai.jpg"
+      image: "/portfolio/wasai.jpg",
     },
-
     {
       title: "Gas y Proyectos",
       type: "Página Web",
       icon: Globe,
-      details: "Sitio corporativo desarrollado para una empresa especializada en instalaciones de gas. Presenta los servicios técnicos que ofrecen, portafolio de proyectos, formulario de contacto funcional y diseño profesional responsivo con animaciones suaves.",
+      details:
+        "Sitio corporativo desarrollado para una empresa especializada en instalaciones de gas. Presenta los servicios técnicos que ofrecen, portafolio de proyectos, formulario de contacto funcional y diseño profesional responsivo con animaciones suaves.",
       client: "Gas y Proyectos S.A.C.",
       industry: "Instalaciones de Gas",
       tech: "Next.js 15, React 19, Tailwind CSS, Framer Motion, Nodemailer",
       url: "https://gasproyectosperu.com/",
-      image: "/portfolio/gasyproyectos.jpg"
+      image: "/portfolio/gasyproyectos.jpg",
     },
-
     {
       title: "Equipos de Protección Peruanos",
       type: "Página Web (En Desarrollo)",
       icon: Globe,
-      details: "Sitio corporativo para Equipos de Protección Peruanos, distribuidores líderes de equipos de protección personal y seguridad industrial en Perú. Incluye catálogo de productos, servicios técnicos de recarga y mantenimiento de extintores, asesoría técnica, testimonios de clientes, formulario de contacto funcional y diseño responsivo con animaciones suaves.",
+      details:
+        "Sitio corporativo para Equipos de Protección Peruanos, distribuidores líderes de equipos de protección personal y seguridad industrial en Perú. Incluye catálogo de productos, servicios técnicos de recarga y mantenimiento de extintores, asesoría técnica, testimonios de clientes, formulario de contacto funcional y diseño responsivo con animaciones suaves.",
       client: "Equipos de Protección Peruanos",
       industry: "Seguridad Industrial",
       tech: "Next.js 15, React 19, Tailwind CSS, Framer Motion, Nodemailer",
@@ -127,7 +159,8 @@ export default function PortafolioSection() {
       title: "Personalización avanzada de contactos en Odoo",
       type: "Odoo / ERP",
       icon: FileText,
-      details: "Desarrollo de un módulo personalizado para Odoo 17 que rediseña el formulario de contactos, agregando roles clave (Comercial, Tesorería, Logística, Otros), validaciones automáticas según tipo de empresa/persona, y lógica de negocio alineada con la normativa peruana. Mejora la calidad de los datos, reduce errores y facilita la gestión del cliente.",
+      details:
+        "Desarrollo de un módulo personalizado para Odoo 17 que rediseña el formulario de contactos, agregando roles clave (Comercial, Tesorería, Logística, Otros), validaciones automáticas según tipo de empresa/persona, y lógica de negocio alineada con la normativa peruana. Mejora la calidad de los datos, reduce errores y facilita la gestión del cliente.",
       client: "Equipos de Protección Peruanos",
       industry: "ERP / Industria",
       tech: "Odoo 17, Python, XML, PostgreSQL, Localización Perú",
@@ -137,49 +170,42 @@ export default function PortafolioSection() {
         "/portfolio/odoo-contacts-1.png",
         "/portfolio/odoo-contacts-2.png",
         "/portfolio/odoo-contacts-3.png",
-        "/portfolio/odoo-contacts-4.png"
-      ]
+        "/portfolio/odoo-contacts-4.png",
+      ],
     },
     {
       title: "Automatización de nombres y códigos de productos en Odoo",
       type: "Odoo / ERP",
       icon: FileText,
-      details: "Módulo personalizado para Odoo 17 que automatiza la generación de nombres y referencias internas para productos, según reglas de negocio específicas y taxonomía definida por la empresa. Incluye lógica especial para productos como extintores, uso de secuencias y asignación automática de reglas de reabastecimiento. Mejora la gestión de inventario, la búsqueda y el control de stock.",
+      details:
+        "Módulo personalizado para Odoo 17 que automatiza la generación de nombres y referencias internas para productos, según reglas de negocio específicas y taxonomía definida por la empresa. Incluye lógica especial para productos como extintores, uso de secuencias y asignación automática de reglas de reabastecimiento. Mejora la gestión de inventario, la búsqueda y el control de stock.",
       client: "Representaciones BROL SAC",
       industry: "ERP / Inventario",
       tech: "Odoo 17, Python, XML, PostgreSQL",
-      url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/product_name_customization", // tu futuro repo
+      url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/product_name_customization",
       images: [
         "/portfolio/odoo-portada.svg",
         "/portfolio/odoo-products-1.png",
-        "/portfolio/odoo-products-2.png"
-      ]
+        "/portfolio/odoo-products-2.png",
+      ],
     },
-
     {
       title: "Restricciones automáticas de crédito y aprobación de ventas en Odoo",
       type: "Odoo / ERP",
       icon: FileText,
-      details: "Módulo avanzado para Odoo que automatiza el bloqueo de clientes con facturas vencidas, restringe ventas por debajo de costo y centraliza la aprobación de cotizaciones en situaciones de riesgo. Implementa flujos de autorización, verifica límites de crédito solo sobre productos 'ganados', y aplica políticas empresariales reales para minimizar riesgo financiero.",
+      details:
+        "Módulo avanzado para Odoo que automatiza el bloqueo de clientes con facturas vencidas, restringe ventas por debajo de costo y centraliza la aprobación de cotizaciones en situaciones de riesgo. Implementa flujos de autorización, verifica límites de crédito solo sobre productos 'ganados', y aplica políticas empresariales reales para minimizar riesgo financiero.",
       client: "Representaciones BROL SAC",
       industry: "ERP / Ventas y Finanzas",
       tech: "Odoo 17, Python, XML, Seguridad, Validaciones Avanzadas",
-      url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/product_name_customization", // tu futuro repo
+      url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/product_name_customization",
       images: [
         "/portfolio/odoo-portada.svg",
         "/portfolio/odoo-restricciones-1.png",
         "/portfolio/odoo-restricciones-2.png",
-      ]
+      ],
     },
-
-
-
   ];
-
-  if (typeof window !== "undefined") {
-    if (selectedProject) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
-  }
 
   return (
     <section
@@ -205,6 +231,7 @@ export default function PortafolioSection() {
           bgColor="#F3EFF5"
           bgOpacityClass="opacity-10"
         />
+
         {/* GRID */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 w-full max-w-full md:max-w-5xl mx-auto">
           {projects.map((proj) => (
@@ -223,7 +250,10 @@ export default function PortafolioSection() {
               >
                 <div className="relative w-full h-40 rounded-t-2xl overflow-hidden">
                   <Image
-                    src={proj.images && proj.images.length ? proj.images[0] : proj.image}
+                    src={
+                      (proj.images && proj.images.length ? proj.images[0] : proj.image) ||
+                      "/portfolio/placeholder.jpg"
+                    }
                     alt={proj.title}
                     fill
                     sizes="400px"
@@ -233,19 +263,35 @@ export default function PortafolioSection() {
                 </div>
                 <div className="flex flex-col gap-1 px-5 py-4 items-start">
                   <div className="flex items-center gap-2">
-                    <proj.icon className="w-6 h-6 text-[#8F67E8]" />
-                    <span className="font-bold text-lg text-[#8F67E8] group-hover:text-[#F3EFF5] transition">{proj.title}</span>
+                    {(() => {
+                      const Icon = proj.icon || IconFallback;
+                      return <Icon className="w-6 h-6 text-[#8F67E8]" aria-hidden="true" />;
+                    })()}
+                    <span className="font-bold text-lg text-[#8F67E8] group-hover:text-[#F3EFF5] transition">
+                      {proj.title}
+                    </span>
                   </div>
                   <span className="text-xs font-semibold text-[#5E60CE] mb-2">{proj.type}</span>
                   <div className="flex flex-wrap gap-1 mt-1">
-                    {proj.tech.split(',').slice(0, 3).map((tech) => (
-                      <span key={tech.trim()} className="flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-[#8F67E8]/15 text-[#8F67E8] border border-[#8F67E8]/30 font-medium">
-                        {techIcons[tech.trim()] || <AiOutlineCloud className="w-4 h-4 text-[#8F67E8]" />}
-                        {tech.trim()}
+                    {(proj.tech || "")
+                      .split(",")
+                      .slice(0, 3)
+                      .map((tech) => {
+                        const t = tech.trim();
+                        return (
+                          <span
+                            key={t}
+                            className="flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-[#8F67E8]/15 text-[#8F67E8] border border-[#8F67E8]/30 font-medium"
+                          >
+                            {techIcons[t] || <AiOutlineCloud className="w-4 h-4 text-[#8F67E8]" />}
+                            {t}
+                          </span>
+                        );
+                      })}
+                    {(proj.tech || "").split(",").length > 3 && (
+                      <span className="text-[#8F67E8] font-semibold text-xs px-2 py-0.5 rounded-full border border-[#8F67E8]/30 bg-transparent">
+                        +{(proj.tech || "").split(",").length - 3} más
                       </span>
-                    ))}
-                    {proj.tech.split(',').length > 3 && (
-                      <span className="text-[#8F67E8] font-semibold text-xs px-2 py-0.5 rounded-full border border-[#8F67E8]/30 bg-transparent">+{proj.tech.split(',').length - 3} más</span>
                     )}
                   </div>
                 </div>
@@ -269,7 +315,7 @@ export default function PortafolioSection() {
               flex flex-col md:flex-row gap-0 md:gap-10 overflow-hidden animate-fadeInUp
               h-full max-h-full sm:h-auto sm:max-h-[90vh]
             `}
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedProject(null)}
@@ -307,13 +353,13 @@ export default function PortafolioSection() {
                 const images =
                   selectedProject.images && selectedProject.images.length > 0
                     ? selectedProject.images
-                    : [selectedProject.image];
+                    : [selectedProject.image || "/portfolio/placeholder.jpg"];
 
                 return (
                   <>
                     <Image
                       src={images[imgIdx]}
-                      alt={selectedProject.title + ' ' + (imgIdx + 1)}
+                      alt={`${selectedProject.title} ${imgIdx + 1}`}
                       width={650}
                       height={480}
                       className="object-contain w-full max-h-[180px] sm:max-h-[240px] md:max-h-[60vh] rounded-xl shadow-lg"
@@ -326,14 +372,20 @@ export default function PortafolioSection() {
                           className="p-1.5 rounded-full bg-[#29283d] hover:bg-[#8F67E8] text-[#8F67E8] hover:text-[#FFF] transition"
                           aria-label="Anterior"
                           tabIndex={0}
-                        >{"‹"}</button>
-                        <span className="text-xs text-[#F3EFF5]">{imgIdx + 1} / {images.length}</span>
+                        >
+                          {"‹"}
+                        </button>
+                        <span className="text-xs text-[#F3EFF5]">
+                          {imgIdx + 1} / {images.length}
+                        </span>
                         <button
                           onClick={() => setImgIdx((imgIdx + 1) % images.length)}
                           className="p-1.5 rounded-full bg-[#29283d] hover:bg-[#8F67E8] text-[#8F67E8] hover:text-[#FFF] transition"
                           aria-label="Siguiente"
                           tabIndex={0}
-                        >{"›"}</button>
+                        >
+                          {"›"}
+                        </button>
                       </div>
                     )}
                   </>
@@ -357,15 +409,20 @@ export default function PortafolioSection() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 mt-4 mb-2">
-                {selectedProject.tech.split(',').map((tech) => (
-                  <span
-                    key={tech.trim()}
-                    className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-[#8F67E825] text-[#8F67E8] border border-[#8F67E8] font-medium hover:bg-[#8F67E860] transition"
-                  >
-                    {techIcons[tech.trim()] || <AiOutlineCloud className="w-5 h-5 text-[#8F67E8]" />}
-                    {tech.trim()}
-                  </span>
-                ))}
+                {(selectedProject.tech || "")
+                  .split(",")
+                  .map((tech) => {
+                    const t = tech.trim();
+                    return (
+                      <span
+                        key={t}
+                        className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-[#8F67E825] text-[#8F67E8] border border-[#8F67E8] font-medium hover:bg-[#8F67E860] transition"
+                      >
+                        {techIcons[t] || <AiOutlineCloud className="w-5 h-5 text-[#8F67E8]" />}
+                        {t}
+                      </span>
+                    );
+                  })}
               </div>
               <div className="flex items-center gap-2 mt-2 flex-wrap">
                 <span className="text-[#5E60CE] font-semibold">URL:</span>
@@ -376,7 +433,13 @@ export default function PortafolioSection() {
                   className="flex items-center gap-1 text-[#8F67E8] underline font-semibold hover:text-[#FF6F61] transition break-all"
                 >
                   {selectedProject.url}
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M18 13V6a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"></path>
                     <polyline points="15 18 20 18 20 13"></polyline>
                     <line x1="20" y1="18" x2="10" y2="8"></line>
@@ -384,6 +447,7 @@ export default function PortafolioSection() {
                 </a>
               </div>
             </div>
+
             <style>{`
               .animate-fadeIn { animation: fadeInModal .20s cubic-bezier(.62,.06,.36,1.22) both;}
               .animate-fadeInUp { animation: fadeInModalUp .30s cubic-bezier(.62,.06,.36,1.22) both;}
@@ -393,8 +457,6 @@ export default function PortafolioSection() {
           </div>
         </div>
       )}
-
-
     </section>
   );
 }
