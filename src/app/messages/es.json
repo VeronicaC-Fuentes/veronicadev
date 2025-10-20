@@ -1,0 +1,197 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de mí",
+    "services": "Servicios",
+    "curriculum": "Currículum",
+    "portfolio": "Portafolio",
+    "contact": "Contacto"
+  },
+  "role": "Desarrolladora de Software",
+  "home": {
+    "typewriter": [
+      "Transformo ideas en experiencias digitales…",
+      "Desarrollo soluciones web a medida…",
+      "Optimizo procesos con automatización…",
+      "Soy tu aliada digital para crecer…"
+    ],
+    "cta": "Contáctame"
+  },
+  "about": {
+    "header": { "title": "Conóceme", "bg": "SOBRE MÍ" },
+    "photoAlt": "Foto de Verónica Cruces",
+    "p1": "Soy Verónica, desarrolladora web con más de {years} años de experiencia creando proyectos digitales como freelance y en equipo.",
+    "p2": "En Front-end diseño interfaces intuitivas con React y Next.js, y en Back-end desarrollo APIs escalables con Node.js y Express.",
+    "p3": "Además, cuento con experiencia en Odoo ERP, donde personalizo flujos de negocio, desarrollo módulos a medida y genero reportes que optimizan procesos.",
+    "bullets": [
+      "Personalización completa de Odoo ERP para maximizar eficiencia.",
+      "Desarrollo web a medida para potenciar tu presencia digital.",
+      "Capacitación y acompañamiento: crecemos juntos.",
+      "Siempre aprendiendo algo nuevo... o puliendo una web 😉"
+    ],
+    "buttons": { "download": "Descargar CV", "talk": "¡Hablemos!" },
+    "quote": "“Haz de tu web tu carta de presentación en el mundo digital y de la tecnología tu mejor aliada”",
+    "funfact": "👾 Fun fact: Mi guilty pleasure es el café colombiano y los memes de programadores."
+  },
+   "services": {
+    "header": { "title": "¿Qué hago?", "bg": "SERVICIOS" },
+    "items": [
+      { "icon": "web", "title": "Diseño y Desarrollo Web", "description": "Páginas responsivas, modernas y funcionales." },
+      { "icon": "uiux", "title": "Diseño UI/UX", "description": "Interfaces intuitivas y atractivas para el usuario." },
+      { "icon": "apps", "title": "Diseño y Desarrollo de Apps", "description": "Aplicaciones web adaptadas a tus necesidades." },
+      { "icon": "seo", "title": "Posicionamiento SEO", "description": "Estrategias para mejorar tu presencia en buscadores." },
+      { "icon": "biz", "title": "Análisis de Negocio", "description": "Estudio de procesos y oportunidades de mejora." },
+      { "icon": "erp", "title": "Soporte de ERP", "description": "Acompañamiento y mejora continua de sistemas." }
+    ]
+  },
+  "resume": {
+    "header": { "title": "Mi currículum", "bg": "CURRÍCULUM" },
+    "educationTitle": "Educación",
+    "experienceTitle": "Experiencia",
+    "skillsTitle": "Habilidades",
+    "download": "Descargar CV",
+    "education": [
+      { "period": "2022 – 2024", "title": "Técnico en Desarrollo de Software", "place": "Instituto San Ignacio de Loyola" },
+      { "period": "PROM 2017", "title": "Técnico en Comercio y Servicios Administrativos", "place": "U.E. Trina de Medina", "extra": "Mención: Informática" }
+    ],
+    "experience": [
+      { "period": "2022 – Actualidad", "title": "Desarrolladora Web", "place": "Freelance" },
+      { "period": "2024", "title": "Desarrollador de ODOO - ERP", "place": "Representaciones BROL SAC" },
+      { "period": "2023", "title": "Especialista en KPIs y Análisis de Datos", "place": "RE/MAX Talento" },
+      { "period": "2022", "title": "Analista de Procesos & Administradora de Base de Datos", "place": "WYDNEX SAC" }
+    ],
+    "skills": [
+      { "name": "Desarrollo Web", "pct": 85 },
+      { "name": "JavaScript", "pct": 90 },
+      { "name": "TypeScript", "pct": 70 },
+      { "name": "Python", "pct": 50 },
+      { "name": "React JS", "pct": 80 },
+      { "name": "Next.js", "pct": 85 },
+      { "name": "Node JS", "pct": 80 },
+      { "name": "Express.js", "pct": 80 },
+      { "name": "HTML / CSS", "pct": 95 },
+      { "name": "Tailwind CSS", "pct": 85 },
+      { "name": "Bootstrap", "pct": 95 },
+      { "name": "SQL / PostgreSQL", "pct": 75 },
+      { "name": "RESTful APIs / GraphQL", "pct": 85 },
+      { "name": "Git / GitHub", "pct": 90 },
+      { "name": "Linux básico", "pct": 65 },
+      { "name": "Metodologías Ágiles / Scrum", "pct": 80 },
+      { "name": "Power BI / Excel avanzado", "pct": 75 },
+      { "name": "BPMN / UML", "pct": 70 },
+      { "name": "Soporte de ERP", "pct": 85 },
+      { "name": "Capacitación y formación", "pct": 90 },
+      { "name": "Análisis de Datos", "pct": 85 }
+    ]
+  },
+  "portfolio": {
+    "header": { "title": "Mis trabajos", "bg": "PORTAFOLIO" },
+    "more": "más",
+    "client": "Cliente",
+    "industry": "Industria",
+    "url": "URL",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "close": "Cerrar",
+    "viewDetails": "Ver detalles de",
+    "projects": {
+      "factor": {
+        "title": "Factor Barcelona",
+        "type": "Página Web",
+        "details": "Sitio corporativo en Odoo para un espacio de eventos en el Eixample (Barcelona). Secciones informativas, formulario de contacto y estructura enfocada en conversión; responsive con SEO básico.",
+        "client": "Factor Barcelona",
+        "industry": "Eventos"
+      },
+      "giuni": {
+        "title": "Inmobiliaria Giuni Cartagena",
+        "type": "Landing Page",
+        "details": "Landing informativa con servicios, propiedades destacadas, beneficios, FAQs, CTA a WhatsApp y formulario. Ligera, responsive y con SEO on-page.",
+        "client": "Inmobiliaria Giuni Cartagena",
+        "industry": "Bienes Raíces"
+      },
+      "bresson": {
+        "title": "Bresson",
+        "type": "Optimización Web",
+        "details": "Mejoras de rendimiento, SEO y responsive; orden de componentes y ajustes visuales alineados a marca.",
+        "client": "Bresson Argentina",
+        "industry": "Bienes Raíces"
+      },
+      "thehub": {
+        "title": "The Hub",
+        "type": "Landing",
+        "details": "Landing para empresa de eventos con cartelera dinámica, parallax, carrusel con video e integración de ticketing. Responsive y SEO.",
+        "client": "The Hub",
+        "industry": "Eventos"
+      },
+      "wasai": {
+        "title": "Wasai",
+        "type": "Landing",
+        "details": "Landing para lodge turístico. Experiencias, galería, animaciones y reservas con Firebase.",
+        "client": "Wasai Perú",
+        "industry": "Turismo"
+      },
+      "gasyproyectos": {
+        "title": "Gas y Proyectos",
+        "type": "Página Web",
+        "details": "Sitio corporativo para empresa de instalaciones de gas. Servicios, portafolio, formulario y diseño profesional con animaciones suaves.",
+        "client": "Gas y Proyectos S.A.C.",
+        "industry": "Instalaciones de Gas"
+      },
+      "epp": {
+        "title": "Equipos de Protección Peruanos",
+        "type": "Página Web (En Desarrollo)",
+        "details": "Sitio corporativo con catálogo, servicios técnicos, testimonios y formulario; diseño responsive con animaciones.",
+        "client": "Equipos de Protección Peruanos",
+        "industry": "Seguridad Industrial"
+      },
+      "odoo_contacts": {
+        "title": "Personalización avanzada de contactos en Odoo",
+        "type": "Odoo / ERP",
+        "details": "Módulo para Odoo 17 que rediseña el formulario de contactos, añade roles, validaciones y lógica de negocio. Mejora calidad de datos y gestión.",
+        "client": "Equipos de Protección Peruanos",
+        "industry": "ERP / Industria"
+      },
+      "odoo_products": {
+        "title": "Automatización de nombres y códigos en Odoo",
+        "type": "Odoo / ERP",
+        "details": "Generación automática de nombres y referencias de productos según reglas de negocio; secuencias y reabastecimiento. Mejora búsqueda y control de stock.",
+        "client": "Representaciones BROL SAC",
+        "industry": "ERP / Inventario"
+      },
+      "odoo_credit": {
+        "title": "Restricciones de crédito y aprobación de ventas en Odoo",
+        "type": "Odoo / ERP",
+        "details": "Bloqueo por facturas vencidas, control de ventas bajo costo y autorización centralizada. Políticas reales para minimizar riesgo financiero.",
+        "client": "Representaciones BROL SAC",
+        "industry": "ERP / Ventas y Finanzas"
+      }
+    }
+  },
+   "contact": {
+    "header": { "title": "Contáctame", "bg": "CONTACTO" },
+    "location": {
+      "title": "Ubicación",
+      "line1": "Basada en España",
+      "nomad": "nómada digital",
+      "line2": "Disponible para trabajos remotos."
+    },
+    "direct": {
+      "title": "Contacto directo",
+      "pe": "Perú"
+    },
+    "follow": { "title": "Sígueme" },
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "message": "Cuéntame más sobre tus necesidades...",
+      "cta": "Contáctame"
+    },
+    "alert": {
+      "success": "Mensaje enviado con éxito",
+      "error": "Hubo un error. Intenta de nuevo."
+    }
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}

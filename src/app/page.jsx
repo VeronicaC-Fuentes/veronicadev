@@ -44,7 +44,6 @@ function Loader({ onFinish }) {
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
 
-  // Cambiar frase periódicamente
   useEffect(() => {
     const interval = setInterval(() => {
       setPhraseIdx(prev => (prev + 1) % typingPhrases.length);
@@ -52,7 +51,6 @@ function Loader({ onFinish }) {
     return () => clearInterval(interval);
   }, []);
 
-  // Desvanecer y terminar
   useEffect(() => {
     const timeout = setTimeout(() => {
       setFadeOut(true);
@@ -122,7 +120,6 @@ function Loader({ onFinish }) {
 // Página principal
 export default function Page() {
   const [loading, setLoading] = useState(true);
-
   return (
     <>
       {loading && <Loader onFinish={() => setLoading(false)} />}

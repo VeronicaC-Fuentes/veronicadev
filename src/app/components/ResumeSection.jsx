@@ -1,67 +1,38 @@
 "use client";
 import { FiDownload } from "react-icons/fi";
-import SectionHeader from './SectionHeader';
+import SectionHeader from "./SectionHeader";
+import { useLang } from "./LanguageProvider";
 
 export default function ResumeSection() {
-  const education = [
-    { period: '2022 – 2024', title: 'Técnico en Desarrollo de Software', place: 'Instituto San Ignacio de Loyola' },
-    { period: 'PROM 2017', title: 'Técnico en Comercio y Servicios Administrativos', place: 'U.E. Trina de Medina', extra: 'Mención: Informática' }
-  ];
+  const { t } = useLang();
 
-  const experience = [
-    { period: '2022 – Actualidad', title: 'Desarrolladora Web', place: 'Freelance' },
-    { period: '2024', title: 'Desarrollador de ODOO - ERP ', place: 'Representaciones BROL SAC' },
-    { period: '2023', title: 'Especialista en KPIs y Análisis de Datos', place: 'RE/MAX Talento' },
-    { period: '2022', title: 'Analista de Procesos & Administradora de Base de Datos', place: 'WYDNEX SAC' }
-  ];
-
-  const skills = [
-    { name: 'Desarrollo Web', pct: 85 },
-    { name: 'JavaScript', pct: 90 },
-    { name: 'TypeScript', pct: 70 },
-    { name: 'Python', pct: 50 },
-    { name: 'React JS', pct: 80 },
-    { name: 'Next.js', pct: 85 },
-    { name: 'Node JS', pct: 80 },
-    { name: 'Express.js', pct: 80 },
-    { name: 'HTML / CSS', pct: 95 },
-    { name: 'Tailwind CSS', pct: 85 },
-    { name: 'Bootstrap', pct: 95 },
-    { name: 'SQL / PostgreSQL', pct: 75 },
-    { name: 'RESTful APIs / GraphQL', pct: 85 },
-    { name: 'Git / GitHub', pct: 90 },
-    { name: 'Linux básico', pct: 65 },
-    { name: 'Metodologías Ágiles / Scrum', pct: 80 },
-    { name: 'Power BI / Excel avanzado', pct: 75 },
-    { name: 'BPMN / UML', pct: 70 },
-    { name: 'Soporte de ERP', pct: 85 },
-    { name: 'Capacitación y formación', pct: 90 },
-    { name: 'Analisis de Datos', pct: 85 }
-  ];
+  const education  = Array.isArray(t("resume.education"))  ? t("resume.education")  : [];
+  const experience = Array.isArray(t("resume.experience")) ? t("resume.experience") : [];
+  const skills     = Array.isArray(t("resume.skills"))     ? t("resume.skills")     : [];
 
   return (
-      <section
+    <section
       id="curriculum"
       className="relative w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-16 sm:pb-20 md:pb-24 bg-[#F3EFF5] text-[#232338] overflow-x-hidden"
     >
-      {/* Glow blur decorativo para el título */}
+      {/* Glow decorativo */}
       <div
         className="absolute left-1/2 -translate-x-1/2 top-10 sm:top-14 pointer-events-none z-0"
         style={{
           width: 500,
           height: 140,
           background: "radial-gradient(circle, #8F67E870 0%, transparent 72%)",
-          filter: "blur(32px)",
+          filter: "blur(32px)"
         }}
       />
 
       <div className="max-w-6xl mx-auto flex flex-col items-center relative z-10">
-        {/* Encabezado principal */}
-        <div className="w-full mb-3 sm:mb-4 md:mb-5 lg:mb-6 relative z-10">
+        {/* Encabezado */}
+        <div className="w-full mb-3 sm:mb-4 md:mb-5 lg:mb-6">
           <SectionHeader
             id="curriculum"
-            title="Mi currículum"
-            bgText="CURRICULUM"
+            title={t("resume.header.title")}
+            bgText={t("resume.header.bg")}
             titleColor="#5E60CE"
             bgColor="#8F67E8"
             bgOpacityClass="opacity-10"
@@ -72,10 +43,13 @@ export default function ResumeSection() {
         <div className="flex flex-col md:flex-row gap-8 md:gap-10 w-full mb-12">
           {/* EDUCACIÓN */}
           <div className="flex-1">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-[#3F3351]">Educación</h3>
-            {education.map((edu) => (
+            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-[#3F3351]">
+              {t("resume.educationTitle")}
+            </h3>
+
+            {education.map((edu, i) => (
               <div
-                key={edu.title}
+                key={`${edu.title}-${i}`}
                 className="bg-white rounded-xl p-4 sm:p-6 mb-6 border border-[#8F67E8]/40 hover:border-[#5E60CE] shadow-sm hover:shadow-[0_0_18px_1px_#5E60CE33] transition-all"
               >
                 <span className="inline-block bg-[#8F67E8]/90 text-white px-3 py-1 rounded text-xs sm:text-sm font-medium mb-3">
@@ -92,10 +66,13 @@ export default function ResumeSection() {
 
           {/* EXPERIENCIA */}
           <div className="flex-1">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-[#3F3351]">Experiencia</h3>
-            {experience.map((job) => (
+            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-[#3F3351]">
+              {t("resume.experienceTitle")}
+            </h3>
+
+            {experience.map((job, i) => (
               <div
-                key={job.title}
+                key={`${job.title}-${i}`}
                 className="bg-white rounded-xl p-4 sm:p-6 mb-6 border border-[#8F67E8]/40 hover:border-[#5E60CE] shadow-sm hover:shadow-[0_0_18px_1px_#5E60CE33] transition-all"
               >
                 <span className="inline-block bg-[#5E60CE]/90 text-white px-3 py-1 rounded text-xs sm:text-sm font-medium mb-3">
@@ -112,10 +89,13 @@ export default function ResumeSection() {
 
         {/* HABILIDADES */}
         <div className="w-full mb-12">
-          <h3 className="text-center text-2xl sm:text-3xl font-semibold mb-8 text-[#3F3351]">Habilidades</h3>
+          <h3 className="text-center text-2xl sm:text-3xl font-semibold mb-8 text-[#3F3351]">
+            {t("resume.skillsTitle")}
+          </h3>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map((skill) => (
-              <div key={skill.name} className="flex flex-col">
+            {skills.map((skill, i) => (
+              <div key={`${skill.name}-${i}`} className="flex flex-col">
                 <div className="flex justify-between mb-1">
                   <span className="font-medium text-sm sm:text-base text-[#3F3351]">{skill.name}</span>
                   <span className="text-xs text-[#8F67E8] font-semibold">{skill.pct}%</span>
@@ -140,7 +120,7 @@ export default function ResumeSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#232338] border-2 border-[#5E60CE] text-[#F3EFF5] font-semibold text-base shadow-md hover:bg-[#5E60CE] hover:text-[#F3EFF5] hover:scale-105 transition-all"
           >
-            Descargar CV <FiDownload size={19} />
+            {t("resume.download")} <FiDownload size={19} />
           </a>
         </div>
       </div>

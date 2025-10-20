@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { Typewriter } from "react-simple-typewriter";
+import { useMemo } from "react";
+import { useLang } from "./LanguageProvider";
 
 function Glow() {
   return (
@@ -20,24 +22,28 @@ function Glow() {
 
 function Particles() {
   return (
-    <svg
-      className="absolute inset-0 w-full h-full pointer-events-none z-0"
-      style={{ opacity: 0.04 }}
-    >
+    <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ opacity: 0.04 }}>
       <circle cx="90" cy="180" r="2.5" fill="#8F67E8" />
       <circle cx="400" cy="90" r="1.5" fill="#C4C4C4" />
       <circle cx="950" cy="250" r="2" fill="#5E60CE" />
-            <circle cx="950" cy="250" r="2" fill="#5E60CE" />
-
     </svg>
   );
 }
 
-// Frase más larga para estabilidad visual
-const LONGEST_PHRASE =
-  "Desarrolladora de software con experiencia en desarrollo web y automatización de procesos.";
-
 export default function HomeSection() {
+  const { t } = useLang();
+
+  // 1) Textos desde i18n
+  const words = t("home.typewriter");         // array de frases
+  const ctaText = t("home.cta");              // "Contáctame" / "Contact me"
+
+  // 2) Frase "más larga" para fijar ancho del contenedor según idioma
+  const longestPhrase = useMemo(() => {
+    const fallback = "Desarrolladora de software con experiencia en desarrollo web y automatización de procesos.";
+    if (!Array.isArray(words) || words.length === 0) return fallback;
+    return words.reduce((a, b) => (String(b).length > String(a).length ? b : a), words[0]);
+  }, [words]);
+
   return (
     <section
       id="home"
@@ -52,8 +58,7 @@ export default function HomeSection() {
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "linear-gradient(90deg, rgba(24,24,40,0.72) 63%, rgba(63,51,81,0.16) 100%)",
+          background: "linear-gradient(90deg, rgba(24,24,40,0.72) 63%, rgba(63,51,81,0.16) 100%)",
           zIndex: 1,
         }}
       />
@@ -65,10 +70,9 @@ export default function HomeSection() {
         initial={{ opacity: 0, y: 60, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1, ease: [0.62, 0.13, 0.43, 0.88] }}
-        style={{
-          fontFamily: `'Montserrat', 'Inter', 'DM Sans', 'sans-serif'`,
-        }}
+        style={{ fontFamily: `'Montserrat', 'Inter', 'DM Sans', 'sans-serif'` }}
       >
+        {/* Tu nombre no cambia */}
         <motion.h1
           className="text-4xl sm:text-6xl font-extrabold mb-1 tracking-tight md:whitespace-nowrap"
           style={{
@@ -88,7 +92,6 @@ export default function HomeSection() {
           Verónica Cruces
         </motion.h1>
 
-
         {/* Línea digital */}
         <motion.div
           className="my-3 sm:my-4"
@@ -106,15 +109,9 @@ export default function HomeSection() {
           }}
         />
 
-        {/* --- Contenedor con minWidth usando la frase más larga como referencia --- */}
-        <div
-          className="w-full relative flex items-center h-[38px] mb-7"
-          style={{
-            minHeight: 38,
-            position: "relative",
-          }}
-        >
-          {/* Invisible para ancho */}
+        {/* Contenedor con ancho mínimo según la frase más larga */}
+        <div className="w-full relative flex items-center h-[38px] mb-7" style={{ minHeight: 38, position: "relative" }}>
+          {/* Invisible para fijar ancho */}
           <span
             aria-hidden="true"
             className="invisible select-none absolute"
@@ -127,7 +124,7 @@ export default function HomeSection() {
               letterSpacing: "0.06em",
             }}
           >
-            {LONGEST_PHRASE}
+            {longestPhrase}
           </span>
 
           <motion.h2
@@ -153,12 +150,7 @@ export default function HomeSection() {
             transition={{ duration: 0.7, delay: 1.1 }}
           >
             <Typewriter
-              words={[
-                "Transformo ideas en experiencias digitales…",
-                "Desarrollo soluciones web a medida…",
-                "Optimizo procesos con automatización…",
-                "Soy tu aliada digital para crecer…",
-              ]}
+              words={Array.isArray(words) ? words : []}
               loop={false}
               cursor
               cursorStyle="|"
@@ -169,12 +161,7 @@ export default function HomeSection() {
           </motion.h2>
         </div>
 
-        <motion.a
-          href="#contact"
-          initial={{ opacity: 0, scale: 0.93 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 1.4 }}
-        >
+        <motion.a href="#contact" initial={{ opacity: 0, scale: 0.93 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4, delay: 1.4 }}>
           <motion.button
             whileHover={{
               backgroundColor: "#393966",
@@ -185,15 +172,9 @@ export default function HomeSection() {
             }}
             whileTap={{ scale: 0.97 }}
             className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full cursor-pointer font-semibold text-[#F3EFF5] text-sm sm:text-base transition-all duration-200 bg-[#232338] border"
-            style={{
-              border: "2px solid #5E60CE",
-              boxShadow: "0 2px 10px 0 #18182844",
-              letterSpacing: "0.04em",
-              fontWeight: 700,
-              transition: "all 0.16s",
-            }}
+            style={{ border: "2px solid #5E60CE", boxShadow: "0 2px 10px 0 #18182844", letterSpacing: "0.04em", fontWeight: 700, transition: "all 0.16s" }}
           >
-            Contáctame
+            {ctaText}
             <FiArrowRight size={18} className="ml-1" />
           </motion.button>
         </motion.a>
