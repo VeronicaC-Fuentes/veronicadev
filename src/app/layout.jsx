@@ -1,22 +1,38 @@
-import './globals.css'
-import Sidebar from './components/Sidebar'
-import ClientRoot from './ClientRoot'
+// src/app/layout.js
 
-export const metadata = { title: 'Verónica Dev', description: 'Portafolio de Verónica Cruces' };
+import "./globals.css";
+import Navbar from "./components/Navbar"; // Asegúrate de tener este import
+import ClientRoot from "./ClientRoot";
+import { Sora } from "next/font/google"; // O la fuente que uses
+
+const font = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+});
+
+export const metadata = {
+  title: "Verónica Dev",
+  description: "Portafolio de Verónica Cruces",
+  icons: { icon: "/favicon.ico" },
+};
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
-      <body className="flex overflow-x-hidden">
+    <html lang="es" className={font.variable}>
+      <body className={`${font.className} flex flex-col min-h-screen bg-[#050505] overflow-x-hidden`}>
         <ClientRoot>
-          <Sidebar />
-          <main className="flex-1 min-h-screen lg:ml-64">
+          {/* Tu nueva barra superior */}
+          <Navbar />
+          
+          {/* AQUÍ ESTABA EL ERROR: */}
+          {/* Antes tenías: className="flex-1 min-h-screen lg:ml-64" */}
+          {/* Ahora debe ser: className="flex-1 w-full" */}
+          
+          <main className="flex-1 w-full relative">
             {children}
           </main>
+          
         </ClientRoot>
       </body>
     </html>

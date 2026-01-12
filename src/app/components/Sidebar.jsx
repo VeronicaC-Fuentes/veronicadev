@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FaInstagram, FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
-import { HiOutlineMenuAlt1 } from "react-icons/hi";
+import { HiOutlineMenuAlt4 } from "react-icons/hi"; // Icono de menú más moderno
 import { IoMdClose } from "react-icons/io";
 import { useLang } from "./LanguageProvider";
 import LocaleSwitch from "./LocaleSwitcher";
@@ -10,7 +10,6 @@ import LocaleSwitch from "./LocaleSwitcher";
 export default function Sidebar() {
   const { t } = useLang();
 
-  // Construimos los ítems del menú con traducciones
   const navItems = [
     { id: "home", label: t("nav.home") },
     { id: "about", label: t("nav.about") },
@@ -24,8 +23,8 @@ export default function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const itemRefs = useRef({});
 
+  // --- Lógica de ScrollSpy (Mantenida igual porque funciona bien) ---
   const getScrollEl = () => document.querySelector("#content") || window;
-
   const getAbsTop = (el, scrollEl) => {
     const rect = el.getBoundingClientRect();
     if (scrollEl === window) return rect.top + window.scrollY;
@@ -33,10 +32,8 @@ export default function Sidebar() {
     return rect.top - hostRect.top + scrollEl.scrollTop;
   };
 
-  // ScrollSpy
   useEffect(() => {
     let raf = null;
-
     const computeActive = () => {
       const scrollEl = getScrollEl();
       const sections = navItems.map((i) => document.getElementById(i.id)).filter(Boolean);
@@ -64,23 +61,15 @@ export default function Sidebar() {
 
     const scrollEl = getScrollEl();
     const resizeTarget = scrollEl === window ? window : scrollEl;
-
     setTimeout(computeActive, 0);
     resizeTarget.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-
     return () => {
       resizeTarget.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [navItems.map((i) => i.id).join(",")]); // deps estables por ids
-
-  // Auto-scroll del menú al item activo
-  useEffect(() => {
-    const el = itemRefs.current[activeSection];
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
-  }, [activeSection]);
+  }, [navItems.map((i) => i.id).join(",")]);
 
   const handleClick = (section) => {
     setMenuOpen(false);
@@ -89,112 +78,133 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* --- TOPBAR MÓVIL --- */}
-      <div className="lg:hidden fixed top-0 left-0 w-full bg-[#3F3351] z-50 px-4 py-4 shadow-md">
+      {/* --- MÓVIL: TOPBAR DE CRISTAL --- */}
+      <div className="lg:hidden fixed top-0 left-0 w-full z-50 px-6 py-4 transition-all duration-300 bg-[#0a0a1a]/80 backdrop-blur-md border-b border-white/5">
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-bold text-[#C4C4C4] whitespace-nowrap truncate">Verónica Cruces</h2>
-          <div className="flex items-center gap-3">
-            <div className="flex gap-2 text-[#C4C4C4]">
-              <a href="https://www.instagram.com/vwonka2.0/profilecard/?igsh=ZXM2aHcybzN0MGVw" aria-label="Instagram" className="hover:text-[#5E60CE]"><FaInstagram size={16} /></a>
-              <a href="https://www.facebook.com/share/16dGbcpR9P/" aria-label="Facebook" className="hover:text-[#5E60CE]"><FaFacebookF size={16} /></a>
-              <a href="https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/" aria-label="LinkedIn" className="hover:text-[#5E60CE]"><FaLinkedinIn size={16} /></a>
-              <a href="https://github.com/VeronicaC-Fuentes" aria-label="GitHub" className="hover:text-[#5E60CE]"><FaGithub size={16} /></a>
-            </div>
-            {/* Botón de idioma en móvil */}
+          {/* Logo Minimalista Texto */}
+          <h2 className="text-lg font-bold text-white tracking-tight">
+            VERÓNICA<span className="text-[#F2C53D]">.DEV</span>
+          </h2>
+          
+          <div className="flex items-center gap-4">
             <LocaleSwitch />
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="text-[#C4C4C4] hover:text-[#5E60CE] transition-colors"
+              className="text-white hover:text-[#F2C53D] transition-colors"
               aria-label="Toggle Menu"
             >
-              {menuOpen ? <IoMdClose size={24} /> : <HiOutlineMenuAlt1 size={24} />}
+              {menuOpen ? <IoMdClose size={28} /> : <HiOutlineMenuAlt4 size={28} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* --- MENÚ MÓVIL --- */}
+      {/* --- MÓVIL: MENÚ FULL SCREEN (Efecto Cinemático) --- */}
       <div
-        className={`lg:hidden fixed top-[3.5rem] left-0 w-full bg-[#3F3351] z-40 transition-all duration-300 shadow-xl
-        ${menuOpen ? "py-4 opacity-100 pointer-events-auto" : "py-0 opacity-0 pointer-events-none"}`}
-        style={{ transition: "all 0.3s cubic-bezier(.4,0,.2,1)" }}
+        className={`lg:hidden fixed inset-0 bg-[#0a0a1a]/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center transition-all duration-500
+        ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       >
-        <nav className="flex flex-col items-start px-6 gap-2 overflow-y-auto max-h-[calc(100vh-3.5rem-16px)]">
+        <nav className="flex flex-col items-center gap-6">
           {navItems.map((item) => (
             <button
               key={item.id}
-              ref={(el) => { itemRefs.current[item.id] = el; }}
               onClick={() => handleClick(item.id)}
-              className="group w-full text-left flex items-center"
+              className={`text-2xl font-light tracking-widest uppercase transition-all duration-300
+                ${activeSection === item.id 
+                  ? "text-[#F2C53D] font-bold scale-110" 
+                  : "text-white/60 hover:text-white"}`}
             >
-              <span className={`h-8 w-1 rounded-r mr-3 transition-all duration-300
-                ${activeSection === item.id ? "bg-[#8F67E8] shadow-[0_0_8px_2px_#8F67E8aa] opacity-100" : "opacity-0 group-hover:opacity-80 bg-[#5E60CE]"}`}/>
-              <span className={`py-2 pr-4 w-full transition-colors duration-200 tracking-wide
-                ${activeSection === item.id ? "text-[#8F67E8] font-bold" : "text-[#C4C4C4] group-hover:text-[#5E60CE]"}`}>
-                {item.label}
-              </span>
+              {item.label}
             </button>
           ))}
         </nav>
+        
+        {/* Redes Móvil */}
+        <div className="absolute bottom-10 flex gap-6 text-white/50">
+          <a href="https://www.instagram.com/veronicadev.web/" className="hover:text-[#F2C53D]"><FaInstagram size={24} /></a>
+          <a href="https://linkedin.com" className="hover:text-[#F2C53D]"><FaLinkedinIn size={24} /></a>
+          <a href="https://github.com" className="hover:text-[#F2C53D]"><FaGithub size={24} /></a>
+        </div>
       </div>
 
-      {/* --- SIDEBAR ESCRITORIO --- */}
-      <aside className="w-0 lg:w-72 hidden lg:flex fixed top-0 left-0 h-screen z-30
-        flex-col items-center py-10 px-4
-        bg-gradient-to-b from-[#3F3351] via-[#232338] to-[#181828]
-        shadow-xl overflow-hidden">
-
-        {/* Decorativo */}
-        <svg className="absolute bottom-0 right-0 w-40 h-40 opacity-10 pointer-events-none" viewBox="0 0 200 200" fill="none">
-          <circle cx="150" cy="150" r="80" fill="#5E60CE" />
-        </svg>
-
-        {/* Avatar */}
-        <div className="w-48 h-48 rounded-full overflow-hidden shadow-[0_0_40px_0_rgba(94,96,206,0.6)] border-2 border-[#5E60CE] bg-[#232338]">
-          <Image src="/image/profile.jpg" alt="Foto de perfil" width={192} height={192} className="object-cover w-full h-full" />
+      {/* --- DESKTOP: SIDEBAR PREMIUM (Estilo Glass) --- */}
+      <aside className="hidden lg:flex fixed top-0 left-0 h-screen z-30 flex-col justify-between py-12 px-8
+        w-80 
+        bg-[#0a0a1a]/80 backdrop-blur-xl border-r border-white/5 shadow-2xl">
+        
+        {/* 1. Header: Perfil Elevado */}
+        <div className="flex flex-col items-start">
+          <div className="relative w-20 h-20 mb-6 rounded-full p-[2px] bg-gradient-to-tr from-[#23338C] to-[#F2C53D]">
+            <div className="rounded-full overflow-hidden w-full h-full border-2 border-[#0a0a1a]">
+               <Image 
+                 src="/image/profile.jpg" 
+                 alt="Profile" 
+                 width={80} 
+                 height={80} 
+                 className="object-cover w-full h-full"
+               />
+            </div>
+          </div>
+          
+          <h2 className="text-3xl font-bold text-white tracking-tighter leading-none mb-1">
+            VERÓNICA<br/><span className="text-[#F2C53D]">CRUCES</span>
+          </h2>
+          <span className="text-xs text-white/50 tracking-[0.25em] uppercase font-medium mt-2">
+            {t("role")}
+          </span>
         </div>
 
-        <h2 className="mt-8 text-2xl font-extrabold text-[#C4C4C4] tracking-tight">Verónica Cruces</h2>
-        {/* Rol traducible */}
-        <span className="text-[#B9B6D3] text-xs mt-1 uppercase tracking-widest">
-          {t("role")}
-        </span>
-
-        {/* Navegación */}
-        <nav className="mt-12 flex flex-col gap-1 w-full overflow-y-auto max-h-[calc(100vh-320px)]">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              ref={(el) => { itemRefs.current[item.id] = el; }}
-              onClick={() => handleClick(item.id)}
-              className="group w-full text-left"
-            >
-              <div className="flex items-center">
-                <span className={`h-8 w-1 rounded-r mr-3 transition-all duration-300 
-                  ${activeSection === item.id ? "bg-[#8F67E8] shadow-[0_0_8px_2px_#5E60CE88] opacity-100" : "opacity-0 group-hover:opacity-80 bg-[#5E60CE]"}`}/>
-                <span className={`py-2 pr-4 w-full transition-colors duration-200 tracking-wide
-                  ${activeSection === item.id ? "text-[#8F67E8] font-bold" : "text-[#C4C4C4] group-hover:text-[#5E60CE]"}`}>
+        {/* 2. Navegación: Limpia y Editorial */}
+        <nav className="flex flex-col gap-5 w-full">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                ref={(el) => { itemRefs.current[item.id] = el; }}
+                onClick={() => handleClick(item.id)}
+                className="group flex items-center w-full text-left relative pl-2"
+              >
+                {/* Indicador de línea vertical (El toque de oro) */}
+                <span className={`absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-0 bg-[#F2C53D] transition-all duration-300 group-hover:h-4
+                  ${isActive ? "h-full shadow-[0_0_10px_#F2C53D]" : ""}`} 
+                />
+                
+                <span className={`pl-6 py-1 text-sm tracking-widest uppercase transition-all duration-300
+                  ${isActive 
+                    ? "text-white font-bold translate-x-1" 
+                    : "text-white/40 group-hover:text-white font-medium"}`}
+                >
                   {item.label}
                 </span>
-              </div>
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </nav>
 
-        <div className="flex-grow" />
-
-        {/* Redes + switch idioma */}
-        <div className="flex gap-5 text-[#C4C4C4] mb-6 z-20 items-center">
-          {[
-            { href: "https://www.instagram.com/veronicadev.web/", Icon: FaInstagram, label: "Instagram" },
-            { href: "https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/", Icon: FaLinkedinIn, label: "LinkedIn" },
-            { href: "https://github.com/VeronicaC-Fuentes", Icon: FaGithub, label: "GitHub" },
-          ].map(({ href, Icon, label }) => (
-            <a key={label} href={href} className="transition-all duration-200 hover:text-[#8F67E8] hover:scale-110" aria-label={label} target="_blank" rel="noopener noreferrer">
-              <Icon size={20} />
-            </a>
-          ))}
-          <LocaleSwitch />
+        {/* 3. Footer: Redes y Settings */}
+        <div className="flex flex-col gap-6">
+           {/* Línea divisoria sutil */}
+           <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+           
+           <div className="flex justify-between items-center">
+              <div className="flex gap-4 text-white/40">
+                {[
+                  { href: "https://www.instagram.com/veronicadev.web/", Icon: FaInstagram },
+                  { href: "https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/", Icon: FaLinkedinIn },
+                  { href: "https://github.com/VeronicaC-Fuentes", Icon: FaGithub },
+                ].map(({ href, Icon }, idx) => (
+                  <a key={idx} href={href} className="hover:text-[#F2C53D] hover:scale-110 transition-all duration-200">
+                    <Icon size={18} />
+                  </a>
+                ))}
+              </div>
+              <LocaleSwitch />
+           </div>
+           
+           <div className="text-[10px] text-white/20 font-mono">
+             © 2024 V.DEV
+           </div>
         </div>
       </aside>
     </>

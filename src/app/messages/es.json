@@ -7,13 +7,13 @@
     "portfolio": "Portafolio",
     "contact": "Contacto"
   },
-  "role": "Desarrolladora de Software",
+  "role": "Odoo Consulting & Software Developer",
   "home": {
     "typewriter": [
-      "Transformo ideas en experiencias digitales…",
-      "Desarrollo soluciones web a medida…",
-      "Optimizo procesos con automatización…",
-      "Soy tu aliada digital para crecer…"
+    "Implementación y optimización",
+    "Reportes, flujos y automatizaciones",
+    "Web performance & SEO técnico",
+    "Soporte para tu operación diaria"
     ],
     "cta": "Contáctame"
   },
@@ -95,6 +95,13 @@
     "close": "Cerrar",
     "viewDetails": "Ver detalles de",
     "projects": {
+      "elevenrb": {
+        "title": "Eleven RB Art",
+        "type": "Diseño Web & Portafolio",
+        "details": "Portafolio minimalista y galería visual inmersiva para artista del tatuaje. Animaciones fluidas y diseño oscuro.",
+        "client": "Eleven RB",
+        "industry": "Arte / Tatuaje"
+      },
       "factor": {
         "title": "Factor Barcelona",
         "type": "Página Web",
