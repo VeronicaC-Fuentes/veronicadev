@@ -43,3 +43,7 @@ next-env.d.ts
 # Videos
 *.MOV
 *.mov
+
+# Videos
+*.MOV
+*.mov
