@@ -26,7 +26,7 @@ export default function VisualBreak() {
         playsInline 
         className="absolute inset-0 w-full h-full object-cover opacity-60"
       >
-        <source src="/DSCF0552.webm" type="video/webm" />
+        <source src="/video-1.webm" type="video/webm" />
       </video>
 
       {/* 2. ATMÓSFERA (Gradientes para suavizar cortes) */}
