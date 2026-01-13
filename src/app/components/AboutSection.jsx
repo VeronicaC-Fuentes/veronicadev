@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import SectionHeader from "./SectionHeader";
 
-// --- DATOS PARA EL SLIDER MÓVIL (Fragmentamos tu texto para mobile) ---
+// --- DATOS ACTUALIZADOS: AHORA TIENEN EL MISMO TEXTO QUE ESCRITORIO ---
 const ABOUT_SLIDES = [
   {
     id: "intro",
@@ -21,7 +21,7 @@ const ABOUT_SLIDES = [
           />
         </div>
         <p className="text-white/80 font-light leading-relaxed text-sm">
-          Siempre me ha obsesionado entender cómo funcionan las cosas por dentro. Mi viaje en la tecnología no empezó buscando clientes, sino buscando <strong className="text-white font-medium">eficiencia</strong>.
+          Siempre me ha interesado entender cómo funcionan las cosas por dentro. Mi camino en tecnología no empezó buscando clientes: empezó buscando <strong className="text-white font-medium">eficiencia</strong>. Aprendí que el código por sí solo no resuelve problemas; lo que transforma el caos en estructura es la lógica, el diseño y la estrategia detrás.
         </p>
       </div>
     )
@@ -36,10 +36,10 @@ const ABOUT_SLIDES = [
           <span className="font-sans not-italic font-bold text-white/40">Crecimiento Real.</span>
         </h3>
         <p className="text-white/70 font-light leading-relaxed mb-6 border-l border-white/20 pl-4 text-sm">
-          Me di cuenta temprano de que el código por sí solo no resuelve problemas; es la lógica detrás del código la que transforma el caos en estructura.
+          Con el tiempo confirmé algo clave: si un negocio quiere escalar, la tecnología no puede ser un obstáculo. Debe ser un aliado que simplifique procesos, conecte áreas y ayude a tomar mejores decisiones.
         </p>
-        <p className="text-white/70 font-light leading-relaxed text-sm">
-          Para escalar negocios reales, la tecnología debe dejar de ser un obstáculo y convertirse en un <strong className="text-white font-medium">motor silencioso y eficiente</strong>.
+        <p className="text-white font-medium text-sm">
+          Diseñamos ecosistemas digitales completos para que operes mejor, vendas más y crezcas con orden.
         </p>
       </div>
     )
@@ -49,12 +49,12 @@ const ABOUT_SLIDES = [
     title: "El Equipo",
     content: (
       <div className="flex flex-col justify-center h-full">
-        <p className="text-white/70 font-light leading-relaxed mb-8 text-sm">
-          Hoy, esta visión ha crecido más allá de mí. Lidero un <strong>equipo ágil de especialistas</strong> donde unimos la ingeniería robusta (Odoo/Backend) con el desarrollo web de alto rendimiento.
+        <p className="text-white/70 font-light leading-relaxed mb-6 text-sm">
+          Hoy lidero un <strong className="text-white font-medium">equipo ágil de especialistas</strong> donde combinamos ingeniería robusta (Odoo/Backend) con desarrollo web de alto rendimiento.
         </p>
         <div className="p-6 border border-white/10 bg-white/[0.02] rounded-lg">
-          <p className="text-white font-medium text-center text-sm">
-            "No somos una fábrica de software; somos tus socios estratégicos."
+          <p className="text-white font-medium text-center text-sm italic">
+            "No trabajamos como una fábrica de software; trabajamos como socios estratégicos."
           </p>
         </div>
       </div>
@@ -110,13 +110,12 @@ export default function AboutSection() {
   return (
     <section id="about" className="relative w-full bg-[#050505]">
 
-      {/* Fondo de ruido (Común para ambos) */}
+      {/* Fondo de ruido */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("/noise.png")' }}></div>
 
 
       {/* =======================================================================
-          1. VERSIÓN MOBILE: CARRUSEL "STORYTELLING"
-          Visible solo en mobile (lg:hidden). Diseño totalmente independiente.
+          1. VERSIÓN MOBILE: CARRUSEL
          ======================================================================= */}
       <div className="block lg:hidden px-6 py-24 w-full relative z-10">
 
@@ -133,7 +132,7 @@ export default function AboutSection() {
         </div>
 
         {/* ÁREA DEL SLIDER */}
-        <div className="relative min-h-[550px] flex flex-col justify-between">
+        <div className="relative min-h-[600px] flex flex-col justify-between">
 
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
@@ -204,9 +203,7 @@ export default function AboutSection() {
 
 
       {/* =======================================================================
-          2. VERSIÓN DESKTOP: TU CÓDIGO ORIGINAL (INTACTO)
-          Visible solo en desktop (hidden lg:block).
-          He copiado y pegado TU código base aquí dentro.
+          2. VERSIÓN DESKTOP
          ======================================================================= */}
       <div className="hidden lg:block px-6 md:px-12 py-24 lg:py-40">
         <div className="max-w-[1400px] mx-auto relative z-10">
@@ -225,69 +222,60 @@ export default function AboutSection() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
 
-            {/* 1. COLUMNA TEXTO (Izquierda) */}
-           {/* 1. COLUMNA TEXTO (Izquierda) */}
-{/* 1. COLUMNA TEXTO (Izquierda) */}
-<motion.div 
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.8 }}
-    className="flex flex-col justify-center order-2 lg:order-1"
->
-    <h2 className="text-4xl md:text-6xl font-serif italic text-white mb-10 leading-tight">
-      Arquitectura Digital. <br />
-      <span className="font-sans not-italic font-bold text-white/40">Crecimiento Real.</span>
-    </h2>
+            {/* COLUMNA TEXTO */}
+            <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="flex flex-col justify-center order-2 lg:order-1"
+            >
+                <h2 className="text-4xl md:text-6xl font-serif italic text-white mb-10 leading-tight">
+                  Arquitectura Digital. <br />
+                  <span className="font-sans not-italic font-bold text-white/40">Crecimiento Real.</span>
+                </h2>
 
-    <div className="space-y-8 text-base md:text-lg text-white/70 font-light leading-relaxed border-l border-white/10 pl-8 md:pl-10">
-      <p>
-        Siempre me ha interesado entender cómo funcionan las cosas por dentro. Mi camino en tecnología no empezó buscando clientes: empezó buscando <strong className="text-white font-medium">eficiencia</strong>. Aprendí que el código por sí solo no resuelve problemas; lo que transforma el caos en estructura es la lógica, el diseño y la estrategia detrás.
-      </p>
-      
-      <p>
-        Con el tiempo confirmé algo clave: si un negocio quiere escalar, la tecnología no puede ser un obstáculo. Debe ser un aliado que simplifique procesos, conecte áreas y ayude a tomar mejores decisiones.
-      </p>
-      
-      <p>
-        Hoy lidero un <strong className="text-white font-medium">equipo ágil de especialistas</strong> donde combinamos ingeniería robusta (Odoo/Backend) con desarrollo web de alto rendimiento. No trabajamos como una fábrica de software; trabajamos como socios estratégicos.
-      </p>
-      
-      <p className="text-white font-medium">
-        Diseñamos ecosistemas digitales completos para que operes mejor, vendas más y crezcas con orden en el mundo digital.
-      </p>
-    </div>
+                <div className="space-y-8 text-base md:text-lg text-white/70 font-light leading-relaxed border-l border-white/10 pl-8 md:pl-10">
+                  <p>
+                    Siempre me ha interesado entender cómo funcionan las cosas por dentro. Mi camino en tecnología no empezó buscando clientes: empezó buscando <strong className="text-white font-medium">eficiencia</strong>. Aprendí que el código por sí solo no resuelve problemas; lo que transforma el caos en estructura es la lógica, el diseño y la estrategia detrás.
+                  </p>
+                  
+                  <p>
+                    Con el tiempo confirmé algo clave: si un negocio quiere escalar, la tecnología no puede ser un obstáculo. Debe ser un aliado que simplifique procesos, conecte áreas y ayude a tomar mejores decisiones.
+                  </p>
+                  
+                  <p>
+                    Hoy lidero un <strong className="text-white font-medium">equipo ágil de especialistas</strong> donde combinamos ingeniería robusta (Odoo/Backend) con desarrollo web de alto rendimiento. No trabajamos como una fábrica de software; trabajamos como socios estratégicos.
+                  </p>
+                  
+                  <p className="text-white font-medium">
+                    Diseñamos ecosistemas digitales completos para que operes mejor, vendas más y crezcas con orden en el mundo digital.
+                  </p>
+                </div>
 
-              {/* Grid de Datos */}
-              <div className="grid grid-cols-2 gap-y-10 gap-x-8 mt-16 mb-12 py-10 border-t border-b border-white/10">
-                <div>
-                  <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Core Focus</h4>
-                  <p className="text-white text-sm">Desarrollo Odoo & Web Apps</p>
+                <div className="grid grid-cols-2 gap-y-10 gap-x-8 mt-16 mb-12 py-10 border-t border-b border-white/10">
+                  <div>
+                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Core Focus</h4>
+                    <p className="text-white text-sm">Desarrollo Odoo & Web Apps</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Location</h4>
+                    <p className="text-white text-sm">Global (Remote First)</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Experience</h4>
+                    <p className="text-white text-sm">+3 Años construyendo sistemas</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Approach</h4>
+                    <p className="text-white text-sm">Estrategia & Performance</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Location</h4>
-                  <p className="text-white text-sm">Global (Remote First)</p>
-                </div>
-                <div>
-                  <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Experience</h4>
-                  <p className="text-white text-sm">+3 Años construyendo sistemas</p>
-                </div>
-                <div>
-                  <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Approach</h4>
-                  <p className="text-white text-sm">Estrategia & Performance</p>
-                </div>
-              </div>
-
             </motion.div>
 
-
-            {/* 2. COLUMNA IMAGEN (Derecha) */}
+            {/* COLUMNA IMAGEN */}
             <div className="order-1 lg:order-2 relative h-full">
-
-              {/* STICKY CONTAINER */}
               <div className="lg:sticky lg:top-20 w-full flex flex-col items-center lg:items-end gap-10">
-
-                {/* --- LA FOTO --- */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -316,7 +304,6 @@ export default function AboutSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
                 </motion.div>
 
-                {/* --- EL BOTÓN --- */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -331,7 +318,6 @@ export default function AboutSection() {
                     <span className="text-sm font-bold tracking-[0.2em] uppercase">Iniciar Proyecto</span>
                   </a>
                 </motion.div>
-
               </div>
             </div>
 
