@@ -1,37 +1,40 @@
 // src/app/components/projects.js
 
 export const ALL_PROJECTS = [
-  { 
-    id: "factor", 
-    featured: true, 
-    image: "/portfolio/factorbarcelona.png", 
-    url: "https://www.factorbarcelona.com/", 
-    tech: "Odoo 18, Python, Owl, JavaScript",
-    description: "Plataforma de gestión integral para Real Estate en Barcelona."
+ {
+  id: "factor",
+  featured: true,
+  image: "/portfolio/factorbarcelona.png",
+  url: "https://www.factorbarcelona.com/",
+  location: "Barcelona, España",
+  tech: "Odoo 19 (SaaS), Odoo Website, CRM, Sales, Purchase, Accounting, Contacts, Python, OWL, JavaScript",
+  description: "Web corporativa desarrollada en Odoo 19 (SaaS) para Factor Barcelona, un espacio premium para eventos en l’Eixample (Barcelona, España). Sitio integrado con la operación del negocio mediante módulos como CRM, Ventas, Compras, Contabilidad y Contactos. Incluye optimización SEO (posicionamiento on-page y performance) y efectos/interacciones implementados con JavaScript."
   },
   { 
-    id: "odoo_credit", 
-    featured: true, 
-    url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/product_name_customization", 
-    image: "/portfolio/odoo-restricciones-1.png", 
-    tech: "Odoo 17, Python, XML, Seguridad",
-    description: "Módulo de validación de crédito y bloqueos de seguridad."
-  },
+  id: "odoo_credit", 
+  featured: true, 
+  url: "https://github.com/VeronicaC-Fuentes/Modulos_personalizados_Odoo_17/tree/main/product_name_customization", 
+  image: "/portfolio/odoo-portada.svg", 
+  tech: "Odoo 17 (Odoo.sh), Python, XML, PostgreSQL, Security Groups & ACLs",
+  description: "Desarrollo backend de módulos personalizados en Odoo 17 (entorno Odoo.sh) para empresa distribuidora de Equipos de Protección Personal (EPP) en Perú. Implementación de reglas de negocio avanzadas para la validación automática de líneas de crédito y bloqueos de seguridad en flujos de venta, optimizando el control de riesgo financiero."
+},
   { 
-    id: "elevenrb", 
-    featured: true, 
-    image: "/portfolio/elevenrb.jpg", 
-    url: "https://elevenrb.com/", 
-    tech: "Next.js, Tailwind CSS, Framer Motion",
-    description: "Portafolio minimalista y galería visual para artista del tatuaje."
+  id: "elevenrb", 
+  featured: true, 
+  image: "/portfolio/elevenrb.jpg", 
+  url: "https://elevenrb.com/", 
+  location: "Lima, Perú",
+  tech: "Next.js, Tailwind CSS, Framer Motion, Google Analytics, Google Search Console, Technical SEO",
+  description: "Portafolio web de alto impacto visual desarrollado en Next.js para un artista del tatuaje profesional en Lima, Perú. Diseño minimalista con animaciones fluidas (Framer Motion) para exhibición de arte. Incluye implementación de estrategia SEO técnica y vinculación integral con herramientas de Google para posicionamiento y análisis de tráfico."
   },
   { 
     id: "bresson", 
     featured: true, 
     image: "/portfolio/bresson.png", 
     url: "https://bresson.com.ar/", 
-    tech: "WordPress, JavaScript, HTML, CSS",
-    description: "Portal inmobiliario de alto standing con integración CRM."
+    location: "Argentina",
+    tech: "WordPress, PHP, JavaScript, WPO (Performance), Google Analytics, Google Search Console, Technical SEO",
+    description: "Renovación tecnológica y optimización integral para Bresson, firma inmobiliaria de lujo líder en Argentina. El proyecto se centró en la modernización del diseño y una mejora drástica del rendimiento (WPO) para corregir métricas anteriores. Incluye implementación de estrategia SEO técnica, integración con herramientas de Google y servicio de mantenimiento evolutivo continuo."
   },
   { 
     id: "odoo_contacts", 

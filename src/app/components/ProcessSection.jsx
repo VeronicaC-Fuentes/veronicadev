@@ -20,26 +20,26 @@ const STEPS = [
   {
     id: "discovery",
     number: "01",
-    title: "Discovery & Estrategia",
-    desc: "No escribo código sin entender tu negocio. Analizamos tus flujos actuales, definimos los puntos de dolor y trazamos la hoja de ruta técnica."
+    title: "Consultoría & Diagnóstico",
+    desc: "Iniciamos con una sesión de entendimiento para evaluar tu situación actual. Analizamos el contexto de tu empresa y definimos los requerimientos técnicos y operativos reales."
   },
   {
-    id: "design",
+    id: "proposal",
     number: "02",
-    title: "Diseño & Arquitectura",
-    desc: "Definimos la estructura de datos en Odoo o el diseño visual en Figma. Todo se planifica para ser escalable, seguro y estético."
+    title: "Propuesta Comercial",
+    desc: "Definimos la modalidad de trabajo que mejor se adapte a tu inversión: desarrollo por **Proyecto Cerrado** o mediante **Bolsa de Horas**, garantizando siempre transparencia en el presupuesto."
   },
   {
-    id: "development",
+    id: "planning",
     number: "03",
-    title: "Desarrollo (The Craft)",
-    desc: "Aquí ocurre la magia. Desarrollo limpio, modular y optimizado (Python/React). Con revisiones constantes para asegurar calidad."
+    title: "Planificación Técnica",
+    desc: "Establecemos la hoja de ruta según el objetivo: implementación de Odoo, optimización web o desarrollo a medida. Fijamos plazos, alcance y métricas de éxito antes de iniciar."
   },
   {
-    id: "delivery",
+    id: "execution",
     number: "04",
-    title: "Despegue & Soporte",
-    desc: "Pruebas finales, puesta en producción y capacitación. No desaparezco tras el lanzamiento; te acompaño en la estabilización."
+    title: "Implementación & Despliegue",
+    desc: "Ejecución técnica enfocada en resultados. Desarrollo, configuración y pruebas rigurosas para entregar software funcional y optimizado, listo para operar en tu negocio."
   }
 ];
 
