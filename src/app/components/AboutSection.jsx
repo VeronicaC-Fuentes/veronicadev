@@ -53,7 +53,6 @@ export default function AboutSection() {
   const statAppValue = tt(t, "about.stats.approach.value", "Estrategia & Performance");
 
   // --- 3. CONSTRUCCIÓN DINÁMICA DE SLIDES (MOBILE) ---
-  // Se mueve DENTRO del componente para acceder a las variables traducidas
   const aboutSlides = [
     {
       id: "intro",
@@ -69,7 +68,6 @@ export default function AboutSection() {
             />
           </div>
           <p className="text-white/80 font-light leading-relaxed text-sm">
-             {/* Usamos un fragmento del p1 para mobile */}
              {p1.split(".")[0]}. <strong className="text-white font-medium">Eficiencia</strong>. {p1.split(".")[2]}.
           </p>
         </div>
@@ -98,11 +96,12 @@ export default function AboutSection() {
       title: tt(t, "about.slides.team", "El Equipo"),
       content: (
         <div className="flex flex-col justify-center h-full">
-          <p className="text-white/70 font-light leading-relaxed mb-6 text-sm">
+          <p className="text-white/70 font-light leading-relaxed mb-8 text-sm">
             {p3}
           </p>
-          <div className="p-6 border border-white/10 bg-white/[0.02] rounded-lg">
-            <p className="text-white font-medium text-center text-sm italic">
+          {/* --- CORRECCIÓN AQUÍ: p-4 en vez de p-6 para dar espacio en pantallas pequeñas --- */}
+          <div className="p-4 md:p-6 border border-white/10 bg-white/[0.02] rounded-lg">
+            <p className="text-white font-medium text-center text-sm italic leading-relaxed">
               "{tt(t, "about.quote", "No trabajamos como una fábrica...")}"
             </p>
           </div>
@@ -150,16 +149,13 @@ export default function AboutSection() {
   return (
     <section id="about" className="relative w-full bg-[#050505]">
 
-      {/* Fondo de ruido */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("/noise.png")' }}></div>
-
 
       {/* =======================================================================
           1. VERSIÓN MOBILE: CARRUSEL
          ======================================================================= */}
       <div className="block lg:hidden px-6 py-24 w-full relative z-10">
 
-        {/* Header Mobile */}
         <div className="mb-8">
           <SectionHeader
             id="about-header-mob"
@@ -171,7 +167,6 @@ export default function AboutSection() {
           />
         </div>
 
-        {/* ÁREA DEL SLIDER */}
         <div className="relative min-h-[600px] flex flex-col justify-between">
 
           <AnimatePresence initial={false} custom={direction} mode="wait">
@@ -188,23 +183,18 @@ export default function AboutSection() {
               }}
               className="w-full flex-grow flex flex-col"
             >
-              {/* Título de la Slide Actual */}
               <div className="mb-4 flex items-center gap-3">
                 <span className="text-xs font-mono text-white/30 tracking-widest">0{currentIndex + 1}</span>
                 <h3 className="text-lg font-bold text-white uppercase tracking-wider">{aboutSlides[currentIndex].title}</h3>
               </div>
 
-              {/* Contenido Dinámico */}
               <div className="flex-grow">
                 {aboutSlides[currentIndex].content}
               </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* CONTROLES */}
           <div className="flex items-center justify-between mt-6 border-t border-white/[0.05] pt-6">
-
-            {/* Indicadores Puntos */}
             <div className="flex gap-2">
               {aboutSlides.map((_, idx) => (
                 <div
@@ -214,7 +204,6 @@ export default function AboutSection() {
               ))}
             </div>
 
-            {/* Flechas */}
             <div className="flex gap-4">
               <button
                 onClick={() => paginate(-1)}
@@ -231,7 +220,6 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Botón CTA Mobile */}
           <div className="mt-8 flex justify-center">
             <a href="#contact" className="text-xs font-bold tracking-[0.2em] uppercase text-white/50 border-b border-white/20 pb-1 hover:text-white transition-colors">
               {ctaText} →
@@ -248,7 +236,6 @@ export default function AboutSection() {
       <div className="hidden lg:block px-6 md:px-12 py-24 lg:py-40">
         <div className="max-w-[1400px] mx-auto relative z-10">
 
-          {/* HEADER */}
           <div className="mb-16 lg:mb-24">
             <SectionHeader
               id="about-header"
@@ -262,7 +249,6 @@ export default function AboutSection() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
 
-            {/* COLUMNA TEXTO */}
             <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -302,7 +288,6 @@ export default function AboutSection() {
                 </div>
             </motion.div>
 
-            {/* COLUMNA IMAGEN */}
             <div className="order-1 lg:order-2 relative h-full">
               <div className="lg:sticky lg:top-20 w-full flex flex-col items-center lg:items-end gap-10">
                 <motion.div
