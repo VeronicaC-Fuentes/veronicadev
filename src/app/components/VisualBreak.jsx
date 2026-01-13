@@ -1,9 +1,25 @@
 "use client";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useLang } from "./LanguageProvider";
+
+// Helper de traducción
+function tt(t, key, fallback) {
+  const v = t?.(key);
+  if (v === undefined || v === null) return fallback;
+  if (Array.isArray(v)) return v;
+  const s = String(v).trim();
+  if (!s) return fallback;
+  if (s.toLowerCase() === key.toLowerCase()) return fallback;
+  return v;
+}
 
 export default function VisualBreak() {
+  const { t } = useLang();
   const containerRef = useRef(null);
+
+  // --- TRADUCCIÓN ---
+  const quoteText = tt(t, "visualBreak.quote", '"Digitalizando tu visión."');
   
   // --- CONFIGURACIÓN PARALLAX ---
   const { scrollYProgress } = useScroll({
@@ -23,9 +39,6 @@ export default function VisualBreak() {
       
       {/* =======================================================================
           1. VERSIÓN MOBILE
-          - Altura: 50vh (Compacto)
-          - Parallax: Suave (yMobile)
-          - Texto: Tamaño ajustado
          ======================================================================= */}
       <div className="block lg:hidden relative w-full h-[50vh] flex items-center justify-center overflow-hidden">
         
@@ -34,11 +47,10 @@ export default function VisualBreak() {
           autoPlay 
           muted 
           loop 
-          playsInline // CRUCIAL para iOS
+          playsInline 
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         >
           <source src="/video-1.webm" type="video/webm" />
-          {/* Tip: Agrega un <img src="poster.jpg" /> debajo si el video tarda en cargar */}
         </video>
 
         {/* ATMÓSFERA */}
@@ -50,7 +62,9 @@ export default function VisualBreak() {
           className="relative z-10 text-center px-4"
         >
           <h3 className="text-2xl font-light text-white tracking-wide leading-snug">
-             <span className="text-white/90 italic font-serif">"Digitalizando tu visión."</span>
+             <span className="text-white/90 italic font-serif">
+                {quoteText}
+             </span>
           </h3>
           <div className="w-8 h-[1px] bg-white/40 mx-auto mt-4"></div>
         </motion.div>
@@ -58,9 +72,7 @@ export default function VisualBreak() {
 
 
       {/* =======================================================================
-          2. VERSIÓN DESKTOP (ORIGINAL)
-          - Altura: 80vh (Impactante)
-          - Parallax: Profundo (yDesktop)
+          2. VERSIÓN DESKTOP
          ======================================================================= */}
       <div className="hidden lg:flex relative w-full h-[80vh] items-center justify-center overflow-hidden">
         
@@ -85,7 +97,9 @@ export default function VisualBreak() {
           className="relative z-10 text-center px-6"
         >
           <h3 className="text-5xl font-light text-white tracking-tight leading-tight mb-4">
-             <span className="text-white/80 italic font-serif">"Digitalizando tu visión."</span>
+             <span className="text-white/80 italic font-serif">
+                {quoteText}
+             </span>
           </h3>
           <div className="w-12 h-[1px] bg-white/30 mx-auto mt-6"></div>
         </motion.div>

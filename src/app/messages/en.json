@@ -3,35 +3,41 @@
     "home": "Home",
     "about": "About",
     "services": "Services",
-    "curriculum": "Resume",
     "portfolio": "Portfolio",
     "contact": "Contact"
   },
   "role": "Odoo Consulting & Software Developer",
   "home": {
+    "label": "Odoo Consulting & Software Developer",
     "typewriter": [
-    "Implementation & optimization",
-    "Reports, workflows & automation",
-    "Support for your daily operations"
-
+      "Implementation & optimization",
+      "Reports, workflows & automation",
+      "Web performance & Technical SEO",
+      "Support for your daily operations"
     ],
+    "valueLine": "Odoo, web and positioning: we design, build and optimize so your operation and presence grow.",
     "cta": "Contact me"
   },
-  "about": {
-    "header": { "title": "About me", "bg": "ABOUT" },
-    "photoAlt": "Photo of Verónica Cruces",
-    "p1": "I'm Verónica, a web developer with over {years} years of experience building digital projects as a freelancer and in teams.",
-    "p2": "On the Front-end I craft intuitive interfaces with React and Next.js, and on the Back-end I build scalable APIs with Node.js and Express.",
-    "p3": "I also have experience with Odoo ERP: customizing business flows, developing tailored modules and generating reports to optimize processes.",
-    "bullets": [
-      "Full Odoo ERP customization to maximize efficiency.",
-      "Custom web development to boost your digital presence.",
-      "Training and guidance: we grow together.",
-      "Always learning something new... or polishing a website 😉"
-    ],
-    "buttons": { "download": "Download CV", "talk": "Let's talk!" },
-    "quote": "“Make your website your calling card in the digital world and technology your best ally.”",
-    "funfact": "👾 Fun fact: My guilty pleasure is Colombian coffee and programmer memes."
+ "about": {
+    "header": { "title": "Profile & Vision", "bg": "PROFILE" },
+    "heading": { "line1": "Digital Architecture.", "line2": "Real Growth." },
+    "p1": "I've always been interested in understanding how things work from the inside. My path in technology didn't start by looking for clients: it started by looking for efficiency. I learned that code alone doesn't solve problems; logic, design, and strategy are what transform chaos into structure.",
+    "p2": "Over time, I confirmed something key: if a business wants to scale, technology cannot be an obstacle. It must be an ally that simplifies processes, connects areas, and helps make better decisions.",
+    "p3": "Today, I lead an agile team of specialists where we combine robust engineering (Odoo/Backend) with high-performance web development. We don't work like a software factory; we work as strategic partners.",
+    "p4": "We design complete digital ecosystems so you can operate better, sell more, and grow with order.",
+    "cta": "Start Project",
+    "slides": {
+       "intro": "Who I Am",
+       "philosophy": "Philosophy",
+       "team": "The Team",
+       "stats": "Key Data"
+    },
+    "stats": {
+       "focus": { "label": "Core Focus", "value": "Odoo Dev & Web Apps" },
+       "location": { "label": "Location", "value": "Global (Remote First)" },
+       "experience": { "label": "Experience", "value": "+3 Years building systems" },
+       "approach": { "label": "Approach", "value": "Strategy & Performance" }
+    }
   },
   "services": {
     "header": { "title": "What I do", "bg": "SERVICES" },
@@ -43,157 +49,166 @@
       { "icon": "biz", "title": "Business Analysis", "description": "Process assessments and improvement opportunities." },
       { "icon": "erp", "title": "ERP Support", "description": "Ongoing guidance and continuous improvement." }
     ]
-  },
-  "resume": {
-    "header": { "title": "My Resume", "bg": "RESUME" },
-    "educationTitle": "Education",
-    "experienceTitle": "Experience",
-    "skillsTitle": "Skills",
-    "download": "Download CV",
-    "education": [
-      { "period": "2022 – 2024", "title": "Software Development Technician", "place": "Instituto San Ignacio de Loyola" },
-      { "period": "Class of 2017", "title": "Business & Administrative Services Technician", "place": "U.E. Trina de Medina", "extra": "Specialization: Informatics" }
-    ],
-    "experience": [
-      { "period": "2022 – Present", "title": "Web Developer", "place": "Freelance" },
-      { "period": "2024", "title": "ODOO - ERP Developer", "place": "Representaciones BROL SAC" },
-      { "period": "2023", "title": "KPI & Data Analysis Specialist", "place": "RE/MAX Talento" },
-      { "period": "2022", "title": "Process Analyst & Database Administrator", "place": "WYDNEX SAC" }
-    ],
-    "skills": [
-      { "name": "Web Development", "pct": 85 },
-      { "name": "JavaScript", "pct": 90 },
-      { "name": "TypeScript", "pct": 70 },
-      { "name": "Python", "pct": 50 },
-      { "name": "React JS", "pct": 80 },
-      { "name": "Next.js", "pct": 85 },
-      { "name": "Node JS", "pct": 80 },
-      { "name": "Express.js", "pct": 80 },
-      { "name": "HTML / CSS", "pct": 95 },
-      { "name": "Tailwind CSS", "pct": 85 },
-      { "name": "Bootstrap", "pct": 95 },
-      { "name": "SQL / PostgreSQL", "pct": 75 },
-      { "name": "RESTful APIs / GraphQL", "pct": 85 },
-      { "name": "Git / GitHub", "pct": 90 },
-      { "name": "Basic Linux", "pct": 65 },
-      { "name": "Agile / Scrum", "pct": 80 },
-      { "name": "Power BI / Advanced Excel", "pct": 75 },
-      { "name": "BPMN / UML", "pct": 70 },
-      { "name": "ERP Support", "pct": 85 },
-      { "name": "Training & Coaching", "pct": 90 },
-      { "name": "Data Analysis", "pct": 85 }
-    ]
-  },
-  "portfolio": {
-    "header": { "title": "My Work", "bg": "PORTFOLIO" },
-    "more": "more",
-    "client": "Client",
-    "industry": "Industry",
-    "url": "URL",
-    "prev": "Previous",
-    "next": "Next",
-    "close": "Close",
-    "viewDetails": "View details for",
-    "projects": {
-      "elevenrb": {
-        "title": "Eleven RB Art",
-        "type": "Web Design & Portfolio",
-        "details": "Minimalist portfolio and immersive visual gallery for a tattoo artist. Smooth animations and dark aesthetic.",
-        "client": "Eleven RB",
-        "industry": "Art / Tattoo"
+  },"services": {
+    "header": { "title": "My Services", "bg": "EXPERTISE" },
+    "cta": "Specific Request?",
+    "columns": {
+      "odoo": {
+        "title": "Odoo Architecture",
+        "subtitle": "I design the logic and structure of your ERP to function as the brain of your business.",
+        "items": [
+          { "icon": "odoo_impl", "title": "ERP Implementation", "description": "Technical configuration of core modules: Sales, CRM, Inventory, and Accounting." },
+          { "icon": "odoo_dev", "title": "Backend Development", "description": "Custom Python logic, server actions, and deep model customization." },
+          { "icon": "odoo_custom", "title": "Reports & Views", "description": "Adaptation of QWeb documents (PDFs) and XML views for specific workflows." }
+        ]
       },
-      "factor": {
-        "title": "Factor Barcelona",
-        "type": "Website",
-        "details": "Corporate site in Odoo for an events venue in Barcelona. Info sections, contact form and conversion-oriented structure; responsive with basic SEO.",
-        "client": "Factor Barcelona",
-        "industry": "Events"
+      "dev": {
+        "title": "Web Development",
+        "subtitle": "I build the visible face of your brand with clean code and modern technology.",
+        "items": [
+          { "icon": "dev_odoo", "title": "Odoo Website", "description": "Websites and E-commerce 100% integrated with the ERP in real-time." },
+          { "icon": "dev_code", "title": "Custom Development", "description": "Corporate websites and Landing Pages in Next.js for maximum freedom." },
+          { "icon": "dev_ui", "title": "UI/UX Design", "description": "Theme customization and user experience focused on conversion." }
+        ]
       },
-      "giuni": {
-        "title": "Giuni Cartagena Real Estate",
-        "type": "Landing Page",
-        "details": "Marketing landing with services, featured properties, benefits, FAQs, WhatsApp CTA and contact form. Lightweight, responsive and on-page SEO.",
-        "client": "Giuni Cartagena Real Estate",
-        "industry": "Real Estate"
-      },
-      "bresson": {
-        "title": "Bresson",
-        "type": "Website Optimization",
-        "details": "Performance, SEO and responsive improvements; component organization and visual tweaks aligned to brand.",
-        "client": "Bresson Argentina",
-        "industry": "Real Estate"
-      },
-      "thehub": {
-        "title": "The Hub",
-        "type": "Landing",
-        "details": "Landing for an events company with dynamic lineup, parallax, video carousel and ticketing integration. Fully responsive and SEO friendly.",
-        "client": "The Hub",
-        "industry": "Events"
-      },
-      "wasai": {
-        "title": "Wasai",
-        "type": "Landing",
-        "details": "Landing to promote a Peruvian jungle lodge. Experiences, gallery, entrance animations and Firebase bookings.",
-        "client": "Wasai Peru",
-        "industry": "Tourism"
-      },
-      "gasyproyectos": {
-        "title": "Gas y Proyectos",
-        "type": "Website",
-        "details": "Corporate site for a gas installations company. Services, portfolio, working contact form and professional responsive design.",
-        "client": "Gas y Proyectos S.A.C.",
-        "industry": "Gas Installations"
-      },
-      "epp": {
-        "title": "Equipos de Protección Peruanos",
-        "type": "Website (In Progress)",
-        "details": "Corporate site with product catalog, technical services, testimonials and contact form; responsive design with subtle animations.",
-        "client": "Equipos de Protección Peruanos",
-        "industry": "Industrial Safety"
-      },
-      "odoo_contacts": {
-        "title": "Advanced Contacts Customization in Odoo",
-        "type": "Odoo / ERP",
-        "details": "Module for Odoo 17 that redesigns the contacts form, adds roles, validations and business logic. Improves data quality and client management.",
-        "client": "Equipos de Protección Peruanos",
-        "industry": "ERP / Industry"
-      },
-      "odoo_products": {
-        "title": "Automatic Product Names & Codes in Odoo",
-        "type": "Odoo / ERP",
-        "details": "Automated generation of product names and internal refs based on business rules; sequences and replenishment. Improves search and stock control.",
-        "client": "Representaciones BROL SAC",
-        "industry": "ERP / Inventory"
-      },
-      "odoo_credit": {
-        "title": "Credit Restrictions & Sales Approval in Odoo",
-        "type": "Odoo / ERP",
-        "details": "Automatic blocking for overdue invoices, below-cost sale checks and centralized approvals. Real-world policies to reduce financial risk.",
-        "client": "Representaciones BROL SAC",
-        "industry": "ERP / Sales & Finance"
+      "care": {
+        "title": "Web Care & SEO",
+        "subtitle": "I protect your digital investment. Continuous optimization, security, and positioning.",
+        "items": [
+          { "icon": "web_perf", "title": "Performance", "description": "Core Web Vitals auditing and extreme load speed optimization." },
+          { "icon": "web_seo", "title": "Technical SEO", "description": "Semantic structure and metadata to improve your Google ranking." },
+          { "icon": "web_admin", "title": "Maintenance", "description": "Security updates, backups, and continuous technical support." }
+        ]
       }
     }
   },
-  "contact": {
-    "header": { "title": "Contact me", "bg": "CONTACT" },
-    "location": {
-      "title": "Location",
-      "line1": "Based in Spain",
-      "nomad": "digital nomad",
-      "line2": "Available for remote work."
+"portfolio": {
+    "header": { "title": "My Work", "bg": "PORTFOLIO" },
+    "viewProject": "View Project",
+    "viewAll": "View Full Portfolio",
+    "backHome": "Back to Home",
+    "fullPortfolio": {
+      "title": "PORTFOLIO",
+      "subtitle": "FULL",
+      "desc": "Complete collection of web developments, Odoo modules, and code experiments."
     },
-    "direct": { "title": "Direct contact", "pe": "Peru" },
-    "follow": { "title": "Follow me" },
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "message": "Tell me more about your needs...",
-      "cta": "Get in touch"
-    },
-    "alert": {
-      "success": "Message sent successfully",
-      "error": "Something went wrong. Please try again."
+    "projects": {
+      "factor": {
+        "title": "Factor Barcelona",
+        "type": "Corporate Website",
+        "details": "Corporate website developed in Odoo 19 (SaaS) for Factor Barcelona, a premium events venue in l’Eixample (Barcelona, Spain). The site is integrated with business operations via CRM, Sales, Purchase, Accounting, and Contacts modules. Includes SEO optimization (on-page and performance) and JavaScript interactions."
+      },
+      "odoo_credit": {
+        "title": "Odoo Credit Restrictions",
+        "type": "Odoo Backend Development",
+        "details": "Backend development of custom modules in Odoo 17 (Odoo.sh) for a PPE distributor in Peru. Implementation of advanced business rules for automatic credit line validation and security blocks in sales workflows, optimizing financial risk control."
+      },
+      "elevenrb": {
+        "title": "Eleven RB Art",
+        "type": "Portfolio & Web Design",
+        "details": "High-impact visual portfolio developed in Next.js for a professional tattoo artist in Lima, Peru. Minimalist design with smooth animations (Framer Motion) for art exhibition. Includes technical SEO implementation and full integration with Google tools for positioning and traffic analysis."
+      },
+      "bresson": {
+        "title": "Bresson Realty",
+        "type": "Web Optimization (WPO)",
+        "details": "Technological renovation and comprehensive optimization for Bresson, a leading luxury real estate firm in Argentina. The project focused on design modernization and drastic performance improvement (WPO) to correct previous metrics. Includes technical SEO strategy, Google tools integration, and continuous evolutionary maintenance."
+      },
+      "odoo_contacts": {
+        "title": "Odoo Contact Validation",
+        "type": "Odoo Module",
+        "details": "Management and validation module for contact data (RUC/DNI)."
+      },
+      "odoo_products": {
+        "title": "Product Name Automation",
+        "type": "Odoo Module",
+        "details": "Advanced customization of product names and internal codes."
+      },
+      "giuni": {
+        "title": "Giuni Cartagena",
+        "type": "Real Estate Website",
+        "details": "Real estate website connected in real-time with Odoo."
+      },
+      "epp": {
+        "title": "EPP Peru",
+        "type": "E-commerce Catalog",
+        "details": "Online catalog for personal protective equipment."
+      },
+      "thehub": {
+        "title": "The Hub",
+        "type": "Corporate Website",
+        "details": "Corporate website for an entertainment and media agency."
+      },
+      "wasai": {
+        "title": "Wasai Lodge",
+        "type": "Tourism Landing Page",
+        "details": "High-conversion landing page for tourism and tours."
+      },
+      "gasyproyectos": {
+        "title": "Gas y Proyectos",
+        "type": "Institutional Website",
+        "details": "Institutional website for a gas and engineering company."
+      }
     }
   },
-  "footer": { "rights": "All rights reserved." }
+  "process": {
+    "header": { "title": "Methodology", "bg": "PROCESS" },
+    "steps": {
+      "discovery": {
+        "title": "Consulting & Diagnosis",
+        "desc": "We start with a discovery session to assess your current situation. I analyze your business context and define the real technical and operational requirements."
+      },
+      "proposal": {
+        "title": "Commercial Proposal",
+        "desc": "We define the working model that best fits your investment: Fixed Price Project or Hourly Packs, always guaranteeing transparency in the budget."
+      },
+      "planning": {
+        "title": "Technical Planning",
+        "desc": "We establish the roadmap based on the goal: Odoo implementation, web optimization, or custom development. Deadlines, scope, and success metrics are set before starting."
+      },
+      "execution": {
+        "title": "Implementation & Deployment",
+        "desc": "Technical execution focused on results. Rigorous development, configuration, and testing to deliver functional and optimized software, ready to operate in your business."
+      }
+    }
+  },
+  "visualBreak": {
+    "quote": "\"Digitizing your vision.\""
+  },
+ "contact": {
+    "header": { "title": "Contact", "bg": "CONTACT" },
+    "tabs": { "write": "Write me", "info": "Info" },
+    "hero": {
+      "title": "Have a project",
+      "highlight": "in mind?",
+      "desc": "From Odoo implementations to custom web development. Tell me your vision and let's find the best technical strategy to make it happen.",
+      "mobDesc": "Tell me your vision and let's find the strategy."
+    },
+    "form": {
+      "namePlaceholder": "Name",
+      "nameLabel": "Your Name",
+      "emailPlaceholder": "Email",
+      "emailLabel": "Email",
+      "msgPlaceholder": "Message",
+      "msgLabel": "How can I help you?",
+      "btn": "Send Message",
+      "sending": "Sending..."
+    },
+    "info": {
+      "email": "Direct Email",
+      "base": "Based in",
+      "location": "LATAM / EUROPE",
+      "remote": "Remote Friendly"
+    },
+    "alerts": {
+      "success": "Message sent successfully.",
+      "error": "Error sending message."
+    }
+  },
+  
+  "footer": {
+    "rights": "All rights reserved.",
+    "tagline": "Designed and developed with passion and precision.",
+    "backTop": "Back to top",
+    "socials": "Socials"
+  }
 }

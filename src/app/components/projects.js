@@ -1,5 +1,3 @@
-// src/app/components/projects.js
-
 export const ALL_PROJECTS = [
  {
   id: "factor",

@@ -6,7 +6,7 @@ import {
   FaPaintBrush, FaLayerGroup, FaCode,
   FaServer, FaSearch, FaLaptopCode,
   FaArrowRight, FaRegCommentDots,
-  FaPlus, FaMinus // Iconos para el acordeón
+  FaPlus, FaMinus 
 } from "react-icons/fa";
 import SectionHeader from "./SectionHeader";
 import { useLang } from "./LanguageProvider";
@@ -28,7 +28,7 @@ function tt(t, key, fallback) {
   return v;
 }
 
-// VARIANTES DE ANIMACIÓN (Coreografía Desktop)
+// VARIANTES DE ANIMACIÓN
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -141,6 +141,9 @@ export default function ServicesSection() {
   const headerTitle = tt(t, "services.header.title", "Servicios");
   const headerBg = tt(t, "services.header.bg", "EXPERTISE");
 
+  // --- CORRECCIÓN 1: Definir variable para el texto del botón ---
+  const ctaText = tt(t, "services.cta", "¿Consulta Específica?"); 
+
   // DATA
   const odooTitle = tt(t, "services.columns.odoo.title", "Arquitectura Odoo");
   const odooSubtitle = tt(t, "services.columns.odoo.subtitle", "Diseño la lógica y estructura de tu ERP para que funcione como el cerebro de tu negocio.");
@@ -175,7 +178,7 @@ export default function ServicesSection() {
   return (
     <section id="services" className="relative w-full bg-[#050505] overflow-hidden">
       
-      {/* ATMÓSFERA VIVA (FONDO COMÚN) */}
+      {/* ATMÓSFERA VIVA */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
           animate={{ x: [0, 100, 0], opacity: [0.1, 0.3, 0.1] }}
@@ -192,10 +195,8 @@ export default function ServicesSection() {
 
       {/* =======================================================================
           1. VERSIÓN MOBILE (ACORDEÓN)
-          Visible solo en pantallas pequeñas (lg:hidden)
          ======================================================================= */}
       <div className="block lg:hidden px-6 py-24 relative z-10 w-full">
-         {/* HEADER MOBILE */}
          <div className="mb-12">
             <SectionHeader
               id="services-header-mob"
@@ -207,7 +208,6 @@ export default function ServicesSection() {
             />
          </div>
 
-         {/* ACORDEÓN */}
          <div className="flex flex-col gap-4">
             {allColumns.map((col, idx) => {
                const isActive = activeAccordion === idx;
@@ -256,19 +256,18 @@ export default function ServicesSection() {
          {/* CTA MOBILE */}
          <div className="mt-12 flex justify-center">
             <a href="#contact" className="text-[10px] tracking-[0.2em] uppercase text-white/30 border-b border-white/10 pb-1 hover:text-white transition-colors">
-              ¿Consulta Específica?
+              {/* --- CORRECCIÓN 2: Usar variable aquí --- */}
+              {ctaText} 
             </a>
          </div>
       </div>
 
 
       {/* =======================================================================
-          2. VERSIÓN DESKTOP (ORIGINAL INTACTA)
-          Visible solo en pantallas grandes (hidden lg:block)
+          2. VERSIÓN DESKTOP 
          ======================================================================= */}
       <div className="hidden lg:block px-6 md:px-12 py-32 lg:py-48 max-w-[1400px] mx-auto relative z-10">
         
-        {/* HEADER */}
         <div className="mb-24 pl-4 md:pl-10">
           <SectionHeader
             id="services-header"
@@ -280,7 +279,6 @@ export default function ServicesSection() {
           />
         </div>
 
-        {/* GRID ANIMADO */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -319,7 +317,8 @@ export default function ServicesSection() {
             className="group flex flex-col items-center gap-4 cursor-pointer"
           >
             <span className="text-[10px] tracking-[0.3em] uppercase text-white/30 group-hover:text-white transition-colors duration-500">
-              ¿Consulta Específica?
+               {/* --- CORRECCIÓN 3: Usar variable aquí --- */}
+              {ctaText}
             </span>
             <motion.div 
               className="w-[1px] bg-gradient-to-b from-white/10 to-white/50"

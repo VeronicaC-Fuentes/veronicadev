@@ -4,87 +4,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import SectionHeader from "./SectionHeader";
+import { useLang } from "./LanguageProvider";
 
-// --- DATOS ACTUALIZADOS: AHORA TIENEN EL MISMO TEXTO QUE ESCRITORIO ---
-const ABOUT_SLIDES = [
-  {
-    id: "intro",
-    title: "Quién Soy",
-    content: (
-      <div className="flex flex-col h-full">
-        <div className="relative w-full aspect-square mb-6 rounded-lg overflow-hidden border border-white/10 bg-[#111]">
-          <Image
-            src="/about.png"
-            alt="Verónica Cruces"
-            fill
-            className="object-cover object-top"
-          />
-        </div>
-        <p className="text-white/80 font-light leading-relaxed text-sm">
-          Siempre me ha interesado entender cómo funcionan las cosas por dentro. Mi camino en tecnología no empezó buscando clientes: empezó buscando <strong className="text-white font-medium">eficiencia</strong>. Aprendí que el código por sí solo no resuelve problemas; lo que transforma el caos en estructura es la lógica, el diseño y la estrategia detrás.
-        </p>
-      </div>
-    )
-  },
-  {
-    id: "philosophy",
-    title: "Filosofía",
-    content: (
-      <div className="flex flex-col justify-center h-full">
-        <h3 className="text-2xl font-serif italic text-white mb-6">
-          Arquitectura Digital. <br />
-          <span className="font-sans not-italic font-bold text-white/40">Crecimiento Real.</span>
-        </h3>
-        <p className="text-white/70 font-light leading-relaxed mb-6 border-l border-white/20 pl-4 text-sm">
-          Con el tiempo confirmé algo clave: si un negocio quiere escalar, la tecnología no puede ser un obstáculo. Debe ser un aliado que simplifique procesos, conecte áreas y ayude a tomar mejores decisiones.
-        </p>
-        <p className="text-white font-medium text-sm">
-          Diseñamos ecosistemas digitales completos para que operes mejor, vendas más y crezcas con orden.
-        </p>
-      </div>
-    )
-  },
-  {
-    id: "team",
-    title: "El Equipo",
-    content: (
-      <div className="flex flex-col justify-center h-full">
-        <p className="text-white/70 font-light leading-relaxed mb-6 text-sm">
-          Hoy lidero un <strong className="text-white font-medium">equipo ágil de especialistas</strong> donde combinamos ingeniería robusta (Odoo/Backend) con desarrollo web de alto rendimiento.
-        </p>
-        <div className="p-6 border border-white/10 bg-white/[0.02] rounded-lg">
-          <p className="text-white font-medium text-center text-sm italic">
-            "No trabajamos como una fábrica de software; trabajamos como socios estratégicos."
-          </p>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: "stats",
-    title: "Datos Clave",
-    content: (
-      <div className="grid grid-cols-1 gap-4 h-full content-center">
-        <div className="border-b border-white/10 pb-3">
-          <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Core Focus</h4>
-          <p className="text-white text-base">Desarrollo Odoo & Web Apps</p>
-        </div>
-        <div className="border-b border-white/10 pb-3">
-          <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Location</h4>
-          <p className="text-white text-base">Global (Remote First)</p>
-        </div>
-        <div className="border-b border-white/10 pb-3">
-          <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Experience</h4>
-          <p className="text-white text-base">+3 Años construyendo sistemas</p>
-        </div>
-        <div>
-          <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Approach</h4>
-          <p className="text-white text-base">Estrategia & Performance</p>
-        </div>
-      </div>
-    )
-  }
-];
+// Helper de traducción
+function tt(t, key, fallback) {
+  const v = t?.(key);
+  if (v === undefined || v === null) return fallback;
+  if (Array.isArray(v)) return v;
+  const s = String(v).trim();
+  if (!s) return fallback;
+  if (s.toLowerCase() === key.toLowerCase()) return fallback;
+  return v;
+}
 
 // VARIANTES ANIMACIÓN SLIDER
 const slideVariants = {
@@ -94,6 +25,115 @@ const slideVariants = {
 };
 
 export default function AboutSection() {
+  const { t } = useLang();
+
+  // --- 1. TRADUCCIONES DE TEXTO PLANO ---
+  const headerTitle = tt(t, "about.header.title", "Perfil & Visión");
+  const headerBg = tt(t, "about.header.bg", "PERFIL");
+  const heading1 = tt(t, "about.heading.line1", "Arquitectura Digital.");
+  const heading2 = tt(t, "about.heading.line2", "Crecimiento Real.");
+  
+  const p1 = tt(t, "about.p1", "Siempre me ha interesado entender cómo funcionan las cosas por dentro...");
+  const p2 = tt(t, "about.p2", "Con el tiempo confirmé algo clave...");
+  const p3 = tt(t, "about.p3", "Hoy lidero un equipo ágil...");
+  const p4 = tt(t, "about.p4", "Diseñamos ecosistemas digitales completos...");
+  const ctaText = tt(t, "about.cta", "Iniciar Proyecto");
+
+  // --- 2. TRADUCCIONES DE STATS ---
+  const statFocusLabel = tt(t, "about.stats.focus.label", "Core Focus");
+  const statFocusValue = tt(t, "about.stats.focus.value", "Desarrollo Odoo & Web Apps");
+  
+  const statLocLabel = tt(t, "about.stats.location.label", "Location");
+  const statLocValue = tt(t, "about.stats.location.value", "Global");
+
+  const statExpLabel = tt(t, "about.stats.experience.label", "Experience");
+  const statExpValue = tt(t, "about.stats.experience.value", "+3 Años");
+
+  const statAppLabel = tt(t, "about.stats.approach.label", "Approach");
+  const statAppValue = tt(t, "about.stats.approach.value", "Estrategia & Performance");
+
+  // --- 3. CONSTRUCCIÓN DINÁMICA DE SLIDES (MOBILE) ---
+  // Se mueve DENTRO del componente para acceder a las variables traducidas
+  const aboutSlides = [
+    {
+      id: "intro",
+      title: tt(t, "about.slides.intro", "Quién Soy"),
+      content: (
+        <div className="flex flex-col h-full">
+          <div className="relative w-full aspect-square mb-6 rounded-lg overflow-hidden border border-white/10 bg-[#111]">
+            <Image
+              src="/about.png"
+              alt="Verónica Cruces"
+              fill
+              className="object-cover object-top"
+            />
+          </div>
+          <p className="text-white/80 font-light leading-relaxed text-sm">
+             {/* Usamos un fragmento del p1 para mobile */}
+             {p1.split(".")[0]}. <strong className="text-white font-medium">Eficiencia</strong>. {p1.split(".")[2]}.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: "philosophy",
+      title: tt(t, "about.slides.philosophy", "Filosofía"),
+      content: (
+        <div className="flex flex-col justify-center h-full">
+          <h3 className="text-2xl font-serif italic text-white mb-6">
+            {heading1} <br />
+            <span className="font-sans not-italic font-bold text-white/40">{heading2}</span>
+          </h3>
+          <p className="text-white/70 font-light leading-relaxed mb-6 border-l border-white/20 pl-4 text-sm">
+            {p2}
+          </p>
+          <p className="text-white font-medium text-sm">
+            {p4}
+          </p>
+        </div>
+      )
+    },
+    {
+      id: "team",
+      title: tt(t, "about.slides.team", "El Equipo"),
+      content: (
+        <div className="flex flex-col justify-center h-full">
+          <p className="text-white/70 font-light leading-relaxed mb-6 text-sm">
+            {p3}
+          </p>
+          <div className="p-6 border border-white/10 bg-white/[0.02] rounded-lg">
+            <p className="text-white font-medium text-center text-sm italic">
+              "{tt(t, "about.quote", "No trabajamos como una fábrica...")}"
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: "stats",
+      title: tt(t, "about.slides.stats", "Datos Clave"),
+      content: (
+        <div className="grid grid-cols-1 gap-4 h-full content-center">
+          <div className="border-b border-white/10 pb-3">
+            <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">{statFocusLabel}</h4>
+            <p className="text-white text-base">{statFocusValue}</p>
+          </div>
+          <div className="border-b border-white/10 pb-3">
+            <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">{statLocLabel}</h4>
+            <p className="text-white text-base">{statLocValue}</p>
+          </div>
+          <div className="border-b border-white/10 pb-3">
+            <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">{statExpLabel}</h4>
+            <p className="text-white text-base">{statExpValue}</p>
+          </div>
+          <div>
+            <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">{statAppLabel}</h4>
+            <p className="text-white text-base">{statAppValue}</p>
+          </div>
+        </div>
+      )
+    }
+  ];
 
   // --- LÓGICA MOBILE ---
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -102,8 +142,8 @@ export default function AboutSection() {
   const paginate = (newDirection) => {
     setDirection(newDirection);
     let newIndex = currentIndex + newDirection;
-    if (newIndex < 0) newIndex = ABOUT_SLIDES.length - 1;
-    if (newIndex >= ABOUT_SLIDES.length) newIndex = 0;
+    if (newIndex < 0) newIndex = aboutSlides.length - 1;
+    if (newIndex >= aboutSlides.length) newIndex = 0;
     setCurrentIndex(newIndex);
   };
 
@@ -123,8 +163,8 @@ export default function AboutSection() {
         <div className="mb-8">
           <SectionHeader
             id="about-header-mob"
-            title="Perfil & Visión"
-            bgText="PROFILE"
+            title={headerTitle}
+            bgText={headerBg}
             titleColor="#FFFFFF"
             bgColor="#FFFFFF"
             bgOpacityClass="opacity-[0.03]"
@@ -151,12 +191,12 @@ export default function AboutSection() {
               {/* Título de la Slide Actual */}
               <div className="mb-4 flex items-center gap-3">
                 <span className="text-xs font-mono text-white/30 tracking-widest">0{currentIndex + 1}</span>
-                <h3 className="text-lg font-bold text-white uppercase tracking-wider">{ABOUT_SLIDES[currentIndex].title}</h3>
+                <h3 className="text-lg font-bold text-white uppercase tracking-wider">{aboutSlides[currentIndex].title}</h3>
               </div>
 
               {/* Contenido Dinámico */}
               <div className="flex-grow">
-                {ABOUT_SLIDES[currentIndex].content}
+                {aboutSlides[currentIndex].content}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -166,7 +206,7 @@ export default function AboutSection() {
 
             {/* Indicadores Puntos */}
             <div className="flex gap-2">
-              {ABOUT_SLIDES.map((_, idx) => (
+              {aboutSlides.map((_, idx) => (
                 <div
                   key={idx}
                   className={`h-1 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-6 bg-white' : 'w-2 bg-white/20'}`}
@@ -194,7 +234,7 @@ export default function AboutSection() {
           {/* Botón CTA Mobile */}
           <div className="mt-8 flex justify-center">
             <a href="#contact" className="text-xs font-bold tracking-[0.2em] uppercase text-white/50 border-b border-white/20 pb-1 hover:text-white transition-colors">
-              Iniciar Proyecto →
+              {ctaText} →
             </a>
           </div>
 
@@ -212,8 +252,8 @@ export default function AboutSection() {
           <div className="mb-16 lg:mb-24">
             <SectionHeader
               id="about-header"
-              title="Perfil & Visión"
-              bgText="PROFILE"
+              title={headerTitle}
+              bgText={headerBg}
               titleColor="#FFFFFF"
               bgColor="#FFFFFF"
               bgOpacityClass="opacity-[0.03]"
@@ -231,44 +271,33 @@ export default function AboutSection() {
                 className="flex flex-col justify-center order-2 lg:order-1"
             >
                 <h2 className="text-4xl md:text-6xl font-serif italic text-white mb-10 leading-tight">
-                  Arquitectura Digital. <br />
-                  <span className="font-sans not-italic font-bold text-white/40">Crecimiento Real.</span>
+                  {heading1} <br />
+                  <span className="font-sans not-italic font-bold text-white/40">{heading2}</span>
                 </h2>
 
                 <div className="space-y-8 text-base md:text-lg text-white/70 font-light leading-relaxed border-l border-white/10 pl-8 md:pl-10">
-                  <p>
-                    Siempre me ha interesado entender cómo funcionan las cosas por dentro. Mi camino en tecnología no empezó buscando clientes: empezó buscando <strong className="text-white font-medium">eficiencia</strong>. Aprendí que el código por sí solo no resuelve problemas; lo que transforma el caos en estructura es la lógica, el diseño y la estrategia detrás.
-                  </p>
-                  
-                  <p>
-                    Con el tiempo confirmé algo clave: si un negocio quiere escalar, la tecnología no puede ser un obstáculo. Debe ser un aliado que simplifique procesos, conecte áreas y ayude a tomar mejores decisiones.
-                  </p>
-                  
-                  <p>
-                    Hoy lidero un <strong className="text-white font-medium">equipo ágil de especialistas</strong> donde combinamos ingeniería robusta (Odoo/Backend) con desarrollo web de alto rendimiento. No trabajamos como una fábrica de software; trabajamos como socios estratégicos.
-                  </p>
-                  
-                  <p className="text-white font-medium">
-                    Diseñamos ecosistemas digitales completos para que operes mejor, vendas más y crezcas con orden en el mundo digital.
-                  </p>
+                  <p>{p1}</p>
+                  <p>{p2}</p>
+                  <p>{p3}</p>
+                  <p className="text-white font-medium">{p4}</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-y-10 gap-x-8 mt-16 mb-12 py-10 border-t border-b border-white/10">
                   <div>
-                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Core Focus</h4>
-                    <p className="text-white text-sm">Desarrollo Odoo & Web Apps</p>
+                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">{statFocusLabel}</h4>
+                    <p className="text-white text-sm">{statFocusValue}</p>
                   </div>
                   <div>
-                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Location</h4>
-                    <p className="text-white text-sm">Global (Remote First)</p>
+                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">{statLocLabel}</h4>
+                    <p className="text-white text-sm">{statLocValue}</p>
                   </div>
                   <div>
-                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Experience</h4>
-                    <p className="text-white text-sm">+3 Años construyendo sistemas</p>
+                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">{statExpLabel}</h4>
+                    <p className="text-white text-sm">{statExpValue}</p>
                   </div>
                   <div>
-                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Approach</h4>
-                    <p className="text-white text-sm">Estrategia & Performance</p>
+                    <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">{statAppLabel}</h4>
+                    <p className="text-white text-sm">{statAppValue}</p>
                   </div>
                 </div>
             </motion.div>
@@ -315,7 +344,7 @@ export default function AboutSection() {
                     <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                       <FiArrowRight className="text-xl" />
                     </div>
-                    <span className="text-sm font-bold tracking-[0.2em] uppercase">Iniciar Proyecto</span>
+                    <span className="text-sm font-bold tracking-[0.2em] uppercase">{ctaText}</span>
                   </a>
                 </motion.div>
               </div>

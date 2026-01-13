@@ -4,28 +4,67 @@ import { useState } from "react";
 import SectionHeader from "./SectionHeader";
 import { db } from "../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
-import { FiArrowRight, FiMapPin, FiMail, FiArrowUpRight, FiSend, FiMessageSquare, FiInfo } from "react-icons/fi";
+import { FiArrowRight, FiMapPin, FiArrowUpRight, FiSend } from "react-icons/fi";
 import { FaInstagram, FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "./LanguageProvider";
 
-// Helper de traducción
+// Helper de traducción robusto
 function tt(t, key, fallback) {
   const v = t?.(key);
-  if (!v || v === key) return fallback;
+  if (v === undefined || v === null) return fallback;
+  if (Array.isArray(v)) return v;
+  const s = String(v).trim();
+  if (!s) return fallback;
+  if (s.toLowerCase() === key.toLowerCase()) return fallback;
   return v;
 }
 
 export default function ContactSection() {
   const { t } = useLang();
 
-  // ESTADOS DEL FORMULARIO (Compartido)
+  // --- VARIABLES DE TRADUCCIÓN ---
+  const headerTitle = tt(t, "contact.header.title", "Contacto");
+  const headerBg = tt(t, "contact.header.bg", "CONTACTO");
+  
+  // Tabs Mobile
+  const tabWrite = tt(t, "contact.tabs.write", "Escríbeme");
+  const tabInfo = tt(t, "contact.tabs.info", "Datos");
+
+  // Hero Texts
+  const heroTitle = tt(t, "contact.hero.title", "¿Tienes un proyecto");
+  const heroHighlight = tt(t, "contact.hero.highlight", "en mente?");
+  const heroDesc = tt(t, "contact.hero.desc", "Descripción larga...");
+  const heroMobDesc = tt(t, "contact.hero.mobDesc", "Descripción corta...");
+
+  // Form Labels
+  const lblNamePh = tt(t, "contact.form.namePlaceholder", "Nombre");
+  const lblNameLabel = tt(t, "contact.form.nameLabel", "Tu Nombre");
+  const lblEmailPh = tt(t, "contact.form.emailPlaceholder", "Email");
+  const lblEmailLabel = tt(t, "contact.form.emailLabel", "Email");
+  const lblMsgPh = tt(t, "contact.form.msgPlaceholder", "Mensaje");
+  const lblMsgLabel = tt(t, "contact.form.msgLabel", "¿Cómo puedo ayudarte?");
+  const btnSend = tt(t, "contact.form.btn", "Enviar Mensaje");
+  const btnSending = tt(t, "contact.form.sending", "Enviando...");
+
+  // Info Labels
+  const infoEmail = tt(t, "contact.info.email", "Email Directo");
+  const infoBase = tt(t, "contact.info.base", "Base");
+  const infoLocation = tt(t, "contact.info.location", "LATAM / EUROPA");
+  const infoRemote = tt(t, "contact.info.remote", "Remote Friendly");
+
+  // Alerts
+  const alertSuccess = tt(t, "contact.alerts.success", "Mensaje enviado con éxito.");
+  const alertError = tt(t, "contact.alerts.error", "Error al enviar.");
+
+
+  // ESTADOS DEL FORMULARIO
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
 
-  // ESTADO VISTA MOBILE (Tabs)
-  const [activeTab, setActiveTab] = useState("form"); // 'form' | 'info'
+  // ESTADO VISTA MOBILE
+  const [activeTab, setActiveTab] = useState("form");
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -40,10 +79,10 @@ export default function ContactSection() {
         createdAt: new Date(),
       });
       setFormState({ name: "", email: "", message: "" });
-      alert("Mensaje enviado con éxito.");
+      alert(alertSuccess); // Usamos la variable traducida
     } catch (error) {
       console.error("Error:", error);
-      alert("Error al enviar.");
+      alert(alertError); // Usamos la variable traducida
     } finally {
       setIsSubmitting(false);
     }
@@ -57,27 +96,23 @@ export default function ContactSection() {
 
 
       {/* =======================================================================
-          1. VERSIÓN MOBILE: TABS (FORM VS INFO)
-          Visible solo en mobile (lg:hidden)
-          Evita el scroll eterno separando el contenido.
+          1. VERSIÓN MOBILE: TABS
          ======================================================================= */}
       <div className="block lg:hidden px-6 py-24 w-full relative z-10">
          
-         {/* Header Mobile */}
          <div className="mb-8">
             <SectionHeader
               id="contact-header-mob"
-              title={tt(t, "contact.header.title", "Contacto")}
-              bgText="CONTACT"
+              title={headerTitle}
+              bgText={headerBg}
               titleColor="#FFFFFF"
               bgColor="#FFFFFF"
               bgOpacityClass="opacity-[0.03]"
             />
          </div>
 
-         {/* CONTROLES DE PESTAÑAS (TOGGLE) */}
+         {/* CONTROLES DE PESTAÑAS */}
          <div className="flex p-1 bg-white/5 rounded-full mb-10 w-full max-w-sm mx-auto relative">
-            {/* Fondo animado del toggle */}
             <motion.div 
                className="absolute top-1 bottom-1 bg-white/10 rounded-full"
                initial={false}
@@ -92,21 +127,20 @@ export default function ContactSection() {
                onClick={() => setActiveTab("form")}
                className={`flex-1 relative z-10 py-3 text-xs font-bold tracking-[0.15em] uppercase text-center transition-colors ${activeTab === "form" ? "text-white" : "text-white/40"}`}
             >
-               Escríbeme
+               {tabWrite}
             </button>
             <button 
                onClick={() => setActiveTab("info")}
                className={`flex-1 relative z-10 py-3 text-xs font-bold tracking-[0.15em] uppercase text-center transition-colors ${activeTab === "info" ? "text-white" : "text-white/40"}`}
             >
-               Datos
+               {tabInfo}
             </button>
          </div>
 
-         {/* CONTENIDO CAMBIANTE */}
          <div className="min-h-[450px]">
            <AnimatePresence mode="wait">
              
-             {/* --- VISTA A: FORMULARIO --- */}
+             {/* --- VISTA A: FORMULARIO MOBILE --- */}
              {activeTab === "form" ? (
                <motion.div
                  key="form"
@@ -117,10 +151,10 @@ export default function ContactSection() {
                >
                   <div className="mb-8 text-center">
                       <h3 className="text-2xl font-serif italic text-white mb-2">
-                        ¿Tienes un proyecto?
+                        {heroTitle}?
                       </h3>
                       <p className="text-white/50 text-sm font-light">
-                        Cuéntame tu visión y encontremos la estrategia.
+                        {heroMobDesc}
                       </p>
                   </div>
 
@@ -132,9 +166,9 @@ export default function ContactSection() {
                               onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)}
                               required
                               className="block w-full py-3 bg-transparent text-white text-lg border-b border-white/10 focus:border-white/50 focus:outline-none placeholder-transparent"
-                              placeholder="Nombre"
+                              placeholder={lblNamePh}
                           />
-                          <label htmlFor="name_m" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-[10px] font-mono ${formState.name || focusedField === 'name' ? '-top-3 text-white/40' : 'top-4 text-white/30'}`}>Tu Nombre</label>
+                          <label htmlFor="name_m" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-[10px] font-mono ${formState.name || focusedField === 'name' ? '-top-3 text-white/40' : 'top-4 text-white/30'}`}>{lblNameLabel}</label>
                       </div>
 
                       <div className="relative group">
@@ -144,9 +178,9 @@ export default function ContactSection() {
                               onFocus={() => setFocusedField('email')} onBlur={() => setFocusedField(null)}
                               required
                               className="block w-full py-3 bg-transparent text-white text-lg border-b border-white/10 focus:border-white/50 focus:outline-none placeholder-transparent"
-                              placeholder="Email"
+                              placeholder={lblEmailPh}
                           />
-                          <label htmlFor="email_m" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-[10px] font-mono ${formState.email || focusedField === 'email' ? '-top-3 text-white/40' : 'top-4 text-white/30'}`}>Email</label>
+                          <label htmlFor="email_m" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-[10px] font-mono ${formState.email || focusedField === 'email' ? '-top-3 text-white/40' : 'top-4 text-white/30'}`}>{lblEmailLabel}</label>
                       </div>
 
                       <div className="relative group">
@@ -156,14 +190,14 @@ export default function ContactSection() {
                               onFocus={() => setFocusedField('message')} onBlur={() => setFocusedField(null)}
                               required
                               className="block w-full py-3 bg-transparent text-white text-lg border-b border-white/10 focus:border-white/50 focus:outline-none placeholder-transparent resize-none"
-                              placeholder="Mensaje"
+                              placeholder={lblMsgPh}
                           />
-                          <label htmlFor="message_m" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-[10px] font-mono ${formState.message || focusedField === 'message' ? '-top-3 text-white/40' : 'top-4 text-white/30'}`}>Mensaje</label>
+                          <label htmlFor="message_m" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-[10px] font-mono ${formState.message || focusedField === 'message' ? '-top-3 text-white/40' : 'top-4 text-white/30'}`}>{lblMsgPh}</label>
                       </div>
 
                       <div className="pt-4 flex justify-center">
                           <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-sm text-white text-xs tracking-[0.25em] uppercase transition-all flex justify-center gap-3 items-center">
-                              {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
+                              {isSubmitting ? btnSending : btnSend}
                               {!isSubmitting && <FiSend />}
                           </button>
                       </div>
@@ -171,7 +205,7 @@ export default function ContactSection() {
                </motion.div>
              ) : (
                
-               /* --- VISTA B: INFORMACIÓN DIRECTA --- */
+               /* --- VISTA B: INFORMACIÓN MOBILE --- */
                <motion.div
                  key="info"
                  initial={{ opacity: 0, x: 20 }}
@@ -180,7 +214,6 @@ export default function ContactSection() {
                  transition={{ duration: 0.3 }}
                  className="flex flex-col items-center gap-8"
                >
-                  {/* Video Blob Mobile (Más pequeño) */}
                   <div className="relative w-48 h-48 rounded-full overflow-hidden border border-white/10 shadow-2xl">
                       <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover scale-110">
                           <source src="/DSCF0544.webm" type="video/webm" />
@@ -191,7 +224,7 @@ export default function ContactSection() {
 
                   <div className="w-full flex flex-col gap-6 text-center">
                       <div className="p-6 bg-white/[0.03] border border-white/10 rounded-lg">
-                          <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-2">Email Directo</p>
+                          <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-2">{infoEmail}</p>
                           <a href="mailto:crucessveronica@gmail.com" className="text-lg text-white font-medium break-all">
                               crucessveronica@gmail.com
                           </a>
@@ -208,7 +241,6 @@ export default function ContactSection() {
                          </div>
                       </div>
 
-                      {/* Redes */}
                       <div className="flex justify-center gap-8 pt-4">
                           {[
                               { icon: FaInstagram, href: "https://www.instagram.com/veronicadev.web/" },
@@ -229,17 +261,15 @@ export default function ContactSection() {
 
 
       {/* =======================================================================
-          2. VERSIÓN DESKTOP (TU CÓDIGO ORIGINAL INTACTO)
-          Visible solo en desktop (hidden lg:block)
+          2. VERSIÓN DESKTOP
          ======================================================================= */}
       <div className="hidden lg:block px-6 md:px-12 py-32 lg:py-60 max-w-[1400px] mx-auto relative z-10">
         
-        {/* HEADER */}
         <div className="mb-24 lg:mb-40">
           <SectionHeader
             id="contact-header"
-            title={tt(t, "contact.header.title", "Contacto")}
-            bgText="CONTACT"
+            title={headerTitle}
+            bgText={headerBg}
             titleColor="#FFFFFF"
             bgColor="#FFFFFF"
             bgOpacityClass="opacity-[0.03]"
@@ -253,11 +283,11 @@ export default function ContactSection() {
             
             <div className="mb-16">
                 <h3 className="text-3xl md:text-5xl font-serif italic text-white mb-6 leading-tight">
-                  ¿Tienes un proyecto <br />
-                  <span className="font-sans not-italic font-bold text-white/40">en mente?</span>
+                  {heroTitle} <br />
+                  <span className="font-sans not-italic font-bold text-white/40">{heroHighlight}</span>
                 </h3>
                 <p className="text-white/60 text-lg font-light max-w-md leading-relaxed">
-                   Desde implementaciones en Odoo hasta desarrollos web a medida. Cuéntame tu visión y encontremos juntos la mejor estrategia técnica para hacerla realidad.
+                   {heroDesc}
                 </p>
             </div>
 
@@ -272,9 +302,9 @@ export default function ContactSection() {
                         onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)}
                         required
                         className="block w-full py-4 bg-transparent text-white text-xl border-b border-white/10 focus:border-white/50 focus:outline-none transition-all placeholder-transparent"
-                        placeholder="Nombre"
+                        placeholder={lblNamePh}
                     />
-                    <label htmlFor="name" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-xs font-mono ${formState.name || focusedField === 'name' ? '-top-4 text-white/40' : 'top-5 text-white/30'}`}>Tu Nombre</label>
+                    <label htmlFor="name" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-xs font-mono ${formState.name || focusedField === 'name' ? '-top-4 text-white/40' : 'top-5 text-white/30'}`}>{lblNameLabel}</label>
                 </div>
 
                 {/* Input Email */}
@@ -285,9 +315,9 @@ export default function ContactSection() {
                         onFocus={() => setFocusedField('email')} onBlur={() => setFocusedField(null)}
                         required
                         className="block w-full py-4 bg-transparent text-white text-xl border-b border-white/10 focus:border-white/50 focus:outline-none transition-all placeholder-transparent"
-                        placeholder="Email"
+                        placeholder={lblEmailPh}
                     />
-                    <label htmlFor="email" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-xs font-mono ${formState.email || focusedField === 'email' ? '-top-4 text-white/40' : 'top-5 text-white/30'}`}>Email</label>
+                    <label htmlFor="email" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-xs font-mono ${formState.email || focusedField === 'email' ? '-top-4 text-white/40' : 'top-5 text-white/30'}`}>{lblEmailLabel}</label>
                 </div>
 
                 {/* Input Mensaje */}
@@ -298,9 +328,9 @@ export default function ContactSection() {
                         onFocus={() => setFocusedField('message')} onBlur={() => setFocusedField(null)}
                         required
                         className="block w-full py-4 bg-transparent text-white text-xl border-b border-white/10 focus:border-white/50 focus:outline-none transition-all placeholder-transparent resize-none"
-                        placeholder="Mensaje"
+                        placeholder={lblMsgPh}
                     />
-                    <label htmlFor="message" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-xs font-mono ${formState.message || focusedField === 'message' ? '-top-4 text-white/40' : 'top-5 text-white/30'}`}>¿Cómo puedo ayudarte?</label>
+                    <label htmlFor="message" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-xs font-mono ${formState.message || focusedField === 'message' ? '-top-4 text-white/40' : 'top-5 text-white/30'}`}>{lblMsgLabel}</label>
                 </div>
 
                 <div className="pt-8">
@@ -317,7 +347,7 @@ export default function ContactSection() {
                             )}
                         </div>
                         <span className="text-sm font-bold tracking-[0.25em] uppercase">
-                            {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
+                            {isSubmitting ? btnSending : btnSend}
                         </span>
                     </button>
                 </div>
@@ -328,7 +358,6 @@ export default function ContactSection() {
           <div className="order-1 lg:order-2 relative h-full">
              <div className="lg:sticky lg:top-40 w-full flex flex-col items-center lg:items-end gap-16">
                 
-                {/* VIDEO GOTA */}
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -359,16 +388,16 @@ export default function ContactSection() {
                     className="w-full max-w-[450px] flex flex-col gap-10 text-right"
                 >
                     <div className="group">
-                        <p className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">Email</p>
+                        <p className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2">{infoEmail}</p>
                         <a href="mailto:crucessveronica@gmail.com" className="text-xl md:text-2xl text-white font-medium hover:text-white/70 transition-colors border-b border-white/20 pb-1">
                             crucessveronica@gmail.com
                         </a>
                     </div>
                     <div className="flex justify-end gap-12">
                         <div className="text-right">
-                            <p className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2 flex items-center justify-end gap-2">Base <FiMapPin /></p>
-                            <p className="text-white text-base">LATAM / EUROPA</p>
-                            <p className="text-white/40 text-sm mt-1">Remote Friendly</p>
+                            <p className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2 flex items-center justify-end gap-2">{infoBase} <FiMapPin /></p>
+                            <p className="text-white text-base">{infoLocation}</p>
+                            <p className="text-white/40 text-sm mt-1">{infoRemote}</p>
                         </div>
                         <div className="text-right">
                             <p className="text-xs font-mono text-white/30 uppercase tracking-widest mb-2 flex items-center justify-end gap-2">Chat <FaWhatsapp /></p>

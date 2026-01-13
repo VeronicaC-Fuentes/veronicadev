@@ -12,6 +12,7 @@ const PortfolioSection = dynamic(() => import("./components/PortfolioSection"));
 const ContactSection = dynamic(() => import("./components/ContactSection"));
 const ProcessSection = dynamic(() => import("./components/ProcessSection"));
 const VisualBreak = dynamic(() => import("./components/VisualBreak"));
+const Footer= dynamic(() => import("./components/Footer"));
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,7 @@ export default function Page() {
           <VisualBreak />
           <AboutSection />
           <ContactSection />
+          <Footer ></Footer>
         </>
       )}
     </>

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // Iconos para navegar
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; 
 import SectionHeader from "./SectionHeader";
 import { useLang } from "./LanguageProvider";
 
@@ -16,31 +16,12 @@ function tt(t, key, fallback) {
   return v;
 }
 
-const STEPS = [
-  {
-    id: "discovery",
-    number: "01",
-    title: "Consultoría & Diagnóstico",
-    desc: "Iniciamos con una sesión de entendimiento para evaluar tu situación actual. Analizamos el contexto de tu empresa y definimos los requerimientos técnicos y operativos reales."
-  },
-  {
-    id: "proposal",
-    number: "02",
-    title: "Propuesta Comercial",
-    desc: "Definimos la modalidad de trabajo que mejor se adapte a tu inversión: desarrollo por **Proyecto Cerrado** o mediante **Bolsa de Horas**, garantizando siempre transparencia en el presupuesto."
-  },
-  {
-    id: "planning",
-    number: "03",
-    title: "Planificación Técnica",
-    desc: "Establecemos la hoja de ruta según el objetivo: implementación de Odoo, optimización web o desarrollo a medida. Fijamos plazos, alcance y métricas de éxito antes de iniciar."
-  },
-  {
-    id: "execution",
-    number: "04",
-    title: "Implementación & Despliegue",
-    desc: "Ejecución técnica enfocada en resultados. Desarrollo, configuración y pruebas rigurosas para entregar software funcional y optimizado, listo para operar en tu negocio."
-  }
+// Datos base (solo IDs y números, el texto vendrá del JSON)
+const STEP_DATA = [
+  { id: "discovery", number: "01" },
+  { id: "proposal", number: "02" },
+  { id: "planning", number: "03" },
+  { id: "execution", number: "04" }
 ];
 
 // Animaciones Desktop
@@ -78,8 +59,17 @@ const slideVariants = {
 export default function ProcessSection() {
   const { t } = useLang();
 
+  // 1. Traducir Header
   const headerTitle = tt(t, "process.header.title", "Metodología");
   const headerBg = tt(t, "process.header.bg", "PROCESS");
+
+  // 2. Construir array de pasos con textos traducidos
+  // NOTA: Usamos fallbacks en español por si el JSON falla
+  const steps = STEP_DATA.map(step => ({
+    ...step,
+    title: tt(t, `process.steps.${step.id}.title`, "Título del Paso"),
+    desc: tt(t, `process.steps.${step.id}.desc`, "Descripción del paso...")
+  }));
 
   // --- LÓGICA MOBILE (SLIDER) ---
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -88,24 +78,21 @@ export default function ProcessSection() {
   const paginate = (newDirection) => {
     setDirection(newDirection);
     let newIndex = currentIndex + newDirection;
-    if (newIndex < 0) newIndex = STEPS.length - 1;
-    if (newIndex >= STEPS.length) newIndex = 0;
+    if (newIndex < 0) newIndex = steps.length - 1;
+    if (newIndex >= steps.length) newIndex = 0;
     setCurrentIndex(newIndex);
   };
 
-  const currentStep = STEPS[currentIndex];
+  const currentStep = steps[currentIndex];
 
   return (
     <section id="process" className="relative w-full bg-[#050505] overflow-hidden">
       
       {/* =======================================================================
-          1. VERSIÓN MOBILE: SLIDER (CARRUSEL PASO A PASO)
-          Visible solo en mobile (lg:hidden)
-          Reduce el scroll vertical drásticamente.
+          1. VERSIÓN MOBILE: SLIDER
          ======================================================================= */}
       <div className="block lg:hidden px-6 py-24 w-full">
         
-        {/* HEADER MOBILE */}
         <div className="mb-12">
           <SectionHeader
             id="process-header-mob"
@@ -117,7 +104,6 @@ export default function ProcessSection() {
           />
         </div>
 
-        {/* ÁREA DEL SLIDER */}
         <div className="relative min-h-[420px] flex flex-col justify-between">
           
           <AnimatePresence initial={false} custom={direction} mode="wait">
@@ -134,10 +120,8 @@ export default function ProcessSection() {
               }}
               className="w-full h-full flex flex-col"
             >
-              {/* TARJETA DEL PASO */}
               <div className="flex flex-col h-full justify-between border-t border-white/20 pt-8 pb-4">
                  
-                 {/* Número Grande */}
                  <span className="text-8xl font-black text-white/5 font-sans mb-4 block">
                     {currentStep.number}
                  </span>
@@ -154,12 +138,10 @@ export default function ProcessSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* CONTROLES ABAJO */}
           <div className="flex items-center justify-between mt-8 border-t border-white/[0.05] pt-6">
              
-             {/* Indicador de pasos (Puntos) */}
              <div className="flex gap-2">
-                {STEPS.map((_, idx) => (
+                {steps.map((_, idx) => (
                   <div 
                     key={idx}
                     className={`h-1 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/20'}`} 
@@ -167,7 +149,6 @@ export default function ProcessSection() {
                 ))}
              </div>
 
-             {/* Botones Flechas */}
              <div className="flex gap-4">
                 <button 
                   onClick={() => paginate(-1)}
@@ -190,12 +171,10 @@ export default function ProcessSection() {
 
 
       {/* =======================================================================
-          2. VERSIÓN DESKTOP (TU CÓDIGO ORIGINAL INTACTO)
-          Visible solo en desktop (hidden lg:block)
+          2. VERSIÓN DESKTOP
          ======================================================================= */}
       <div className="hidden lg:block px-6 md:px-12 py-40 lg:py-56 max-w-[1400px] mx-auto relative z-10">
         
-        {/* HEADER */}
         <div className="mb-24 lg:mb-40">
           <SectionHeader
             id="process-header"
@@ -207,7 +186,6 @@ export default function ProcessSection() {
           />
         </div>
 
-        {/* GRID DE PASOS */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -215,23 +193,20 @@ export default function ProcessSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
         >
-          {STEPS.map((step, index) => (
+          {steps.map((step, index) => (
             <motion.div 
               key={step.id}
               variants={itemVariants}
               className="group relative flex flex-col justify-between p-10 lg:p-12 border-t border-white/10 hover:border-white/50 transition-colors duration-500 min-h-[400px] lg:min-h-[550px]"
             >
-              {/* Borde derecho sutil */}
               <div className={`hidden lg:block absolute right-0 top-12 bottom-12 w-[1px] bg-white/5 ${index === 3 ? 'hidden' : ''}`} />
 
-              {/* Número Gigante */}
               <div>
                 <span className="block text-7xl lg:text-8xl font-black text-white/5 group-hover:text-white transition-colors duration-700 select-none font-sans">
                     {step.number}
                 </span>
               </div>
 
-              {/* Contenido */}
               <div className="relative z-10 mt-12">
                 <h4 className="text-2xl font-bold text-white mb-6 group-hover:translate-x-2 transition-transform duration-500">
                   {step.title}
@@ -241,7 +216,6 @@ export default function ProcessSection() {
                 </p>
               </div>
 
-              {/* Decoración Hover */}
               <div className="absolute top-12 right-12 w-2 h-2 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_15px_rgba(255,255,255,1)]" />
               
             </motion.div>
