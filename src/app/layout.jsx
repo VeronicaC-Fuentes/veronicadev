@@ -14,7 +14,7 @@ const font = Sora({
 export const metadata = {
   title: "Verónica Dev",
   description: "Portafolio de Verónica Cruces",
-  icons: { icon: "/favicon.ico" },
+  icons: { icon: "/icon.svg" },
 };
 
 export default function RootLayout({ children }) {
