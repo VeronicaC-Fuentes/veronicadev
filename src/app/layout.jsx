@@ -12,8 +12,8 @@ const font = Sora({
 });
 
 export const metadata = {
-  title: "Verónica Dev",
-  description: "Portafolio de Verónica Cruces",
+  title: "Verónica Cruces",
+  description: "Odoo Developer Portfolio",
   icons: { icon: "/icon.svg" },
 };
 
