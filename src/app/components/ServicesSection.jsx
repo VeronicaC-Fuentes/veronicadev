@@ -1,10 +1,12 @@
 "use client";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaCogs, FaTerminal, FaDatabase,
   FaPaintBrush, FaLayerGroup, FaCode,
   FaServer, FaSearch, FaLaptopCode,
-  FaArrowRight, FaRegCommentDots
+  FaArrowRight, FaRegCommentDots,
+  FaPlus, FaMinus // Iconos para el acordeón
 } from "react-icons/fa";
 import SectionHeader from "./SectionHeader";
 import { useLang } from "./LanguageProvider";
@@ -26,14 +28,12 @@ function tt(t, key, fallback) {
   return v;
 }
 
-// VARIANTES DE ANIMACIÓN (Coreografía)
+// VARIANTES DE ANIMACIÓN (Coreografía Desktop)
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2, // Retraso entre columnas
-    },
+    transition: { staggerChildren: 0.2 },
   },
 };
 
@@ -46,20 +46,17 @@ const columnVariants = {
   },
 };
 
-// ÍTEM CON MOVIMIENTO (HOVER)
+// ÍTEM CON MOVIMIENTO (HOVER - DESKTOP)
 function ServiceItem({ iconKey, title, desc }) {
   return (
     <motion.div
-      // Animación al hacer hover: se mueve a la derecha y cambia el fondo sutilmente
       whileHover={{ x: 10, backgroundColor: "rgba(255,255,255,0.02)" }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="group relative py-8 px-4 border-b border-white/[0.06] last:border-0 rounded-lg cursor-default"
     >
       <div className="flex flex-col gap-4">
-        {/* Encabezado */}
         <div className="flex items-center justify-between">
            <div className="flex items-center gap-4">
-              {/* Icono animado */}
               <motion.span 
                 className="text-white/30 group-hover:text-white transition-colors duration-300 text-lg"
                 whileHover={{ scale: 1.1, rotate: 5 }}
@@ -70,14 +67,10 @@ function ServiceItem({ iconKey, title, desc }) {
                 {title}
               </h4>
            </div>
-           
-           {/* Flecha que entra */}
            <div className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-white/60">
              <FaArrowRight size={12} />
            </div>
         </div>
-
-        {/* Descripción */}
         <p className="text-xs md:text-sm text-white/40 font-light leading-relaxed pl-9 max-w-[95%] transition-colors duration-300 group-hover:text-white/60">
           {desc}
         </p>
@@ -86,17 +79,37 @@ function ServiceItem({ iconKey, title, desc }) {
   );
 }
 
-// COLUMNA
+// ÍTEM SIMPLE (MOBILE)
+function ServiceItemMobile({ iconKey, title, desc }) {
+    return (
+      <div className="group relative py-5 px-0 border-b border-white/[0.06] last:border-0">
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-3">
+             <span className="text-white/40 text-base">
+               {ICONS[iconKey]}
+             </span>
+             <h4 className="text-sm font-medium text-white tracking-wide">
+               {title}
+             </h4>
+          </div>
+          <p className="text-xs text-white/50 font-light leading-relaxed pl-7">
+            {desc}
+          </p>
+        </div>
+      </div>
+    );
+}
+
+// COLUMNA DESKTOP
 function ServiceColumn({ title, subtitle, items = [], hasBorder }) {
   return (
     <motion.div 
       variants={columnVariants}
       className={`flex flex-col h-full px-2 md:px-6 ${hasBorder ? 'lg:border-r border-white/[0.06]' : ''}`}
     >
-      {/* Título de Columna */}
       <div className="mb-12 px-4">
         <h3 className="text-2xl font-light text-white tracking-tight mb-4 flex items-center gap-3">
-          <span className="w-1.5 h-1.5 bg-white/40 rounded-full animate-pulse"></span> {/* Puntito palpitante */}
+          <span className="w-1.5 h-1.5 bg-white/40 rounded-full animate-pulse"></span>
           {title}
         </h3>
         <p className="text-sm text-white/40 leading-relaxed font-light pl-5 opacity-70">
@@ -120,6 +133,9 @@ function ServiceColumn({ title, subtitle, items = [], hasBorder }) {
 
 export default function ServicesSection() {
   const { t } = useLang();
+  
+  // ESTADO PARA ACORDEÓN MÓVIL
+  const [activeAccordion, setActiveAccordion] = useState(0);
 
   // Header
   const headerTitle = tt(t, "services.header.title", "Servicios");
@@ -150,10 +166,16 @@ export default function ServicesSection() {
     { icon: "web_admin", title: "Mantenimiento", description: "Actualizaciones de seguridad, backups y soporte técnico continuo." },
   ]);
 
+  const allColumns = [
+    { title: odooTitle, subtitle: odooSubtitle, items: odooItems },
+    { title: devTitle, subtitle: devSubtitle, items: devItems },
+    { title: careTitle, subtitle: careSubtitle, items: careItems },
+  ];
+
   return (
     <section id="services" className="relative w-full bg-[#050505] overflow-hidden">
       
-      {/* 1. ATMÓSFERA VIVA (Glows que se mueven) */}
+      {/* ATMÓSFERA VIVA (FONDO COMÚN) */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
           animate={{ x: [0, 100, 0], opacity: [0.1, 0.3, 0.1] }}
@@ -167,7 +189,84 @@ export default function ServicesSection() {
         />
       </div>
 
-      <div className="px-6 md:px-12 py-32 lg:py-48 max-w-[1400px] mx-auto relative z-10">
+
+      {/* =======================================================================
+          1. VERSIÓN MOBILE (ACORDEÓN)
+          Visible solo en pantallas pequeñas (lg:hidden)
+         ======================================================================= */}
+      <div className="block lg:hidden px-6 py-24 relative z-10 w-full">
+         {/* HEADER MOBILE */}
+         <div className="mb-12">
+            <SectionHeader
+              id="services-header-mob"
+              title={headerTitle}
+              bgText={headerBg}
+              titleColor="#FFFFFF"
+              bgColor="#FFFFFF"
+              bgOpacityClass="opacity-[0.02]"
+            />
+         </div>
+
+         {/* ACORDEÓN */}
+         <div className="flex flex-col gap-4">
+            {allColumns.map((col, idx) => {
+               const isActive = activeAccordion === idx;
+               return (
+                  <div key={idx} className={`rounded-xl transition-all duration-500 overflow-hidden ${isActive ? 'bg-white/[0.03] border border-white/10' : 'bg-transparent border border-white/[0.05]'}`}>
+                     
+                     <button
+                        onClick={() => setActiveAccordion(isActive ? null : idx)}
+                        className="w-full text-left px-5 py-5 flex items-center justify-between group"
+                     >
+                        <h3 className={`text-base font-light tracking-tight flex items-center gap-3 transition-colors ${isActive ? 'text-white' : 'text-white/60'}`}>
+                           <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-white shadow-[0_0_8px_white]' : 'bg-white/20'}`}></span>
+                           {col.title}
+                        </h3>
+                        <div className={`text-white/40 transition-transform duration-300 ${isActive ? 'rotate-180 text-white' : ''}`}>
+                           {isActive ? <FaMinus size={12} /> : <FaPlus size={12} />}
+                        </div>
+                     </button>
+
+                     <AnimatePresence>
+                        {isActive && (
+                           <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                           >
+                              <div className="px-5 pb-6 pt-0 border-t border-white/[0.05]">
+                                 <p className="text-xs text-white/40 leading-relaxed font-light mt-4 mb-6 pl-2 border-l-2 border-white/10">
+                                    {col.subtitle}
+                                 </p>
+                                 <div className="flex flex-col">
+                                    {(Array.isArray(col.items) ? col.items : []).map((it, itemIdx) => (
+                                       <ServiceItemMobile key={itemIdx} iconKey={it.icon} title={it.title} desc={it.description} />
+                                    ))}
+                                 </div>
+                              </div>
+                           </motion.div>
+                        )}
+                     </AnimatePresence>
+                  </div>
+               );
+            })}
+         </div>
+
+         {/* CTA MOBILE */}
+         <div className="mt-12 flex justify-center">
+            <a href="#contact" className="text-[10px] tracking-[0.2em] uppercase text-white/30 border-b border-white/10 pb-1 hover:text-white transition-colors">
+              ¿Consulta Específica?
+            </a>
+         </div>
+      </div>
+
+
+      {/* =======================================================================
+          2. VERSIÓN DESKTOP (ORIGINAL INTACTA)
+          Visible solo en pantallas grandes (hidden lg:block)
+         ======================================================================= */}
+      <div className="hidden lg:block px-6 md:px-12 py-32 lg:py-48 max-w-[1400px] mx-auto relative z-10">
         
         {/* HEADER */}
         <div className="mb-24 pl-4 md:pl-10">
@@ -189,28 +288,24 @@ export default function ServicesSection() {
           viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-y-0"
         >
-          
           <ServiceColumn 
             title={odooTitle} 
             subtitle={odooSubtitle} 
             items={Array.isArray(odooItems) ? odooItems : []} 
             hasBorder={true} 
           />
-
           <ServiceColumn 
             title={devTitle} 
             subtitle={devSubtitle} 
             items={Array.isArray(devItems) ? devItems : []} 
             hasBorder={true} 
           />
-
           <ServiceColumn 
             title={careTitle} 
             subtitle={careSubtitle} 
             items={Array.isArray(careItems) ? careItems : []} 
             hasBorder={false} 
           />
-
         </motion.div>
 
         {/* CTA FLOTANTE ANIMADO */}
@@ -226,7 +321,6 @@ export default function ServicesSection() {
             <span className="text-[10px] tracking-[0.3em] uppercase text-white/30 group-hover:text-white transition-colors duration-500">
               ¿Consulta Específica?
             </span>
-            {/* La línea crece al hacer hover */}
             <motion.div 
               className="w-[1px] bg-gradient-to-b from-white/10 to-white/50"
               initial={{ height: 40 }}

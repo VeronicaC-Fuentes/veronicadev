@@ -16,8 +16,9 @@ function usePrefersReducedMotion() {
 export default function Loader({ onFinish }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  // Referencia al elemento de video para chequear su estado manual
-  const videoRef = useRef(null);
+  // Refs separados para móvil y escritorio
+  const mobileVideoRef = useRef(null);
+  const desktopVideoRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
@@ -43,7 +44,7 @@ export default function Loader({ onFinish }) {
     timeoutsRef.current.push(t);
   }, [clearAllTimers, onFinish]);
 
-  // 1. TIEMPO MÍNIMO (Estética)
+  // 1. TIEMPO MÍNIMO
   useEffect(() => {
     const t = window.setTimeout(() => {
       setMinTimeElapsed(true);
@@ -52,7 +53,7 @@ export default function Loader({ onFinish }) {
     return () => window.clearTimeout(t);
   }, []);
 
-  // 2. SALVAVIDAS (SEGURIDAD CRÍTICA)
+  // 2. SALVAVIDAS
   useEffect(() => {
     const t = window.setTimeout(() => {
       setVideoLoaded(true);
@@ -61,9 +62,12 @@ export default function Loader({ onFinish }) {
     return () => window.clearTimeout(t);
   }, []);
 
-  // 3. CHEQUEO MANUAL AL MONTAR
+  // 3. CHEQUEO MANUAL AL MONTAR (Revisamos ambos refs)
   useEffect(() => {
-    if (videoRef.current && videoRef.current.readyState >= 3) {
+    if (desktopVideoRef.current && desktopVideoRef.current.readyState >= 3) {
+      setVideoLoaded(true);
+    }
+    if (mobileVideoRef.current && mobileVideoRef.current.readyState >= 3) {
       setVideoLoaded(true);
     }
   }, []);
@@ -115,7 +119,9 @@ export default function Loader({ onFinish }) {
     <div
       className={[
         "fixed inset-0 z-[9999] bg-black h-[100dvh] w-screen overflow-hidden",
-        "flex items-end justify-start px-6 pb-10 pt-10 md:p-16",
+        "flex items-end justify-start",
+        // Aquí ajustamos padding separado: Mobile (pb-20) vs Desktop (md:p-16)
+        "px-6 pb-20 pt-10 md:p-16", 
         "transition-opacity duration-700 ease-in-out",
         fadeOut ? "opacity-0 pointer-events-none" : "opacity-100",
         "antialiased",
@@ -124,33 +130,47 @@ export default function Loader({ onFinish }) {
       aria-live="polite"
     >
       {!prefersReducedMotion ? (
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/intro-poster.jpg"
-          // AQUÍ ESTÁ EL CAMBIO: Agregué 'grayscale' al final de las clases
-          className="absolute inset-0 w-full h-full object-cover opacity-80 grayscale"
-          onCanPlayThrough={handleVideoReady}
-          onLoadedData={handleVideoReady}
-          onError={() => setVideoLoaded(true)}
-        >
-          <source
-            src="/intro-mobile.webm"
-            type="video/webm"
-            media="(max-width: 768px)"
-          />
-          <source
-            src="/intro-mobile.mp4"
-            type="video/mp4"
-            media="(max-width: 768px)"
-          />
-          <source src="/intro.webm" type="video/webm" />
-          <source src="/intro.mp4" type="video/mp4" />
-        </video>
+        <>
+          {/* --- VERSIÓN MOBILE (Solo visible en pantallas chicas) --- */}
+          <div className="md:hidden absolute inset-0 w-full h-full">
+            <video
+              ref={mobileVideoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover opacity-80 grayscale"
+              onCanPlayThrough={handleVideoReady}
+              onLoadedData={handleVideoReady}
+              onError={() => setVideoLoaded(true)} // Si falla el webm, carga igual
+            >
+              {/* Solo cargamos el archivo móvil aquí */}
+              <source src="/intro-mobile.webm" type="video/webm" />
+            </video>
+          </div>
+
+          {/* --- VERSIÓN DESKTOP (Solo visible en pantallas medianas/grandes) --- */}
+          {/* Esto es EXACTAMENTE lo que tenías antes para desktop */}
+          <div className="hidden md:block absolute inset-0 w-full h-full">
+            <video
+              ref={desktopVideoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster="/intro-poster.jpg"
+              className="absolute inset-0 w-full h-full object-cover opacity-80 grayscale"
+              onCanPlayThrough={handleVideoReady}
+              onLoadedData={handleVideoReady}
+              onError={() => setVideoLoaded(true)}
+            >
+              <source src="/intro.webm" type="video/webm" />
+              <source src="/intro.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </>
       ) : (
         <div
           className="absolute inset-0 w-full h-full bg-center bg-cover opacity-80 grayscale"
@@ -162,8 +182,10 @@ export default function Loader({ onFinish }) {
       <div className="absolute inset-0 bg-black/10 z-0" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent z-0" />
 
+      {/* Contenedor de Texto */}
       <div
         className="relative z-10 text-white font-sans max-w-xl w-full select-none"
+        // Este padding extra asegura que en iPhone no se pegue abajo del todo
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <h2
