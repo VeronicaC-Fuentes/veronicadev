@@ -62,7 +62,7 @@ export default function Loader({ onFinish }) {
     return () => window.clearTimeout(t);
   }, []);
 
-  // 3. CHEQUEO MANUAL AL MONTAR (Revisamos ambos refs)
+  // 3. CHEQUEO MANUAL AL MONTAR
   useEffect(() => {
     if (desktopVideoRef.current && desktopVideoRef.current.readyState >= 3) {
       setVideoLoaded(true);
@@ -120,8 +120,8 @@ export default function Loader({ onFinish }) {
       className={[
         "fixed inset-0 z-[9999] bg-black h-[100dvh] w-screen overflow-hidden",
         "flex items-end justify-start",
-        // Aquí ajustamos padding separado: Mobile (pb-20) vs Desktop (md:p-16)
-        "px-6 pb-20 pt-10 md:p-16", 
+        // Padding responsivo
+        "px-6 pb-20 pt-10 md:p-16",
         "transition-opacity duration-700 ease-in-out",
         fadeOut ? "opacity-0 pointer-events-none" : "opacity-100",
         "antialiased",
@@ -131,27 +131,36 @@ export default function Loader({ onFinish }) {
     >
       {!prefersReducedMotion ? (
         <>
-          {/* --- VERSIÓN MOBILE (Solo visible en pantallas chicas) --- */}
-          <div className="md:hidden absolute inset-0 w-full h-full">
-            <video
-              ref={mobileVideoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="absolute inset-0 w-full h-full object-cover opacity-80 grayscale"
-              onCanPlayThrough={handleVideoReady}
-              onLoadedData={handleVideoReady}
-              onError={() => setVideoLoaded(true)} // Si falla el webm, carga igual
+          {/* --- VERSIÓN MOBILE (Burbuja Central) --- */}
+          <div className="md:hidden absolute inset-0 w-full h-full flex items-center justify-center pb-20">
+            {/* Contenedor de la Burbuja/Gota */}
+            <div 
+              className="relative w-64 h-64 rounded-full overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)]"
+              // Opcional: Si quieres que no sea un círculo perfecto sino algo más orgánico como gota,
+              // podrías cambiar rounded-full por algo como: rounded-[60%_40%_30%_70%/60%_30%_70%_40%]
             >
-              {/* Solo cargamos el archivo móvil aquí */}
-              <source src="/intro-mobile.webm" type="video/webm" />
-            </video>
+              <video
+                ref={mobileVideoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover opacity-90 grayscale"
+                onCanPlayThrough={handleVideoReady}
+                onLoadedData={handleVideoReady}
+                onError={() => setVideoLoaded(true)}
+              >
+                {/* VIDEO NUEVO PARA MOBILE */}
+                <source src="/DSCF0544.webm" type="video/webm" />
+              </video>
+              
+              {/* Brillo sutil sobre la burbuja (efecto cristal) */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
+            </div>
           </div>
 
-          {/* --- VERSIÓN DESKTOP (Solo visible en pantallas medianas/grandes) --- */}
-          {/* Esto es EXACTAMENTE lo que tenías antes para desktop */}
+          {/* --- VERSIÓN DESKTOP (Fullscreen original) --- */}
           <div className="hidden md:block absolute inset-0 w-full h-full">
             <video
               ref={desktopVideoRef}
@@ -178,14 +187,13 @@ export default function Loader({ onFinish }) {
         />
       )}
 
-      {/* Oscuridad moderada + legibilidad */}
-      <div className="absolute inset-0 bg-black/10 z-0" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent z-0" />
+      {/* Degradados de fondo (para que el texto se lea bien sobre negro) */}
+      <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-0 pointer-events-none" />
 
-      {/* Contenedor de Texto */}
+      {/* Contenedor de Texto (Igual que antes) */}
       <div
         className="relative z-10 text-white font-sans max-w-xl w-full select-none"
-        // Este padding extra asegura que en iPhone no se pegue abajo del todo
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <h2
