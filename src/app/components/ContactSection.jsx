@@ -4,7 +4,8 @@ import { useState } from "react";
 import SectionHeader from "./SectionHeader";
 import { db } from "../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
-import { FiArrowRight, FiMapPin, FiArrowUpRight, FiSend } from "react-icons/fi";
+// 1. IMPORT ACTUALIZADO CON LOS NUEVOS ICONOS
+import { FiArrowRight, FiMapPin, FiArrowUpRight, FiSend, FiCheckCircle, FiAlertTriangle, FiX } from "react-icons/fi";
 import { FaInstagram, FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "./LanguageProvider";
@@ -34,8 +35,8 @@ export default function ContactSection() {
   // Hero Texts
   const heroTitle = tt(t, "contact.hero.title", "¿Tienes un proyecto");
   const heroHighlight = tt(t, "contact.hero.highlight", "en mente?");
-  const heroDesc = tt(t, "contact.hero.desc", "Descripción larga...");
-  const heroMobDesc = tt(t, "contact.hero.mobDesc", "Descripción corta...");
+  const heroDesc = tt(t, "contact.hero.desc", "Desde implementaciones de Odoo hasta desarrollo web a medida. Cuéntame tu visión y busquemos la mejor estrategia técnica para hacerla realidad.");
+  const heroMobDesc = tt(t, "contact.hero.mobDesc", "Cuéntame tu visión y busquemos la mejor estrategia técnica.");
 
   // Form Labels
   const lblNamePh = tt(t, "contact.form.namePlaceholder", "Nombre");
@@ -53,15 +54,18 @@ export default function ContactSection() {
   const infoLocation = tt(t, "contact.info.location", "LATAM / EUROPA");
   const infoRemote = tt(t, "contact.info.remote", "Remote Friendly");
 
-  // Alerts
-  const alertSuccess = tt(t, "contact.alerts.success", "Mensaje enviado con éxito.");
-  const alertError = tt(t, "contact.alerts.error", "Error al enviar.");
+  // Alerts (Mensajes para la notificación)
+  const alertSuccess = tt(t, "contact.alerts.success", "Mensaje enviado con éxito. Te responderé pronto.");
+  const alertError = tt(t, "contact.alerts.error", "Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
 
 
-  // ESTADOS DEL FORMULARIO
+  // --- ESTADOS DEL FORMULARIO ---
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
+  
+  // 2. NUEVO ESTADO PARA LA NOTIFICACIÓN
+  const [notification, setNotification] = useState(null); 
 
   // ESTADO VISTA MOBILE
   const [activeTab, setActiveTab] = useState("form");
@@ -70,6 +74,7 @@ export default function ContactSection() {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
+  // 3. HANDLER ACTUALIZADO CON NOTIFICACIÓN
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -79,10 +84,17 @@ export default function ContactSection() {
         createdAt: new Date(),
       });
       setFormState({ name: "", email: "", message: "" });
-      alert(alertSuccess); // Usamos la variable traducida
+      
+      // Mostrar notificación de éxito
+      setNotification({ type: 'success', message: alertSuccess });
+      // Ocultar automáticamente a los 5 segundos
+      setTimeout(() => setNotification(null), 5000);
+
     } catch (error) {
       console.error("Error:", error);
-      alert(alertError); // Usamos la variable traducida
+      // Mostrar notificación de error
+      setNotification({ type: 'error', message: alertError });
+      setTimeout(() => setNotification(null), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -424,6 +436,63 @@ export default function ContactSection() {
 
         </div>
       </div>
+
+      {/* =========================================
+          3. NOTIFICACIÓN FLOTANTE (TOAST)
+         ========================================= */}
+      <AnimatePresence>
+        {notification && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ type: "spring", duration: 0.5 }}
+            className="fixed bottom-6 left-6 right-6 md:left-auto md:right-10 z-50 md:max-w-md pointer-events-auto"
+          >
+            <div className={`
+              relative flex items-center gap-4 p-5 rounded-lg border backdrop-blur-xl shadow-2xl overflow-hidden
+              ${notification.type === 'success' 
+                ? 'bg-emerald-900/40 border-emerald-500/30' 
+                : 'bg-red-900/40 border-red-500/30'}
+            `}>
+              {/* Icono */}
+              <div className={`
+                p-2 rounded-full shrink-0
+                ${notification.type === 'success' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}
+              `}>
+                {notification.type === 'success' ? <FiCheckCircle size={24} /> : <FiAlertTriangle size={24} />}
+              </div>
+
+              {/* Texto */}
+              <div className="flex-1 min-w-0">
+                <h4 className={`text-sm font-bold uppercase tracking-wider mb-1 ${notification.type === 'success' ? 'text-emerald-400' : 'text-red-400'}`}>
+                  {notification.type === 'success' ? '¡Enviado!' : 'Error'}
+                </h4>
+                <p className="text-white/80 text-sm font-light truncate">
+                  {notification.message}
+                </p>
+              </div>
+
+              {/* Botón cerrar */}
+              <button 
+                onClick={() => setNotification(null)}
+                className="text-white/40 hover:text-white transition-colors p-1 shrink-0"
+              >
+                <FiX size={20} />
+              </button>
+
+              {/* Barra de tiempo animada */}
+              <motion.div 
+                initial={{ scaleX: 1 }}
+                animate={{ scaleX: 0 }}
+                transition={{ duration: 5, ease: "linear" }}
+                className={`absolute bottom-0 left-0 h-[2px] w-full origin-left ${notification.type === 'success' ? 'bg-emerald-500/50' : 'bg-red-500/50'}`}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }
