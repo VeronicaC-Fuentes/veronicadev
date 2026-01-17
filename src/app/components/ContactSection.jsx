@@ -1,16 +1,15 @@
 "use client";
 
-import { useState, useRef } from "react"; // 1. Agregamos useRef
+import { useState } from "react";
 import SectionHeader from "./SectionHeader";
 import { db } from "../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
-import emailjs from "@emailjs/browser"; // 2. Importamos EmailJS
+// Ya no necesitamos importar emailjs ni useRef
 import { FiArrowRight, FiMapPin, FiArrowUpRight, FiSend, FiCheckCircle, FiAlertTriangle, FiX } from "react-icons/fi";
 import { FaInstagram, FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "./LanguageProvider";
 
-// Helper de traducción
 function tt(t, key, fallback) {
   const v = t?.(key);
   if (v === undefined || v === null) return fallback;
@@ -23,11 +22,8 @@ function tt(t, key, fallback) {
 
 export default function ContactSection() {
   const { t } = useLang();
-  
-  // Referencia para EmailJS
-  const formRef = useRef(); 
 
-  // --- VARIABLES DE TRADUCCIÓN ---
+  // --- VARIABLES DE TEXTO ---
   const headerTitle = tt(t, "contact.header.title", "Contacto");
   const headerBg = tt(t, "contact.header.bg", "CONTACTO");
   const tabWrite = tt(t, "contact.tabs.write", "Escríbeme");
@@ -51,7 +47,6 @@ export default function ContactSection() {
   const alertSuccess = tt(t, "contact.alerts.success", "Mensaje enviado con éxito. Te responderé pronto.");
   const alertError = tt(t, "contact.alerts.error", "Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
 
-  // ESTADOS
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
@@ -67,20 +62,27 @@ export default function ContactSection() {
     setIsSubmitting(true);
     
     try {
-      // 1. GUARDAR EN FIREBASE
+      // 1. GUARDAR EN FIREBASE (Esto lo mantenemos igual)
       await addDoc(collection(db, "messages"), {
         ...formState,
         createdAt: new Date(),
       });
 
-      // 2. ENVIAR CORREO (EmailJS)
-      // Usamos las variables de entorno para seguridad
-      await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      );
+      // 2. ENVIAR CORREO (Método Fácil con FormSubmit)
+      // Usamos fetch directo a tu correo. El '/ajax/' es importante para que no te redirija a otra página.
+      await fetch("https://formsubmit.co/ajax/crucessveronica@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: formState.name,
+            email: formState.email,
+            message: formState.message,
+            _subject: `Nuevo mensaje de portafolio de ${formState.name}` // Asunto personalizado
+        })
+      });
 
       // ÉXITO
       setFormState({ name: "", email: "", message: "" });
@@ -120,10 +122,7 @@ export default function ContactSection() {
                       <h3 className="text-2xl font-serif italic text-white mb-2">{heroTitle}?</h3>
                       <p className="text-white/50 text-sm font-light">{heroMobDesc}</p>
                   </div>
-
-                  {/* IMPORTANTE: Agregamos ref={formRef} aquí también para Mobile */}
-                  <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8">
-                      {/* Inputs Mobile (asegúrate que name coincida con tu template de EmailJS) */}
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                       <div className="relative group">
                           <input type="text" name="name" id="name_m" value={formState.name} onChange={handleChange} onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)} required className="block w-full py-3 bg-transparent text-white text-lg border-b border-white/10 focus:border-white/50 focus:outline-none placeholder-transparent" placeholder={lblNamePh} />
                           <label htmlFor="name_m" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-[10px] font-mono ${formState.name || focusedField === 'name' ? '-top-3 text-white/40' : 'top-4 text-white/30'}`}>{lblNameLabel}</label>
@@ -146,10 +145,7 @@ export default function ContactSection() {
              ) : (
                <motion.div key="info" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.3 }} className="flex flex-col items-center gap-8">
                   <div className="relative w-48 h-48 rounded-full overflow-hidden border border-white/10 shadow-2xl">
-                      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover scale-110">
-                          <source src="/DSCF0544.webm" type="video/webm" />
-                          <source src="/DSCF0544.mp4" type="video/mp4" />
-                      </video>
+                      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover scale-110"><source src="/DSCF0544.webm" type="video/webm" /><source src="/DSCF0544.mp4" type="video/mp4" /></video>
                       <div className="absolute inset-0 bg-black/20 mix-blend-multiply pointer-events-none"></div>
                   </div>
                   <div className="w-full flex flex-col gap-6 text-center">
@@ -189,9 +185,8 @@ export default function ContactSection() {
                 <p className="text-white/60 text-lg font-light max-w-md leading-relaxed">{heroDesc}</p>
             </div>
 
-            {/* IMPORTANTE: ref={formRef} para Desktop también */}
-            {/* OJO: EmailJS usa la misma referencia. Si la vista cambia entre mobile/desktop, React maneja el ref, pero asegúrate de probar en ambos. */}
-            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-12">
+            {/* FORMULARIO DESKTOP SIMPLIFICADO */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-12">
                 <div className="relative group">
                     <input type="text" name="name" id="name" value={formState.name} onChange={handleChange} onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)} required className="block w-full py-4 bg-transparent text-white text-xl border-b border-white/10 focus:border-white/50 focus:outline-none transition-all placeholder-transparent" placeholder={lblNamePh} />
                     <label htmlFor="name" className={`absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-widest text-xs font-mono ${formState.name || focusedField === 'name' ? '-top-4 text-white/40' : 'top-5 text-white/30'}`}>{lblNameLabel}</label>
