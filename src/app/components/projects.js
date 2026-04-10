@@ -16,15 +16,7 @@ export const ALL_PROJECTS = [
   tech: "Odoo 17 (Odoo.sh), Python, XML, PostgreSQL, Security Groups & ACLs",
   description: "Desarrollo backend de módulos personalizados en Odoo 17 (entorno Odoo.sh) para empresa distribuidora de Equipos de Protección Personal (EPP) en Perú. Implementación de reglas de negocio avanzadas para la validación automática de líneas de crédito y bloqueos de seguridad en flujos de venta, optimizando el control de riesgo financiero."
 },
-  { 
-  id: "elevenrb", 
-  featured: true, 
-  image: "/portfolio/elevenrb.jpg", 
-  url: "https://elevenrb.com/", 
-  location: "Lima, Perú",
-  tech: "Next.js, Tailwind CSS, Framer Motion, Google Analytics, Google Search Console, Technical SEO",
-  description: "Portafolio web de alto impacto visual desarrollado en Next.js para un artista del tatuaje profesional en Lima, Perú. Diseño minimalista con animaciones fluidas (Framer Motion) para exhibición de arte. Incluye implementación de estrategia SEO técnica y vinculación integral con herramientas de Google para posicionamiento y análisis de tráfico."
-  },
+  
   { 
     id: "bresson", 
     featured: true, 
