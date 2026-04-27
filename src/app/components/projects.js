@@ -54,7 +54,7 @@ export const ALL_PROJECTS = [
     id: "epp", 
     featured: false, 
     image: "/portfolio/eppweb.jpg", 
-    url: "https://equiposdeproteccion.pe/", 
+    url: "https://www.equiposdeproteccion.pe/", 
     tech: "Next.js 15, Tailwind CSS",
     description: "Catálogo online de equipos de protección personal."
   },
@@ -65,14 +65,6 @@ export const ALL_PROJECTS = [
     url: "https://thehubentertainment.pe/", 
     tech: "Next.js 15, React 19, TypeScript",
     description: "Web corporativa para agencia de entretenimiento y medios."
-  },
-  { 
-    id: "wasai", 
-    featured: false, 
-    image: "/portfolio/wasai.jpg", 
-    url: "https://landing.wasai.com/", 
-    tech: "React 19, Tailwind CSS, Firebase",
-    description: "Landing page de alta conversión para turismo y tours."
   },
   { 
     id: "gasyproyectos", 
