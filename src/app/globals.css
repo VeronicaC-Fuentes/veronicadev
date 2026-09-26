@@ -315,11 +315,14 @@ em.accent{font-style:italic;color:var(--green)}
   .proj .meta{flex-direction:column;gap:4px;align-items:flex-start}
   .proj .stack{text-align:left}
 
-  .proc-photo{aspect-ratio:16/10;object-position:50% 35%;max-width:100%!important}
+  .proc-top{gap:36px}
+  .proc-photo{margin:-64px calc(-1 * var(--gutter)) 0;width:calc(100% + 2 * var(--gutter));max-width:none!important;aspect-ratio:1/1;object-position:50% 30%;border-radius:0}
+  .proc-body{gap:32px}
   .sk-grid{grid-template-columns:1fr 1fr}
   .about-txt p{font-size:16px}
   .band{height:320px}
-  .cta .photo{max-width:100%;aspect-ratio:16/11;object-position:50% 80%;border-radius:4px}
+  .cta-grid{gap:48px}
+  .cta .photo{margin:0 calc(-1 * var(--gutter));width:calc(100% + 2 * var(--gutter));max-width:none!important;aspect-ratio:1/1;object-position:50% 80%;border-radius:0}
   .cta h2{font-size:clamp(52px,15vw,72px)}
 
   span.swipe{display:flex}
