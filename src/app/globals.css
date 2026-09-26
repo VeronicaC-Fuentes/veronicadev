@@ -330,3 +330,11 @@ em.accent{font-style:italic;color:var(--green)}
 }
 .swipe{display:none;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:-20px}
 .dark .swipe{color:var(--on-dark-2)}
+
+/* Han confiado en mí: logos en blanco sobre franja oscura */
+.clients{background:var(--ink);border-color:var(--ink)}
+.clients .label{color:var(--on-dark-2)}
+.track.logos{gap:72px;align-items:center;animation-duration:45s}
+.track.logos img{display:block;max-width:none;opacity:.82;transition:opacity .3s}
+.track.logos img:hover{opacity:1}
+@media (max-width:700px){.track.logos{gap:48px}.track.logos img{transform:scale(.8)}}

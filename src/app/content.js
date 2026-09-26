@@ -11,12 +11,12 @@ export const SOCIALS = {
 };
 
 export const CLIENTS = [
-  "Factor Barcelona",
-  "Bresson",
-  "CFG Negocios Inmobiliarios",
-  "EPPS",
-  "La Yapa",
-  "Giuni Cartagena",
+  { name: "Factor Barcelona", logo: "/logos/factor.png", w: 658, h: 150, height: 40 },
+  { name: "Bresson Brokers", logo: "/logos/bresson.png", w: 620, h: 114, height: 32 },
+  { name: "CFG Negocios Inmobiliarios", logo: "/logos/cfg.png", w: 657, h: 200, height: 42 },
+  { name: "EPP Equipos de Protección Peruanos", logo: "/logos/epp.png", w: 389, h: 111, height: 44 },
+  { name: "La Yapa", logo: "/logos/layapa.png", w: 720, h: 200, height: 32 },
+  { name: "Investars Propiedades", logo: "/logos/investars.png", w: 760, h: 173, height: 40 },
 ];
 
 // Proyectos. `home: true` aparece en la portada; todos aparecen en /portfolio.

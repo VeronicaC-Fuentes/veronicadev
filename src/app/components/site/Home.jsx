@@ -40,11 +40,17 @@ function Clients({ c }) {
     <div className="wrap clients" aria-label={c.clients}>
       <span className="label">{c.clients}</span>
       <div className="marquee">
-        <div className="track">
-          {list.map((name, i) => (
-            <span key={i} aria-hidden={i >= CLIENTS.length ? "true" : undefined}>
-              {name}
-            </span>
+        <div className="track logos">
+          {list.map((cl, i) => (
+            <Image
+              key={i}
+              src={cl.logo}
+              alt={i < CLIENTS.length ? cl.name : ""}
+              aria-hidden={i >= CLIENTS.length ? "true" : undefined}
+              width={cl.w}
+              height={cl.h}
+              style={{ height: cl.height, width: "auto" }}
+            />
           ))}
         </div>
       </div>
