@@ -102,6 +102,6 @@ export function WhatsAppFloat() {
 export function PhotoImg({ src, alt, className, priority, sizes = "(max-width: 900px) 100vw, 40vw", style }) {
   // Las fotos tienen proporción 3:4 aprox.; el CSS de cada sección define el recorte final.
   return (
-    <Image src={src} alt={alt} width={1050} height={1400} className={className} priority={priority} sizes={sizes} style={style} />
+    <Image src={src} alt={alt} width={1050} height={1400} className={className} priority={priority} sizes={sizes} style={style} quality={90} />
   );
 }

@@ -293,7 +293,7 @@ function Reviews({ c }) {
 function Band({ c }) {
   return (
     <section className="band" aria-label={c.band.label}>
-      <Image src="/img/door-blazer.jpg" alt={c.band.alt} width={1400} height={933} sizes="100vw" />
+      <Image src="/img/door-blazer.jpg" alt={c.band.alt} width={3200} height={2133} sizes="100vw" quality={90} />
       <div className="card">
         <span className="label">
           <span className="n">●</span> {c.band.label}
