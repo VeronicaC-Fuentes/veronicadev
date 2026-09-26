@@ -287,3 +287,43 @@ em.accent{font-style:italic;color:var(--green)}
 .pf-back:hover{color:var(--green)}
 .pf-grid{padding-bottom:120px}
 .proj .shot img{display:block}
+
+/* ===== Móvil: listas en carrusel horizontal para acortar la página ===== */
+@media (max-width:700px){
+  .services,.process,.projects,.about,.reviews,.cta{padding-block:64px;gap:36px}
+  .cta{padding-bottom:32px}
+  .hero{padding-block:24px 56px;gap:32px}
+  .hero-art{width:min(100%,340px)}
+  .h2{font-size:clamp(34px,9vw,44px)}
+
+  .svc-grid,.mode-grid,.proj-grid,.flow.two,.rv-pair{
+    display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:84%;
+    gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+    margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);
+    padding-bottom:6px;scrollbar-width:none;border:0;
+  }
+  .svc-grid::-webkit-scrollbar,.mode-grid::-webkit-scrollbar,.proj-grid::-webkit-scrollbar,.flow.two::-webkit-scrollbar,.rv-pair::-webkit-scrollbar{display:none}
+  .svc-grid > *,.mode-grid > *,.proj-grid > *,.flow.two > *,.rv-pair > *{scroll-snap-align:start}
+
+  .card{border:1px solid var(--line);border-top:1px solid var(--ink);padding:26px 22px}
+  .card.feat{border-color:var(--ink)}
+  .mode{border:1px solid var(--line)}
+  .mode + .mode{border-top:1px solid var(--line)}
+  .flow.two{grid-auto-columns:62%}
+  .flow.two div,.flow.two div + div,.flow.two div:nth-child(n+3){padding:18px 16px 0 0;border:0;border-top:1px solid var(--ink)}
+  .proj{gap:12px}
+  .proj .meta{flex-direction:column;gap:4px;align-items:flex-start}
+  .proj .stack{text-align:left}
+
+  .proc-photo{aspect-ratio:16/10;object-position:50% 35%;max-width:100%!important}
+  .sk-grid{grid-template-columns:1fr 1fr}
+  .about-txt p{font-size:16px}
+  .band{height:320px}
+  .cta .photo{max-width:100%;aspect-ratio:16/11;object-position:50% 80%;border-radius:4px}
+  .cta h2{font-size:clamp(52px,15vw,72px)}
+
+  span.swipe{display:flex}
+  .proc-top,.proc-body,.proc-top > *,.services > *,.projects > *,.process > *,.reviews > *,.rv-main{min-width:0}
+}
+.swipe{display:none;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:-20px}
+.dark .swipe{color:var(--on-dark-2)}

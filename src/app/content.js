@@ -195,6 +195,7 @@ export const CONTENT = {
     },
     portfolio: { title: ["Portafolio", "completo"], lead: "Webs, aplicaciones, integraciones y módulos Odoo que he desarrollado.", back: "Volver al inicio" },
     whatsappAria: "Escríbeme por WhatsApp",
+    swipe: "Desliza",
   },
   en: {
     nav: { services: "Services", process: "How I work", projects: "Projects", about: "About", cta: "Book a call", lang: "ES" },
@@ -272,5 +273,6 @@ export const CONTENT = {
     },
     portfolio: { title: ["Full", "portfolio"], lead: "Websites, applications, integrations and Odoo modules I've built.", back: "Back to home" },
     whatsappAria: "Message me on WhatsApp",
+    swipe: "Swipe",
   },
 };

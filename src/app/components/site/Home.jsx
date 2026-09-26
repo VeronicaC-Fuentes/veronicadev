@@ -66,6 +66,7 @@ function Services({ c }) {
           </div>
           <p className="lead" style={{ maxWidth: "42ch" }}>{s.lead}</p>
         </div>
+        <span className="swipe" aria-hidden="true">{c.swipe} →</span>
         <div className="svc-grid">
           {s.items.map((it, i) => (
             <article key={it.title} className={`card reveal${it.featured ? " feat" : ""}`}>
@@ -153,6 +154,7 @@ function Process({ c }) {
           </div>
         </div>
         <h3 className="sub reveal">{p.modesTitle}</h3>
+        <span className="swipe" aria-hidden="true">{c.swipe} →</span>
         <div className="mode-grid reveal">
           {p.modes.map((m, i) => (
             <article key={m.title} className={`mode${m.inv ? " inv" : ""}`}>
@@ -188,6 +190,7 @@ function Projects({ c }) {
             {c.projects.all}
           </Link>
         </div>
+        <span className="swipe" aria-hidden="true">{c.swipe} →</span>
         <div className="proj-grid">
           {PROJECTS.filter((p) => p.home).map((p) => (
             <ProjectCard key={p.id} p={p} />
