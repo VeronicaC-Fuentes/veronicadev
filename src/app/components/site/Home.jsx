@@ -315,7 +315,7 @@ function Band({ c }) {
   );
 }
 
-function Contact({ c, n }) {
+function Contact({ c, n, hasReviews }) {
   const k = c.contact;
   const [copied, setCopied] = useState(false);
   const copy = () => {
@@ -356,7 +356,12 @@ function Contact({ c, n }) {
               </a>
             </div>
           </div>
-          <PhotoImg src="/img/smile-tree.jpg" alt={k.alt} className="photo reveal" />
+          {hasReviews ? (
+            <PhotoImg src="/img/smile-tree.jpg" alt={k.alt} className="photo reveal" />
+          ) : (
+            // Mientras no haya reseñas, la foto del libro va aquí
+            <PhotoImg src="/img/book-peek.jpg" alt={c.reviews.alt} className="photo reveal" style={{ objectPosition: "50% 40%" }} />
+          )}
         </div>
         <footer className="foot">
           <span>© {new Date().getFullYear()} Verónica Cruces</span>
@@ -388,7 +393,7 @@ export default function Home() {
         <About c={c} />
         <Reviews c={c} />
         <Band c={c} />
-        <Contact c={c} n={hasReviews ? "06" : "05"} />
+        <Contact c={c} n={hasReviews ? "06" : "05"} hasReviews={hasReviews} />
       </main>
       <WhatsAppFloat />
     </>
