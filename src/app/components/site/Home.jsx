@@ -30,6 +30,7 @@ function Hero({ c }) {
       </div>
       <div className="hero-art fade-in d2">
         <PhotoImg src="/img/hero-door.jpg" alt={c.hero.alt} className="arch" priority sizes="(max-width: 900px) 90vw, 540px" />
+        <Image src="/brand/isotipo-negro.png" alt="" width={1200} height={575} className="iso" />
       </div>
     </section>
   );
@@ -371,7 +372,7 @@ function Contact({ c, n, hasReviews }) {
           )}
         </div>
         <footer className="foot">
-          <span>© {new Date().getFullYear()} Verónica Cruces</span>
+          <Image src="/brand/logo-blanco.png" alt="Verónica Cruces · Software Developer & Odoo Consultant" width={1200} height={561} className="flogo" />
           <nav aria-label="Redes">
             <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>

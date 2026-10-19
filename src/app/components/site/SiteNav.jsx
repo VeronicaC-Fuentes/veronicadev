@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "../LanguageProvider";
 import { callUrl } from "./ui";
 
@@ -19,8 +20,11 @@ export default function SiteNav({ base = "" }) {
     <header className={`nav${scrolled ? " scrolled" : ""}`}>
       <div className="wrap nav-in">
         <Link href="/" className="logo" aria-label="Verónica Cruces">
-          <span className="v">VC</span>
-          <span className="d">.</span>
+          <Image src="/brand/isotipo-negro.png" alt="" width={1200} height={575} priority />
+          <span className="wm">
+            <b>VERÓNICA CRUCES</b>
+            <small>Software Developer &amp; Odoo Consultant</small>
+          </span>
         </Link>
         <nav className="nav-links" aria-label="Principal">
           <a href={`${base}#servicios`}>{c.nav.services}</a>

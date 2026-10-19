@@ -1,7 +1,5 @@
 import "./globals.css";
-import "@fontsource-variable/newsreader/opsz.css";
-import "@fontsource-variable/newsreader/opsz-italic.css";
-import "@fontsource-variable/hanken-grotesk/index.css";
+import "@fontsource-variable/montserrat/index.css";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import ClientRoot from "./ClientRoot";
@@ -18,7 +16,6 @@ export const metadata = {
   description: DESC,
   keywords: ["consultora Odoo", "desarrolladora Odoo", "Odoo freelance", "desarrolladora full-stack", "integraciones API", "automatización", "Next.js", "React", "Odoo España"],
   alternates: { canonical: "/" },
-  icons: { icon: "/icon.svg" },
   openGraph: {
     type: "website",
     url: SITE,
