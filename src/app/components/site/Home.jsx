@@ -25,7 +25,7 @@ function Hero({ c }) {
         </div>
       </div>
       <div className="hero-art fade-in d2">
-        <PhotoImg src="/img/hero-door.jpg" alt={c.hero.alt} className="arch" priority sizes="(max-width: 900px) 90vw, 540px" />
+        <PhotoImg src="/img/hero-calle.jpg" alt={c.hero.alt} className="arch" priority sizes="(max-width: 900px) 90vw, 540px" />
         <Image src="/brand/isotipo-negro.png" alt="" width={1200} height={575} className="iso" />
       </div>
     </section>
@@ -145,7 +145,7 @@ function Process({ c }) {
     <section id="metodologia">
       <div className="wrap process">
         <div className="proc-top">
-          <PhotoImg src="/img/book-column.jpg" alt={p.alt} className="proc-photo reveal" />
+          <PhotoImg src="/img/proceso-escalera.jpg" alt={p.alt} className="proc-photo reveal" />
           <div className="proc-body">
             <div className="l reveal" style={{ display: "flex", flexDirection: "column", gap: 18 }}>
               <Label n="02">{p.label}</Label>

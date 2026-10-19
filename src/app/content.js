@@ -129,7 +129,7 @@ export const CONTENT = {
       leadShort: "Apps, integraciones y Odoo a medida.",
       primary: "Cuéntame tu proyecto",
       secondary: "Ver proyectos",
-      alt: "Verónica Cruces apoyada en una gran puerta verde de madera",
+      alt: "Verónica Cruces con blazer negro en una calle del casco histórico",
     },
     clients: "Han confiado en mí",
     services: {
@@ -156,7 +156,7 @@ export const CONTENT = {
       label: "Cómo trabajamos",
       title: ["Un proceso claro,", "de principio a fin."],
       lead: "Sabes en todo momento en qué fase estamos, qué viene después y cuánto cuesta.",
-      alt: "Verónica con un cuaderno en la mano, apoyada en una columna de granito",
+      alt: "Verónica bajando unas escaleras de piedra en el casco histórico",
       steps: [["Diagnóstico", "Entiendo tu operación y lo que necesitas."], ["Propuesta", "Alcance, fases y presupuesto claros."], ["Desarrollo", "Construyo y pruebo contigo en cada fase."], ["Puesta en marcha", "Lanzamiento y formación a tu equipo."]],
       modesTitle: "Modalidades",
       modes: [
@@ -210,7 +210,7 @@ export const CONTENT = {
       leadShort: "Custom apps, integrations and Odoo.",
       primary: "Tell me about your project",
       secondary: "See projects",
-      alt: "Verónica Cruces leaning on a large green wooden door",
+      alt: "Verónica Cruces in a black blazer on an old-town street",
     },
     clients: "Trusted by",
     services: {
@@ -237,7 +237,7 @@ export const CONTENT = {
       label: "How I work",
       title: ["A clear process,", "from start to finish."],
       lead: "You always know which phase we're in, what comes next and what it costs.",
-      alt: "Verónica holding a notebook, leaning on a granite column",
+      alt: "Verónica walking down stone steps in the old town",
       steps: [["Discovery", "I get to know your operations and needs."], ["Proposal", "Clear scope, phases and budget."], ["Development", "I build and test with you at every phase."], ["Launch", "Go-live and training for your team."]],
       modesTitle: "Ways to work together",
       modes: [
