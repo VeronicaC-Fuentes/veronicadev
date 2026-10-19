@@ -536,3 +536,12 @@ em.accent{font-style:normal;color:var(--purple)}
   .hero-art .arch{object-position:50% 22%}
   .hero-art::after{background:linear-gradient(180deg,rgba(17,17,17,0) 62%,rgba(17,17,17,.75) 86%,var(--ink) 100%)}
 }
+/* móvil: la foto arriba entera y el texto debajo, sin tapar la cara en ningún alto de pantalla */
+@media (max-width:700px){
+  .hero{min-height:0;justify-content:flex-start;padding:0 0 44px}
+  .hero-art{position:relative;inset:auto;height:auto}
+  .hero-art .arch{height:auto;aspect-ratio:1/1;object-position:50% 32%}
+  .hero-art::after{background:linear-gradient(180deg,rgba(17,17,17,0) 70%,rgba(17,17,17,.8) 92%,var(--ink) 100%)}
+  .hero-copy{padding-inline:var(--gutter);margin-top:-36px}
+}
+@media (max-width:700px){.hero-art{order:-1}.hero-copy{order:0}}
