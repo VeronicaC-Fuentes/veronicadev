@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useLang } from "../LanguageProvider";
 import { WHATSAPP_URL } from "../../content";
@@ -90,12 +90,29 @@ export function ProjectCard({ p }) {
 
 export function WhatsAppFloat() {
   const { c } = useLang();
+  const [showTop, setShowTop] = useState(false);
+  useEffect(() => {
+    const on = () => setShowTop(window.scrollY > 600);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
   return (
+    <>
+    <button
+      type="button"
+      className={`to-top${showTop ? " show" : ""}`}
+      aria-label={c.topAria}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+    </button>
     <a className="wa" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label={c.whatsappAria}>
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.86 9.86 0 0 0 12.04 2Zm5.8 14.05c-.24.68-1.42 1.3-1.96 1.35-.5.05-.97.23-3.28-.68-2.77-1.09-4.52-3.93-4.66-4.11-.13-.18-1.1-1.46-1.1-2.79s.7-1.98.95-2.25c.24-.27.53-.34.71-.34l.51.01c.16 0 .38-.06.6.46.23.54.77 1.87.84 2 .07.14.11.3.02.48-.09.18-.13.3-.27.46l-.4.47c-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.6-.14.25.09 1.57.74 1.84.88.27.13.45.2.52.31.07.11.07.66-.17 1.3Z" />
       </svg>
     </a>
+    </>
   );
 }
 

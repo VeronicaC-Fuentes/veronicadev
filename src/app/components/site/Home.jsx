@@ -75,7 +75,7 @@ function Services({ c }) {
           {s.items.map((it, i) => {
             const open = openIdx === i;
             return (
-              <article key={it.title} className={`card reveal${it.featured ? " feat" : ""}${open ? " open" : ""}`}>
+              <article key={it.title} className={`card reveal${it.featured ? " feat" : ""}${it.wide ? " wide" : ""}${open ? " open" : ""}`}>
                 <button type="button" className="card-head" aria-expanded={open} onClick={() => setOpenIdx(open ? -1 : i)}>
                   <span className="top">
                     <span className="num">{String(i + 1).padStart(2, "0")}</span>

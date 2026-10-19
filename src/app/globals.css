@@ -599,3 +599,14 @@ em.accent{font-style:normal;color:var(--purple)}
   .card-head{gap:6px}
   .card h3{font-size:20px}
 }
+
+/* botón volver arriba */
+.to-top{position:fixed;right:24px;bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:50;width:46px;height:46px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .3s,transform .3s,background .3s,color .3s}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--ink);color:var(--paper)}
+.to-top svg{width:20px;height:20px}
+/* servicio ancho (actualización Odoo 19) */
+@media (min-width:701px){
+  .card.wide{grid-column:1 / -1}
+  .card.wide .card-body ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px}
+}

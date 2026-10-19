@@ -145,6 +145,7 @@ export const CONTENT = {
         { title: "Implementación Odoo", for: "quieres ordenar ventas, CRM, inventario o formación en un solo sistema.", list: ["Configuración de módulos", "Migración de datos", "Permisos y flujos por rol", "Formación a tu equipo"], tech: "Odoo 17 · 18 · 19 · Odoo.sh · Odoo Online" },
         { title: "Desarrollo Odoo", for: "Odoo cubre casi todo, pero te falta esa funcionalidad clave para tu negocio.", list: ["Módulos a medida", "Reglas de negocio y validaciones", "Reportes PDF y vistas propias", "Corrección de errores y mejoras"], tech: "Python · OWL · XML · QWeb · PostgreSQL" },
         { title: "Web, e-commerce & SEO", for: "tu web es lenta, no aparece en Google o no está conectada con tu negocio.", list: ["Webs corporativas y tiendas online", "Optimización de velocidad (WPO)", "SEO técnico y analítica", "Mantenimiento evolutivo"], tech: "Odoo Website · WordPress · Next.js · Search Console" },
+        { title: "Actualización a Odoo 19", isNew: true, wide: true, for: "tu empresa sigue en una versión antigua de Odoo y quieres las mejoras de la 19 sin perder datos ni personalizaciones.", list: ["Análisis de tu versión actual y módulos a medida", "Migración de módulos personalizados a Odoo 19", "Migración y verificación de datos", "Pruebas en copia antes del cambio definitivo", "Puesta en marcha y soporte posterior"], tech: "Odoo 15 · 16 · 17 · 18 → 19 · Odoo.sh · Odoo Online · On-premise" },
       ],
       stackTitle: "Stack técnico",
       stackSub: "Las herramientas con las que trabajo a diario.",
@@ -198,6 +199,7 @@ export const CONTENT = {
     },
     portfolio: { title: ["Portafolio", "completo"], lead: "Webs, aplicaciones, integraciones y módulos Odoo que he desarrollado.", back: "Volver al inicio" },
     whatsappAria: "Escríbeme por WhatsApp",
+    topAria: "Volver arriba",
     swipe: "Desliza",
   },
   en: {
@@ -226,6 +228,7 @@ export const CONTENT = {
         { title: "Odoo implementation", for: "you want sales, CRM, inventory or training organised in one system.", list: ["Module configuration", "Data migration", "Role-based permissions and flows", "Team training"], tech: "Odoo 17 · 18 · 19 · Odoo.sh · Odoo Online" },
         { title: "Odoo development", for: "Odoo covers almost everything, but you're missing that one key feature for your business.", list: ["Custom modules", "Business rules and validations", "Custom PDF reports and views", "Bug fixes and improvements"], tech: "Python · OWL · XML · QWeb · PostgreSQL" },
         { title: "Web, e-commerce & SEO", for: "your website is slow, doesn't show up on Google or isn't connected to your business.", list: ["Corporate websites and online stores", "Speed optimisation", "Technical SEO and analytics", "Ongoing maintenance"], tech: "Odoo Website · WordPress · Next.js · Search Console" },
+        { title: "Upgrade to Odoo 19", isNew: true, wide: true, for: "your company is still on an older Odoo version and you want the 19 improvements without losing data or customisations.", list: ["Review of your current version and custom modules", "Migration of custom modules to Odoo 19", "Data migration and verification", "Testing on a copy before the final switch", "Go-live and follow-up support"], tech: "Odoo 15 · 16 · 17 · 18 → 19 · Odoo.sh · Odoo Online · On-premise" },
       ],
       stackTitle: "Tech stack",
       stackSub: "The tools I work with every day.",
@@ -278,6 +281,7 @@ export const CONTENT = {
     },
     portfolio: { title: ["Full", "portfolio"], lead: "Websites, applications, integrations and Odoo modules I've built.", back: "Back to home" },
     whatsappAria: "Message me on WhatsApp",
+    topAria: "Back to top",
     swipe: "Swipe",
   },
 };
