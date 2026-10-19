@@ -119,12 +119,13 @@ export const PROJECTS = [
 
 export const CONTENT = {
   es: {
-    nav: { services: "Servicios", process: "Cómo trabajamos", projects: "Proyectos", about: "Sobre mí", cta: "Agenda una llamada", lang: "EN" },
+    nav: { services: "Servicios", process: "Cómo trabajamos", projects: "Proyectos", about: "Sobre mí", cta: "Agenda una llamada", ctaShort: "Hablemos", lang: "EN" },
     callText: "Hola Verónica, me gustaría agendar una llamada.",
     hero: {
       eyebrow: "Desarrolladora full-stack · Especialista en Odoo",
       title: ["Hago que la tecnología trabaje", "para ti."],
       lead: "Soy Verónica Cruces. Desarrollo aplicaciones y webs a medida, integro tus herramientas y automatizo procesos. Mi especialidad: Odoo.",
+      leadShort: "Apps, integraciones y Odoo a medida.",
       primary: "Cuéntame tu proyecto",
       secondary: "Ver proyectos",
       alt: "Verónica Cruces apoyada en una gran puerta verde de madera",
@@ -198,12 +199,13 @@ export const CONTENT = {
     swipe: "Desliza",
   },
   en: {
-    nav: { services: "Services", process: "How I work", projects: "Projects", about: "About", cta: "Book a call", lang: "ES" },
+    nav: { services: "Services", process: "How I work", projects: "Projects", about: "About", cta: "Book a call", ctaShort: "Let's talk", lang: "ES" },
     callText: "Hi Verónica, I'd like to book a call.",
     hero: {
       eyebrow: "Full-stack developer · Odoo specialist",
       title: ["I make technology work", "for you."],
       lead: "I'm Verónica Cruces. I build custom apps and websites, connect your tools and automate processes. My specialty: Odoo.",
+      leadShort: "Custom apps, integrations and Odoo.",
       primary: "Tell me about your project",
       secondary: "See projects",
       alt: "Verónica Cruces leaning on a large green wooden door",

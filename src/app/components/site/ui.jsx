@@ -23,7 +23,7 @@ export function ArrowUpRight() {
 export function Label({ n, children }) {
   return (
     <span className="label">
-      <span className="n">{n}</span> {children}
+      <span className="n">{n}</span> <span className="tag">{children}</span>
     </span>
   );
 }

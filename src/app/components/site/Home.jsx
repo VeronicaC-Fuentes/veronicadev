@@ -17,7 +17,8 @@ function Hero({ c }) {
         <h1 className="fade-in d2">
           {c.hero.title[0]} <em className="accent">{c.hero.title[1]}</em>
         </h1>
-        <p className="lead fade-in d3">{c.hero.lead}</p>
+        <p className="lead fade-in d3 only-desk">{c.hero.lead}</p>
+        <p className="lead fade-in d3 only-mob">{c.hero.leadShort}</p>
         <div className="hero-actions fade-in d3">
           <a href="#contacto" className="btn btn-ink">
             {c.hero.primary} <Arrow />
@@ -60,6 +61,7 @@ function Clients({ c }) {
 
 function Services({ c }) {
   const s = c.services;
+  const [openIdx, setOpenIdx] = useState(0);
   return (
     <section className="white" id="servicios">
       <div className="wrap services">
@@ -72,26 +74,33 @@ function Services({ c }) {
           </div>
           <p className="lead" style={{ maxWidth: "42ch" }}>{s.lead}</p>
         </div>
-        <span className="swipe" aria-hidden="true">{c.swipe} →</span>
         <div className="svc-grid">
-          {s.items.map((it, i) => (
-            <article key={it.title} className={`card reveal${it.featured ? " feat" : ""}`}>
-              <div className="top">
-                <span className="num">{String(i + 1).padStart(2, "0")}</span>
-                {it.isNew && <span className="new">{s.newLabel}</span>}
-              </div>
-              <h3>{it.title}</h3>
-              <p className="for">
-                <b>{s.forLabel}</b> {it.for}
-              </p>
-              <ul>
-                {it.list.map((li) => (
-                  <li key={li}>{li}</li>
-                ))}
-              </ul>
-              <div className="tech">{it.tech}</div>
-            </article>
-          ))}
+          {s.items.map((it, i) => {
+            const open = openIdx === i;
+            return (
+              <article key={it.title} className={`card reveal${it.featured ? " feat" : ""}${open ? " open" : ""}`}>
+                <button type="button" className="card-head" aria-expanded={open} onClick={() => setOpenIdx(open ? -1 : i)}>
+                  <span className="top">
+                    <span className="num">{String(i + 1).padStart(2, "0")}</span>
+                    {it.isNew && <span className="new">{s.newLabel}</span>}
+                  </span>
+                  <h3>{it.title}</h3>
+                  <span className="chev" aria-hidden="true">+</span>
+                </button>
+                <div className="card-body">
+                  <p className="for">
+                    <b>{s.forLabel}</b> {it.for}
+                  </p>
+                  <ul>
+                    {it.list.map((li) => (
+                      <li key={li}>{li}</li>
+                    ))}
+                  </ul>
+                  <div className="tech">{it.tech}</div>
+                </div>
+              </article>
+            );
+          })}
         </div>
         <div className="skills reveal">
           <h3>
@@ -160,7 +169,6 @@ function Process({ c }) {
           </div>
         </div>
         <h3 className="sub reveal">{p.modesTitle}</h3>
-        <span className="swipe" aria-hidden="true">{c.swipe} →</span>
         <div className="mode-grid reveal">
           {p.modes.map((m, i) => (
             <article key={m.title} className={`mode${m.inv ? " inv" : ""}`}>
@@ -196,7 +204,6 @@ function Projects({ c }) {
             {c.projects.all}
           </Link>
         </div>
-        <span className="swipe" aria-hidden="true">{c.swipe} →</span>
         <div className="proj-grid">
           {PROJECTS.filter((p) => p.home).map((p) => (
             <ProjectCard key={p.id} p={p} />

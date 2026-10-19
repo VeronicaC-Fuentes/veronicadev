@@ -31,7 +31,8 @@ export default function SiteNav({ base = "" }) {
             {c.nav.lang}
           </button>
           <a href={callUrl(c.callText)} target="_blank" rel="noopener noreferrer" className="btn btn-ink">
-            {c.nav.cta}
+            <span className="only-desk">{c.nav.cta}</span>
+            <span className="only-mob">{c.nav.ctaShort}</span>
           </a>
         </nav>
       </div>
