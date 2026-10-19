@@ -36,6 +36,7 @@ const jsonLd = {
   image: `${SITE}/og.jpg`,
   description: DESC,
   telephone: "+34674002395",
+  email: "hola@veronicadev.com",
   areaServed: ["ES", "Latinoamérica"],
   founder: {
     "@type": "Person",

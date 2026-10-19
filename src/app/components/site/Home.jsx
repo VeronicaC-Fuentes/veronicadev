@@ -5,20 +5,16 @@ import Link from "next/link";
 import { useLang } from "../LanguageProvider";
 import SiteNav from "./SiteNav";
 import { Arrow, Label, ProjectCard, WhatsAppFloat, PhotoImg, callUrl, useReveal } from "./ui";
-import { CLIENTS, PROJECTS, PHONE_DISPLAY, PHONE_RAW, WHATSAPP_URL, SOCIALS } from "../../content";
+import { CLIENTS, PROJECTS, PHONE_DISPLAY, PHONE_RAW, WHATSAPP_URL, SOCIALS, EMAIL } from "../../content";
 
 function Hero({ c }) {
   return (
     <section className="wrap hero">
       <div className="hero-copy">
-        <span className="label fade-in">
-          <span className="n">●</span> {c.hero.eyebrow}
-        </span>
         <h1 className="fade-in d2">
           {c.hero.title[0]} <em className="accent">{c.hero.title[1]}</em>
         </h1>
-        <p className="lead fade-in d3 only-desk">{c.hero.lead}</p>
-        <p className="lead fade-in d3 only-mob">{c.hero.leadShort}</p>
+        <p className="lead fade-in d3">{c.hero.lead}</p>
         <div className="hero-actions fade-in d3">
           <a href="#contacto" className="btn btn-ink">
             {c.hero.primary} <Arrow />
@@ -358,6 +354,8 @@ function Contact({ c, n, hasReviews }) {
                   {copied ? k.copied : k.copy}
                 </button>
               </div>
+              <span>Email</span>
+              <a href={`mailto:${EMAIL}`} style={{ fontWeight: 500 }}>{EMAIL}</a>
               <span>LinkedIn</span>
               <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>
                 Verónica Cruces

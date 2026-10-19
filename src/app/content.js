@@ -3,6 +3,7 @@
 
 export const PHONE_DISPLAY = "+34 674 002 395";
 export const PHONE_RAW = "34674002395";
+export const EMAIL = "hola@veronicadev.com";
 export const WHATSAPP_URL = `https://wa.me/${PHONE_RAW}`;
 export const SOCIALS = {
   linkedin: "https://www.linkedin.com/in/desarrollador-ver%C3%B3nicac/",
