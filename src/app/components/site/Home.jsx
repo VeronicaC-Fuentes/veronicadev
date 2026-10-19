@@ -213,6 +213,7 @@ function Projects({ c }) {
 
 function About({ c }) {
   const a = c.about;
+  const [more, setMore] = useState(false);
   const photos = ["/img/alley-lean.jpg", "/img/lean-arm.jpg", "/img/look-up.jpg"];
   return (
     <section className="dark" id="sobre-mi">
@@ -231,10 +232,15 @@ function About({ c }) {
               <PhotoImg key={src} src={src} alt={a.alts[i]} sizes="(max-width: 900px) 33vw, 18vw" />
             ))}
           </div>
-          <div className="about-txt reveal">
+          <div className={`about-txt reveal${more ? " more" : ""}`}>
             <p className="first">{a.p1}</p>
-            <p>{a.p2}</p>
-            <p>{a.p3}</p>
+            <p className="extra">{a.p2}</p>
+            <p className="extra">{a.p3}</p>
+            {!more && (
+              <button type="button" className="more-btn" onClick={() => setMore(true)}>
+                {a.readMore} +
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -172,6 +172,7 @@ export const CONTENT = {
       p1: "Soy Verónica Cruces, desarrolladora full-stack y consultora Odoo. Desde 2023 acompaño a empresas de España y Latinoamérica con su tecnología.",
       p2: "Mi trabajo va desde módulos a medida en Odoo hasta aplicaciones en React y Node.js, webs, integraciones y automatizaciones que conectan todas las herramientas de un negocio. Trabajo en remoto, como nómada digital.",
       p3: "Antes de proponer nada, entiendo cómo funciona tu operación. Te explico con claridad qué conviene configurar, qué conviene desarrollar y qué no hace falta. Cuando trabajas conmigo, hablas directamente con quien diseña y programa la solución.",
+      readMore: "Leer más",
       alts: ["Verónica con blazer negro apoyada en una fachada de piedra", "Verónica apoyada con el brazo en una pared, en una calle estrecha", "Verónica mirando hacia arriba en una calle del casco histórico"],
     },
     reviews: {
@@ -252,6 +253,7 @@ export const CONTENT = {
       p1: "I'm Verónica Cruces, a full-stack developer and Odoo consultant. Since 2023 I've been helping companies in Spain and Latin America with their technology.",
       p2: "My work ranges from custom Odoo modules to React and Node.js applications, websites, integrations and automations that connect all of a business's tools. I work remotely, as a digital nomad.",
       p3: "Before proposing anything, I get to know how your operation works. I'll tell you clearly what to configure, what to build and what you don't need. When you work with me, you talk directly to the person who designs and codes the solution.",
+      readMore: "Read more",
       alts: ["Verónica in a black blazer leaning on a stone façade", "Verónica leaning her arm on a wall in a narrow street", "Verónica looking up in an old-town street"],
     },
     reviews: {

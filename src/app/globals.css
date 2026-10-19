@@ -545,3 +545,57 @@ em.accent{font-style:normal;color:var(--purple)}
   .hero-copy{padding-inline:var(--gutter);margin-top:-36px}
 }
 @media (max-width:700px){.hero-art{order:-1}.hero-copy{order:0}}
+
+/* ================= Móvil compacto (sin scroll horizontal) ================= */
+.more-btn{display:none}
+@media (max-width:700px){
+  .services,.process,.projects,.about,.reviews,.cta{padding-block:64px;gap:32px}
+  .hero{padding-bottom:40px}
+
+  /* fuera en móvil lo que se repite */
+  .skills,.band,.svc-cta{display:none!important}
+
+  /* servicios en acordeón: título + "para ti si" siempre, detalle al tocar */
+  .card-head{cursor:pointer;padding:22px 36px 10px 0}
+  .card.feat .card-head{padding:22px 40px 10px 20px}
+  .chev{display:block!important;position:absolute;right:4px;top:30px;transform:none;font:300 28px/1 var(--sans);transition:transform .3s}
+  .card.feat .chev{right:16px}
+  .card.open .chev{transform:rotate(45deg)}
+  .card-body,.card.open .card-body{display:flex;padding:0 0 20px;gap:14px}
+  .card.feat .card-body{padding:0 20px 20px}
+  .card:not(.open) .card-body ul,.card:not(.open) .card-body .tech{display:none}
+  .card .for{font-size:15px}
+
+  /* proyectos en 2 columnas: imagen + nombre */
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 14px}
+  .proj{padding:0;gap:8px;border:0}
+  .proj .shot{aspect-ratio:4/3}
+  .proj .meta{border:0;padding:0}
+  .proj h3{font-size:15px;line-height:1.25}
+  .proj .stack,.proj p,.proj .go{display:none}
+
+  /* modalidades compactas */
+  .mode{padding:18px 18px;gap:6px}
+  .mode .label{display:none}
+  .mode h3{font-size:19px}
+  .mode p{font-size:14px}
+  .mode ul{display:none!important}
+  .mode .price{padding-top:8px;font-size:13px}
+
+  /* sobre mí: fotos más bajas y "leer más" */
+  .trip img{aspect-ratio:3/4}
+  .trip img:nth-child(2){margin-top:16px}
+  .about-grid{gap:28px}
+  .about-txt .extra{display:none}
+  .about-txt.more .extra{display:block}
+  .more-btn{display:inline-flex;align-self:flex-start;background:none;border:1px solid var(--on-dark-2);color:var(--on-dark);font:700 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:12px 18px;cursor:pointer}
+
+  /* cómo trabajamos: foto más baja */
+  .proc-photo{aspect-ratio:4/3!important}
+}
+@media (max-width:700px){
+  .svc-grid .card{padding:0}
+  .svc-grid .card.feat{margin-bottom:4px}
+  .card-head{gap:6px}
+  .card h3{font-size:20px}
+}
