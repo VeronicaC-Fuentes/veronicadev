@@ -120,7 +120,7 @@ export const PROJECTS = [
 
 export const CONTENT = {
   es: {
-    nav: { services: "Servicios", process: "Cómo trabajamos", projects: "Proyectos", about: "Sobre mí", cta: "Agenda una llamada", ctaShort: "Hablemos", lang: "EN" },
+    nav: { spotlight: "Taller Claude", services: "Servicios", process: "Cómo trabajamos", projects: "Proyectos", about: "Sobre mí", cta: "Agenda una llamada", ctaShort: "Hablemos", lang: "EN" },
     callText: "Hola Verónica, me gustaría agendar una llamada.",
     hero: {
       eyebrow: "Desarrolladora full-stack · Especialista en Odoo",
@@ -132,6 +132,47 @@ export const CONTENT = {
       alt: "Verónica Cruces con blazer negro en una calle del casco histórico",
     },
     clients: "Han confiado en mí",
+    spotlight: {
+      label: "Novedades",
+      title: ["Dos cosas en las que", "me estoy enfocando."],
+      items: [
+        {
+          id: "taller",
+          dark: true,
+          tag: "Nuevo · Taller para empresas",
+          title: ["Claude para tu empresa:", "de 0 a usarlo en tus procesos de verdad."],
+          lead: "Un taller práctico para equipos no técnicos. Tu equipo sale usando Claude en su trabajo diario, con casos de tu propia empresa y no con ejemplos de manual.",
+          listTitle: "Qué vamos a ver",
+          list: [
+            "Qué puede (y qué no puede) hacer Claude por tu negocio",
+            "Cómo pedirle las cosas para obtener buenos resultados",
+            "Casos reales: correos, propuestas, informes y análisis de datos",
+            "Darle el contexto de tu empresa con proyectos y documentos",
+            "Privacidad: qué información compartir y cuál no",
+            "Extra: ideas para usar Claude junto a tu Odoo",
+          ],
+          meta: ["En vivo, online", "Grupos reducidos o in-company", "Primera edición en preparación"],
+          primary: { text: "Quiero apuntarme", msg: "Hola Verónica, me interesa el taller «Claude para tu empresa». ¿Me avisas de la próxima edición?" },
+          secondary: { text: "Llevarlo a mi equipo", msg: "Hola Verónica, me gustaría el taller «Claude para tu empresa» para mi equipo." },
+          note: "Taller independiente. No es una formación oficial de Anthropic ni de Odoo S.A.",
+        },
+        {
+          id: "odoo19",
+          tag: "Servicio destacado",
+          title: ["Actualiza tu Odoo", "a la versión 19."],
+          lead: "Si sigues en Odoo 15, 16, 17 o 18, te llevo a la 19 sin perder datos ni personalizaciones. Todo se prueba antes en una copia, así tu operación no se detiene.",
+          listTitle: "Cómo lo hago",
+          list: [
+            "Reviso tu versión, tus módulos y lo que tienes a medida",
+            "Migro tus módulos personalizados y tus datos",
+            "Probamos juntos en una copia antes del cambio",
+            "Cambio definitivo y soporte posterior",
+          ],
+          meta: ["Odoo.sh", "Odoo Online", "On-premise"],
+          primary: { text: "Quiero actualizar mi Odoo", msg: "Hola Verónica, quiero actualizar mi Odoo a la versión 19. Ahora estoy en la versión: " },
+        },
+      ],
+    },
     services: {
       label: "Servicios",
       title: ["Lo que puedo hacer", "por tu empresa"],
@@ -152,7 +193,7 @@ export const CONTENT = {
       stack: [["ERP", "Odoo 17 · 18 · 19"], ["Backend", "Python · Node.js"], ["Frontend", "React · Next.js · OWL"], ["Datos", "PostgreSQL · Supabase · Airtable"], ["Integraciones", "REST APIs · Webhooks"], ["Web", "WordPress · Tailwind · SEO"]],
       ctaText: ["¿No sabes cuál necesitas?", "Empecemos por una consultoría."],
     },
-    strip: ["Consultoría", "Integraciones API", "Automatización", "Apps a medida", "Odoo", "React · Next.js", "SEO técnico"],
+    strip: ["Taller Claude para empresas", "Actualización a Odoo 19", "Consultoría", "Integraciones API", "Automatización", "Apps a medida", "Odoo", "React · Next.js", "SEO técnico"],
     process: {
       label: "Cómo trabajamos",
       title: ["Un proceso claro,", "de principio a fin."],
@@ -203,7 +244,7 @@ export const CONTENT = {
     swipe: "Desliza",
   },
   en: {
-    nav: { services: "Services", process: "How I work", projects: "Projects", about: "About", cta: "Book a call", ctaShort: "Let's talk", lang: "ES" },
+    nav: { spotlight: "Claude workshop", services: "Services", process: "How I work", projects: "Projects", about: "About", cta: "Book a call", ctaShort: "Let's talk", lang: "ES" },
     callText: "Hi Verónica, I'd like to book a call.",
     hero: {
       eyebrow: "Full-stack developer · Odoo specialist",
@@ -215,6 +256,47 @@ export const CONTENT = {
       alt: "Verónica Cruces in a black blazer on an old-town street",
     },
     clients: "Trusted by",
+    spotlight: {
+      label: "What's new",
+      title: ["Two things I'm", "focusing on."],
+      items: [
+        {
+          id: "taller",
+          dark: true,
+          tag: "New · Workshop for companies",
+          title: ["Claude for your company:", "from zero to using it in your real processes."],
+          lead: "A hands-on workshop for non-technical teams. Your team leaves using Claude in their daily work, with cases from your own company rather than textbook examples.",
+          listTitle: "What we'll cover",
+          list: [
+            "What Claude can (and can't) do for your business",
+            "How to ask for things to get good results",
+            "Real cases: emails, proposals, reports and data analysis",
+            "Giving it your company's context with projects and documents",
+            "Privacy: what to share and what not to",
+            "Bonus: ideas for using Claude alongside your Odoo",
+          ],
+          meta: ["Live, online", "Small groups or in-company", "First edition coming soon"],
+          primary: { text: "I want to join", msg: "Hi Verónica, I'm interested in the 'Claude for your company' workshop. Could you let me know about the next edition?" },
+          secondary: { text: "Bring it to my team", msg: "Hi Verónica, I'd like the 'Claude for your company' workshop for my team." },
+          note: "Independent workshop. Not official training from Anthropic or Odoo S.A.",
+        },
+        {
+          id: "odoo19",
+          tag: "Featured service",
+          title: ["Upgrade your Odoo", "to version 19."],
+          lead: "If you're still on Odoo 15, 16, 17 or 18, I'll move you to 19 without losing data or customisations. Everything is tested on a copy first, so your operations never stop.",
+          listTitle: "How I do it",
+          list: [
+            "I review your version, modules and customisations",
+            "I migrate your custom modules and your data",
+            "We test together on a copy before switching",
+            "Final switch and follow-up support",
+          ],
+          meta: ["Odoo.sh", "Odoo Online", "On-premise"],
+          primary: { text: "Upgrade my Odoo", msg: "Hi Verónica, I'd like to upgrade my Odoo to version 19. I'm currently on version: " },
+        },
+      ],
+    },
     services: {
       label: "Services",
       title: ["What I can do", "for your company"],
@@ -235,7 +317,7 @@ export const CONTENT = {
       stack: [["ERP", "Odoo 17 · 18 · 19"], ["Backend", "Python · Node.js"], ["Frontend", "React · Next.js · OWL"], ["Data", "PostgreSQL · Supabase · Airtable"], ["Integrations", "REST APIs · Webhooks"], ["Web", "WordPress · Tailwind · SEO"]],
       ctaText: ["Not sure which one you need?", "Let's start with a consultation."],
     },
-    strip: ["Consulting", "API integrations", "Automation", "Custom apps", "Odoo", "React · Next.js", "Technical SEO"],
+    strip: ["Claude workshop for companies", "Upgrade to Odoo 19", "Consulting", "API integrations", "Automation", "Custom apps", "Odoo", "React · Next.js", "Technical SEO"],
     process: {
       label: "How I work",
       title: ["A clear process,", "from start to finish."],

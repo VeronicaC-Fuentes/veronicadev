@@ -8,13 +8,13 @@ import ClientRoot from "./ClientRoot";
 const SITE = "https://veronicadev.com";
 const TITLE = "Verónica Cruces · Desarrolladora full-stack y consultora Odoo";
 const DESC =
-  "Desarrollo aplicaciones y webs a medida, integraciones y automatizaciones. Especialista en Odoo: implementación, desarrollo de módulos y consultoría para empresas de España y Latinoamérica.";
+  "Desarrollo aplicaciones y webs a medida, integraciones y automatizaciones. Especialista en Odoo: implementación, actualización a Odoo 19, desarrollo de módulos y consultoría. Talleres de Claude (IA) para empresas de España y Latinoamérica.";
 
 export const metadata = {
   metadataBase: new URL(SITE),
   title: TITLE,
   description: DESC,
-  keywords: ["consultora Odoo", "desarrolladora Odoo", "Odoo freelance", "desarrolladora full-stack", "integraciones API", "automatización", "Next.js", "React", "Odoo España"],
+  keywords: ["consultora Odoo", "desarrolladora Odoo", "Odoo freelance", "desarrolladora full-stack", "integraciones API", "automatización", "Next.js", "React", "Odoo España", "actualizar Odoo 19", "migración Odoo 19", "taller Claude empresas", "curso IA para empresas"],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

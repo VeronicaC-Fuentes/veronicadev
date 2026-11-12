@@ -56,6 +56,61 @@ function Clients({ c }) {
   );
 }
 
+function Spotlight({ c }) {
+  const s = c.spotlight;
+  return (
+    <section className="white" id="novedades">
+      <div className="wrap spotlight">
+        <div className="sec-head reveal">
+          <div className="l">
+            <span className="label">
+              <span className="n">●</span> <span className="tag">{s.label}</span>
+            </span>
+            <h2 className="h2">
+              {s.title[0]} <em className="accent">{s.title[1]}</em>
+            </h2>
+          </div>
+        </div>
+        <div className="spot-grid">
+          {s.items.map((it) => (
+            <article key={it.id} id={it.id} className={`spot reveal${it.dark ? " dark" : ""}`}>
+              <span className="spot-tag">{it.tag}</span>
+              <h3>
+                {it.title[0]} <em className="accent">{it.title[1]}</em>
+              </h3>
+              <p className="spot-lead">{it.lead}</p>
+              <div className="spot-list">
+                <span className="label">{it.listTitle}</span>
+                <ul>
+                  {it.list.map((li) => (
+                    <li key={li}>{li}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="spot-meta">
+                {it.meta.map((m) => (
+                  <span key={m}>{m}</span>
+                ))}
+              </div>
+              <div className="hero-actions">
+                <a href={callUrl(it.primary.msg)} target="_blank" rel="noopener noreferrer" className={`btn ${it.dark ? "btn-light" : "btn-ink"}`}>
+                  {it.primary.text} <Arrow />
+                </a>
+                {it.secondary && (
+                  <a href={callUrl(it.secondary.msg)} target="_blank" rel="noopener noreferrer" className="btn btn-line">
+                    {it.secondary.text}
+                  </a>
+                )}
+              </div>
+              {it.note && <p className="spot-note">{it.note}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Services({ c }) {
   const s = c.services;
   const [openIdx, setOpenIdx] = useState(0);
@@ -398,6 +453,7 @@ export default function Home() {
       <main id="top">
         <Hero c={c} />
         <Clients c={c} />
+        <Spotlight c={c} />
         <Services c={c} />
         <Strip c={c} />
         <Process c={c} />

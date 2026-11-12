@@ -27,6 +27,7 @@ export default function SiteNav({ base = "" }) {
           </span>
         </Link>
         <nav className="nav-links" aria-label="Principal">
+          <a href={`${base}#novedades`}>{c.nav.spotlight}</a>
           <a href={`${base}#servicios`}>{c.nav.services}</a>
           <a href={`${base}#metodologia`}>{c.nav.process}</a>
           <a href={`${base}#proyectos`}>{c.nav.projects}</a>

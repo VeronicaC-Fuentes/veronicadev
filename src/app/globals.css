@@ -610,3 +610,28 @@ em.accent{font-style:normal;color:var(--purple)}
   .card.wide{grid-column:1 / -1}
   .card.wide .card-body ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px}
 }
+
+/* Novedades: taller Claude + actualización Odoo 19 */
+.spotlight{padding-block:clamp(88px,9vw,136px);display:flex;flex-direction:column;gap:clamp(40px,5vw,64px)}
+.spot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+.spot{border:1px solid var(--line);padding:clamp(32px,3.6vw,52px);display:flex;flex-direction:column;gap:24px;min-width:0}
+.spot.dark{border-color:var(--ink)}
+.spot-tag{align-self:flex-start;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--green);padding:5px 9px;border-radius:2px}
+.spot h3{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.7vw,40px);line-height:1.1;letter-spacing:-.01em}
+.spot-lead{margin:0;font-size:17px;color:var(--ink-2);max-width:52ch}
+.spot.dark .spot-lead{color:var(--on-dark-2)}
+.spot-list{display:flex;flex-direction:column;gap:14px;padding-top:20px;border-top:1px solid var(--line-2)}
+.spot.dark .spot-list{border-color:var(--dark-line)}
+.spot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15.5px;color:var(--ink-2)}
+.spot.dark ul{color:var(--on-dark-2)}
+.spot li{display:flex;gap:10px}
+.spot li::before{content:"→";color:var(--green);flex:none}
+.spot.dark li::before{color:var(--lilac)}
+.spot-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.spot-meta span{font-family:var(--mono);font-size:12.5px;padding:6px 10px;border:1px solid var(--line);color:var(--muted)}
+.spot.dark .spot-meta span{border-color:var(--dark-line);color:var(--on-dark-2)}
+.spot .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.spot-note{margin:0;font-size:12.5px;color:var(--muted)}
+.spot.dark .spot-note{color:#7d7d7d}
+@media (max-width:900px){.spot-grid{grid-template-columns:1fr}}
+@media (max-width:700px){.spot:not(.dark) .hero-actions .btn-ink{background:var(--ink);color:var(--cream)}.spotlight{padding-block:64px;gap:32px}.spot{padding:28px 22px}.spot .btn{width:100%;justify-content:space-between;white-space:normal;text-align:left}}
